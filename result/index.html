@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07101d">
+
+  <title>診断結果｜真夜中珈琲屋台</title>
+  <meta name="description" content="真夜中珈琲屋台が、今夜のあなたへ一杯をお届けします。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/result.css">
+</head>
+
+<body>
+  <canvas id="nightSky" class="night-sky" aria-hidden="true"></canvas>
+
+  <main class="result-page">
+    <article id="resultCard" class="result-card" aria-labelledby="coffeeName">
+
+      <!-- 画像レイヤー -->
+      <div class="card-art" aria-hidden="true">
+        <img class="card-layer card-paper" src="../assets/images/card-paper.png" alt="">
+
+        <img class="card-layer coffee-stain" src="../assets/images/coffee-stain.png" alt="">
+
+        <!-- ★ 鵜沢さんの紙片 -->
+        <img class="card-layer card-frame" src="../assets/images/frame.png" alt="">
+      </div>
+
+      <!-- 文字・Canvasレイヤー -->
+      <div class="card-content">
+
+        <header class="card-brand">
+          <p class="brand-en">MIDNIGHT COFFEE STAND</p>
+          <h1>真夜中珈琲屋台</h1>
+          <p class="brand-caption">A cup selected for your sleepless night.</p>
+        </header>
+
+        <section class="selection">
+          <p class="eyebrow">TONIGHT'S SELECTION</p>
+          <p class="selection-label">今夜あなたへ淹れた一杯</p>
+          <h2 id="coffeeName">月灯りブレンド</h2>
+          <p id="coffeeSubtitle">静かな夜ほど、やわらかく香る一杯。</p>
+        </section>
+
+        <section class="visual-grid" aria-label="味わいと星座">
+          <div class="flavor-block">
+            <h3>FLAVOR PROFILE</h3>
+            <canvas id="flavorChart" width="560" height="420" role="img" aria-label="珈琲の味覚チャート"></canvas>
+          </div>
+
+          <div class="constellation-block">
+            <div class="constellation-copy">
+              <h3 id="constellationName">月灯りの星座</h3>
+              <p id="constellationText">
+                今夜のあなたを静かに見守る星のかたち。
+              </p>
+            </div>
+
+            <canvas id="starChart" width="560" height="420" role="img" aria-label="診断結果を表す星座"></canvas>
+          </div>
+        </section>
+
+        <section class="diagnosis-section">
+          <p class="section-kicker">MIDNIGHT READING</p>
+          <h3>今夜の診断</h3>
+          <p id="diagnosis">
+            あなたは静かな場所ほど、本来の力を発揮する人です。
+            今日は少しだけ、自分を優先しても大丈夫。
+          </p>
+        </section>
+
+        <section class="master-letter">
+          <p class="letter-label">FROM THE MASTER</p>
+          <p id="masterComment">
+            「君、今日は肩に力が入ってるなぁ？
+            一杯飲む間くらい、少し休んでいけばいい。」
+          </p>
+        </section>
+
+        <section class="gift-grid">
+          <div>
+            <p class="gift-label">今夜のお供</p>
+            <p id="dessert">バウムクーヘン</p>
+          </div>
+
+          <div>
+            <p class="gift-label">ラッキーアイテム</p>
+            <p id="luckyItem">古い万年筆</p>
+          </div>
+        </section>
+
+        <footer class="card-footer">
+          <div class="numbers">
+            <p>ORDER No. <span id="orderNumber">000000</span></p>
+            <p>MOON No. <span id="moonNumber">M-001000</span></p>
+          </div>
+
+          <p class="footer-message">また眠れない夜に…</p>
+        </footer>
+
+      </div>
+    </article>
+
+    <div class="actions" aria-label="結果ページの操作">
+
+      <div class="action-buttons">
+
+        <button id="shareButton" class="share-button" type="button">
+          この結果をシェア
+        </button>
+
+        <button id="orderAgainButton" class="order-again-button" type="button">
+          もう一杯注文する
+        </button>
+
+      </div>
+
+      <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
+
+    </div>
+  </main>
+
+  <script src="../js/nightSkyEngine.js" defer></script>
+  <script src="../js/dataManager.js" defer></script>
+  <script src="../js/storageEngine.js" defer></script>
+  <script src="../js/cardEngine.js" defer></script>
+  <script src="../js/flavorEngine.js" defer></script>
+  <script src="../js/constellationEngine.js" defer></script>
+  <script src="../js/result.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+:root {
+  --night-1: #16091d;
+  --night-2: #031120;
+  --moon: #f2e7bd;
+  --gold: #c7ae6f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  background: var(--night-1);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow: hidden;
+  color: #f3ead3;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(35, 67, 105, .38), transparent 42%),
+    linear-gradient(180deg, var(--night-2), var(--night-1));
+  font-family: "Noto Serif JP", serif;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+.night-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.opening-page,
+.opening-scene {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.opening-page {
+  position: relative;
+  z-index: 1;
+}
+
+.opening-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    18px
+    max(26px, env(safe-area-inset-bottom));
+}
+
+/* Moon */
+.moon-wrap {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.moon-button {
+  position: relative;
+  width: clamp(88px, 12vw, 145px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.moon,
+.moon-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.moon {
+  z-index: 2;
+  background:
+    radial-gradient(circle at 35% 34%, rgba(255, 255, 255, .5), transparent 10%),
+    radial-gradient(circle at 68% 58%, rgba(135, 105, 65, .15), transparent 16%),
+    radial-gradient(circle at 44% 72%, rgba(143, 110, 67, .12), transparent 13%),
+    radial-gradient(circle at 50% 45%, #fff7d9, #e3d19a 72%, #b99c5d);
+  box-shadow:
+    inset -7px -8px 18px rgba(80, 56, 23, .2),
+    0 0 14px rgba(255, 236, 177, .8);
+}
+
+.moon-glow {
+  z-index: 1;
+  transform: scale(1.85);
+  background:
+    radial-gradient(circle, rgba(241, 221, 156, .28), transparent 67%);
+  animation: moonBreath 4.8s ease-in-out infinite;
+}
+
+/* Main title panel */
+.opening-copy {
+  position: relative;
+  z-index: 5;
+  width: min(88vw, 500px);
+  margin-top: 3vh;
+  padding:
+    clamp(24px, 4vw, 38px)
+    clamp(20px, 4vw, 38px);
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(3, 9, 17, .66), rgba(3, 8, 15, .34));
+  border-top: 1px solid rgba(222, 201, 143, .38);
+  border-bottom: 1px solid rgba(222, 201, 143, .22);
+  backdrop-filter: blur(3px);
+}
+
+.opening-kicker {
+  margin: 0 0 .55rem;
+  color: rgba(234, 219, 179, .72);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(.58rem, 1vw, .7rem);
+  letter-spacing: .24em;
+}
+
+.opening-copy h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .19em;
+  text-shadow:
+    0 0 18px rgba(219, 193, 126, .12),
+    0 3px 12px rgba(0, 0, 0, .6);
+}
+
+.opening-lead {
+  margin: 1.15rem 0 1.35rem;
+  color: rgba(243, 234, 211, .83);
+  font-size: clamp(.76rem, 1.4vw, .92rem);
+  line-height: 1.85;
+  letter-spacing: .12em;
+}
+
+/* Enter button */
+.enter-button {
+  position: relative;
+  min-width: min(280px, 78vw);
+  padding: 9px 24px 10px;
+  overflow: hidden;
+  border: 1px solid rgba(207, 181, 111, .72);
+  border-radius: 999px;
+  color: #f7eed6;
+  background:
+    linear-gradient(180deg, rgba(21, 35, 52, .88), rgba(8, 18, 30, .9));
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, .34),
+    inset 0 0 0 1px rgba(255, 255, 255, .03);
+  cursor: pointer;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.enter-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background:
+    linear-gradient(
+      100deg,
+      transparent 30%,
+      rgba(255, 255, 255, .14),
+      transparent 70%
+    );
+  transition: transform .6s ease;
+}
+
+.enter-button:hover {
+  transform: translateY(-2px);
+  background:
+    linear-gradient(180deg, rgba(31, 49, 69, .93), rgba(11, 24, 39, .94));
+  box-shadow:
+    0 11px 30px rgba(0, 0, 0, .38),
+    0 0 22px rgba(203, 176, 105, .12);
+}
+
+.enter-button:hover::before {
+  transform: translateX(110%);
+}
+
+.enter-button:active {
+  transform: translateY(1px);
+}
+
+.button-en,
+.button-ja {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.button-en {
+  font-family: "Cormorant Garamond", serif;
+  font-size: .62rem;
+  letter-spacing: .2em;
+}
+
+.button-ja {
+  margin-top: .1rem;
+  font-size: .8rem;
+  letter-spacing: .15em;
+}
+
+.opening-note {
+  margin: .85rem 0 0;
+  color: rgba(238, 227, 198, .52);
+  font-size: .64rem;
+  letter-spacing: .12em;
+}
+
+/* Low night haze only; old stall/lantern visuals removed. */
+.ground-haze {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 28%;
+  background:
+    radial-gradient(
+      ellipse at 48% 100%,
+      rgba(111, 119, 133, .13),
+      transparent 65%
+    );
+  filter: blur(18px);
+}
+
+/* Transition */
+.opening-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  visibility: hidden;
+  opacity: 0;
+  color: #eee2bf;
+  background: #030710;
+  transition: opacity .8s ease, visibility 0s linear .8s;
+}
+
+.opening-transition.is-active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .8s ease;
+}
+
+.opening-transition p {
+  opacity: 0;
+  font-size: clamp(.82rem, 2vw, 1.05rem);
+  letter-spacing: .16em;
+  transition: opacity .75s ease .45s;
+}
+
+.opening-transition.is-active p {
+  opacity: .82;
+}
+
+@keyframes moonBreath {
+  0%,
+  100% {
+    opacity: .62;
+    transform: scale(1.7);
+  }
+
+  50% {
+    opacity: .95;
+    transform: scale(1.95);
+  }
+}
+
+@media (max-width: 720px) {
+  .moon-wrap {
+    top: 6%;
+  }
+
+  .opening-copy {
+    margin-top: 6vh;
+  }
+}
+
+@media (max-height: 690px) {
+  .moon-wrap {
+    top: 2%;
+  }
+
+  .opening-copy {
+    margin-top: 9vh;
+    padding-block: 22px;
+  }
+
+  .opening-lead {
+    margin-block: .9rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

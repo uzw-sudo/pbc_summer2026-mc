@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06101d">
+
+  <title>今夜の注文｜真夜中珈琲屋台</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../css/shop.css">
+</head>
+
+<body>
+  <canvas
+    id="nightSky"
+    class="night-sky"
+    aria-hidden="true"
+  ></canvas>
+
+  <main class="shop-page">
+    <section class="shop-scene">
+
+      <header class="shop-header">
+        <p class="shop-kicker">MIDNIGHT COFFEE STAND</p>
+        <h1>真夜中珈琲屋台</h1>
+        <p class="shop-status">
+          店主があなたのための一杯を考えています。
+        </p>
+      </header>
+
+      <div class="counter-scene" aria-hidden="true">
+        <div class="lantern-glow lantern-glow-left"></div>
+        <div class="lantern-glow lantern-glow-right"></div>
+
+        <img
+          id="masterImage"
+          class="master-image"
+          src="../assets/images/master.png"
+          alt=""
+        >
+
+        <div class="counter"></div>
+        <div class="steam steam-one"></div>
+        <div class="steam steam-two"></div>
+      </div>
+
+      <section class="dialogue-area" aria-label="店主との会話">
+        <img
+          id="mobileMasterImage"
+          class="mobile-master-image"
+          src="../assets/images/master.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <div class="speaker-label">
+          <span>MASTER</span>
+          <strong>店主</strong>
+        </div>
+
+        <p id="masterDialogue" class="master-dialogue"></p>
+      </section>
+
+      <article class="order-card" aria-labelledby="questionTitle">
+
+        <div class="order-art" aria-hidden="true">
+          <img
+            class="order-layer order-paper"
+            src="../assets/images/question-paper.png"
+            alt=""
+          >
+        </div>
+
+        <div class="order-content">
+          <header class="order-header">
+            <p>ORDER SHEET</p>
+
+            <div class="question-count">
+              <span id="questionCurrent">01</span>
+              <span class="count-line"></span>
+              <span id="questionTotal">05</span>
+            </div>
+          </header>
+
+          <section class="question-block">
+            <p id="questionKicker" class="question-kicker">
+              ABOUT YOUR NIGHT
+            </p>
+
+            <h2 id="questionTitle">
+              今日は、どんな夜だった？
+            </h2>
+
+            <p id="questionHint" class="question-hint">
+              いちばん近いものを、ひとつ選んでください。
+            </p>
+          </section>
+
+          <div
+            id="answerList"
+            class="answer-list"
+            role="radiogroup"
+            aria-labelledby="questionTitle"
+          ></div>
+
+          <footer class="order-footer">
+            <button
+              id="backButton"
+              class="text-button"
+              type="button"
+              disabled
+            >
+              前の質問
+            </button>
+
+            <p class="order-number">
+              ORDER No.
+              <span id="temporaryOrderNumber">------</span>
+            </p>
+          </footer>
+        </div>
+      </article>
+
+      <p id="questionStatus" class="question-status" aria-live="polite"></p>
+    </section>
+
+    <div
+      id="brewingTransition"
+      class="brewing-transition"
+      aria-hidden="true"
+    >
+      <div class="brewing-cup">
+        <span class="cup-steam steam-a"></span>
+        <span class="cup-steam steam-b"></span>
+        <span class="cup-steam steam-c"></span>
+      </div>
+
+      <p id="brewingMessage">
+        君に合う一杯を、いま淹れているところだ。
+      </p>
+    </div>
+  </main>
+
+  <script src="../js/nightSkyEngine.js" defer></script>
+  <script src="../js/dataManager.js" defer></script>
+  <script src="../js/storageEngine.js" defer></script>
+  <script src="../js/dialogueEngine.js" defer></script>
+  <script src="../js/shop.js" defer></script>
+</body>
+</html>

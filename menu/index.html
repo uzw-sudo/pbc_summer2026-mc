@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06101d">
+  <title>今夜のメニュー｜真夜中珈琲屋台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/menu.css">
+</head>
+<body>
+  <canvas id="nightSky" class="night-sky" aria-hidden="true"></canvas>
+
+  <main class="menu-page">
+    <header class="menu-header">
+      <p>MIDNIGHT COFFEE STAND</p>
+      <h1>真夜中珈琲屋台</h1>
+    </header>
+
+    <section class="menu-scene">
+      <div class="master-stage" aria-hidden="true">
+        <div class="lantern-light"></div>
+        <img class="master-image" src="../assets/images/master.png" alt="">
+        <div class="counter"></div>
+      </div>
+
+      <section class="dialogue-area" aria-label="店主との会話">
+        <div class="speaker-label"><span>MASTER</span><strong>店主</strong></div>
+        <p id="masterDialogue" class="master-dialogue"></p>
+      </section>
+
+      <section id="serviceMenu" class="service-menu" aria-labelledby="menuTitle" hidden>
+        <header class="service-heading">
+          <p>TONIGHT'S MENU</p>
+          <h2 id="menuTitle">今夜は、どうする？</h2>
+        </header>
+
+        <div class="service-choices">
+          <button id="coffeeChoice" class="service-card" type="button">
+            <span class="service-paper" aria-hidden="true"></span>
+            <span class="service-content">
+              <span class="service-icon" aria-hidden="true">☕</span>
+              <span class="service-en">TONIGHT'S COFFEE</span>
+              <strong>珈琲を淹れてもらう</strong>
+              <span class="service-description">今夜の気分から、自分に合う一杯を選ぶ。</span>
+            </span>
+          </button>
+
+          <button id="sparklerChoice" class="service-card" type="button">
+            <span class="service-paper" aria-hidden="true"></span>
+            <span class="service-content">
+              <span class="service-icon" aria-hidden="true">✦</span>
+              <span class="service-en">SUMMER NIGHT</span>
+              <strong>線香花火を一本もらう</strong>
+              <span class="service-description">店主が選んだ一本を、夜が終わるまで眺める。</span>
+            </span>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <div id="menuTransition" class="menu-transition" aria-hidden="true"><p id="transitionText"></p></div>
+  </main>
+
+  <script src="../js/nightSkyEngine.js" defer></script>
+  <script src="../js/dialogueEngine.js" defer></script>
+  <script src="../js/serviceMenu.js" defer></script>
+</body>
+</html>

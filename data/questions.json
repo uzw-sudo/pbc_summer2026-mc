@@ -1,0 +1,447 @@
+{
+  "version": 2,
+  "dimensions": [
+    "tired",
+    "happy",
+    "quiet",
+    "energy"
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "kicker": "ABOUT YOUR NIGHT",
+      "question": "今日は、どんな一日だった？",
+      "hint": "いちばん近いものを、ひとつ選んでください。",
+      "dialogue": "いらっしゃい。……まあ、そんなに構えなくていいさ。まずは…今日がどんな日だったか聞かせてくれるか？",
+      "answers": [
+        {
+          "label": "少し、疲れてしまった",
+          "sub": "静かに息をつける場所がほしい",
+          "score": {
+            "tired": 3,
+            "quiet": 2
+          },
+          "reply": [
+            "「そうか。なら今夜は、ゆっくりいこうか。」",
+            "「…その顔なら…まずは椅子に座るところからだな。」"
+          ],
+          "masterExpression": "gentle"
+        },
+        {
+          "label": "悪くない一日だった",
+          "sub": "この余韻をもう少し味わいたい",
+          "score": {
+            "happy": 3,
+            "energy": 1
+          },
+          "reply": [
+            "「いい夜の続きを淹れるのも、店主の仕事だな。」",
+            "「そんな顔見せられちゃ…腕が鳴るねぇ？」"
+          ],
+          "masterExpression": "talk"
+        },
+        {
+          "label": "心が落ち着かない",
+          "sub": "考えごとが頭から離れない",
+          "score": {
+            "tired": 2,
+            "quiet": 1,
+            "energy": -1
+          },
+          "reply": [
+            "「頭の中が賑やかなんだな？湯気に少し預けてみるか？」",
+            "「不安そうな顔しちゃって。大丈夫待ってろ」"
+          ],
+          "masterExpression": "mutter"
+        },
+        {
+          "label": "まだ夜を終わらせたくない",
+          "sub": "もう少しだけ何かを楽しみたい",
+          "score": {
+            "happy": 2,
+            "energy": 3
+          },
+          "reply": [
+            "「なら、少し遊び心のある一杯も候補だな？」",
+            "「んじゃ俺と火遊びしてみるか…なんてな？」"
+          ],
+          "masterExpression": "tease"
+        }
+      ],
+      "masterExpression": "normal"
+    },
+    {
+      "id": "q2",
+      "kicker": "YOUR PREFERRED SEAT",
+      "question": "今夜、どんな席に腰を据えたい？",
+      "hint": "実際の場所ではなく、いまの心に近い席を。",
+      "dialogue": "座る場所も大事だな。今夜、どんなところなら落ち着けそうだ？",
+      "answers": [
+        {
+          "label": "誰にも見つからない隅の席",
+          "sub": "ひとりで静かに過ごしたい",
+          "score": {
+            "quiet": 4,
+            "tired": 1
+          },
+          "reply": [
+            "「隅の席は、考えごとを置くのにちょうどいいな。」",
+            "「大丈夫、誰にも触れさせんさ」"
+          ],
+          "masterExpression": "pensive"
+        },
+        {
+          "label": "店主と少し話せるカウンター",
+          "sub": "言葉を交わしながら飲みたい",
+          "score": {
+            "happy": 1,
+            "quiet": 1,
+            "energy": 1
+          },
+          "reply": [
+            "「話すのは構わんが、面白い話は期待するなよ？」",
+            "「なんだその顔、いい事あったんだろ？聞いてやるよ」"
+          ],
+          "masterExpression": "talk"
+        },
+        {
+          "label": "月がよく見える席",
+          "sub": "夜の空気を感じていたい",
+          "score": {
+            "quiet": 2,
+            "happy": 2
+          },
+          "reply": [
+            "「月見席か。冷える前に一杯決めような。」",
+            "「特等席じゃん？たまには俺とも話してくれよ？」"
+          ],
+          "masterExpression": "talk"
+        },
+        {
+          "label": "賑やかな灯りの近く",
+          "sub": "寂しさを忘れられるところがいい",
+          "score": {
+            "happy": 3,
+            "energy": 2
+          },
+          "reply": [
+            "「灯りの近くなら、安心できるか？」",
+            "「そんな顔すんじゃねぇよ、すぐに笑顔連れてきてやろうな」"
+          ],
+          "masterExpression": "tease"
+        }
+      ],
+      "masterExpression": "soft"
+    },
+    {
+      "id": "q3",
+      "kicker": "TONIGHT’S MOON",
+      "question": "今夜の月は、どんな形に見える？",
+      "hint": "空を見なくても大丈夫。心に浮かんだ形を。",
+      "dialogue": "月は見る人の心で形を変えるんだってさ。今のお前には、どう見える？",
+      "answers": [
+        {
+          "label": "細い三日月",
+          "sub": "まだ途中にいる気がする",
+          "score": {
+            "quiet": 2,
+            "energy": 2
+          },
+          "reply": [
+            "「途中かぁ。なら、完成を急がない味にしような。」",
+            "「なるほど？では俺が導きましょうか…なんてな？」"
+          ],
+          "masterExpression": "talk"
+        },
+        {
+          "label": "明るい満月",
+          "sub": "頑張った余韻を感じている",
+          "score": {
+            "happy": 4,
+            "energy": 1
+          },
+          "reply": [
+            "「満ちた夜には、遠慮のない甘さも悪くないな。」",
+            "「ご褒美の一杯、心を込めて淹れたいねぇ」"
+          ],
+          "masterExpression": "happy"
+        },
+        {
+          "label": "姿の見えない新月",
+          "sub": "先が見えず、少し迷っている",
+          "score": {
+            "tired": 2,
+            "quiet": 3,
+            "energy": 1
+          },
+          "reply": [
+            "「月が見えない？大丈夫いなくなったわけじゃないよ。」",
+            "「大丈夫、迷いの中にもちゃんと答えはあるさ」"
+          ],
+          "masterExpression": "soft"
+        },
+        {
+          "label": "雲に隠れた月",
+          "sub": "気持ちをうまく言葉にできない",
+          "score": {
+            "tired": 2,
+            "quiet": 2
+          },
+          "reply": [
+            "「隠れてんなら、無理に引っ張り出さなくていいんじゃねぇか？」",
+            "「言葉だけが全てじゃないからなぁ、大丈夫。無理せずなぁ」"
+          ],
+          "masterExpression": "talk"
+        }
+      ],
+      "masterExpression": "pensive"
+    },
+    {
+      "id": "q4",
+      "kicker": "TONIGHT’S TEMPERATURE",
+      "question": "いまの心は、どんな温度に近い？",
+      "hint": "考えすぎず、最初に浮かんだものを。",
+      "dialogue": "珈琲は温度でも味が変わるんだってさ。人の心も似たようなもんさ",
+      "answers": [
+        {
+          "label": "冷えている",
+          "sub": "あたたかさを取り戻したい",
+          "score": {
+            "tired": 3,
+            "quiet": 1
+          },
+          "reply": [
+            "「では、手のひらから温まるものにするか。」",
+            "「身体の芯からあたたまるそんな時間を作ろうか」"
+          ],
+          "masterExpression": "gentle"
+        },
+        {
+          "label": "ぬるく穏やか",
+          "sub": "刺激より安心を選びたい",
+          "score": {
+            "quiet": 3,
+            "happy": 1
+          },
+          "reply": [
+            "「穏やかな温度は、味をよく見せるんだぜ。」",
+            "「優しく包み込むように…穏やかな時間を提供しよう」"
+          ],
+          "masterExpression": "soft"
+        },
+        {
+          "label": "少し熱を帯びている",
+          "sub": "気持ちがまだ高ぶっている",
+          "score": {
+            "energy": 3,
+            "happy": 1
+          },
+          "reply": [
+            "「焦るなよ、火傷しちゃうぜ？待つ時間も悪くないさ」",
+            "「クールダウンしたい？もっと昂ぶりたい？」"
+          ],
+          "masterExpression": "grin"
+        },
+        {
+          "label": "自分でもよく分からない",
+          "sub": "いろいろな感情が混ざっている",
+          "score": {
+            "tired": 1,
+            "quiet": 1,
+            "energy": 1
+          },
+          "reply": [
+            "「混ざった味も、悪いとは限らんさ。」",
+            "「複雑な心境か、吐き出してもいいんだぜ？」"
+          ],
+          "masterExpression": "talk"
+        }
+      ],
+      "masterExpression": "talk"
+    },
+    {
+      "id": "q5",
+      "kicker": "A QUIET TRUTH",
+      "question": "今夜、隠さなくてもいいものは？",
+      "hint": "誰にも見せない。でも、隠す必要もない。",
+      "dialogue": "隠さなくていい事、俺に教えて？",
+      "answers": [
+        {
+          "label": "疲れていること",
+          "sub": "平気なふりを休みたい",
+          "score": {
+            "tired": 4,
+            "quiet": 1
+          },
+          "reply": [
+            "「ようやく正直になったな。なら話が早い。」",
+            "「出してこ？そこは隠す必要なんざ無い」"
+          ],
+          "masterExpression": "gentle"
+        },
+        {
+          "label": "迷っていること",
+          "sub": "まだ答えを決められない",
+          "score": {
+            "quiet": 3,
+            "energy": 1
+          },
+          "reply": [
+            "「丁寧に選んでる途中ってことだな？お前らしいや」",
+            "「迷ってもちゃんと答えにたどり着けるよ、お前なら」"
+          ],
+          "masterExpression": "soft"
+        },
+        {
+          "label": "嬉しかったこと",
+          "sub": "小さく扱わず、喜んでいたい",
+          "score": {
+            "happy": 4
+          },
+          "reply": [
+            "「それは隠す必要がないな？今夜くらい手放しで喜ぼ？」",
+            "「なんだ？聞かせてくれよ。俺にも祝わせて？」"
+          ],
+          "masterExpression": "happy"
+        },
+        {
+          "label": "弱いところ",
+          "sub": "強がらず、そのままでいたい",
+          "score": {
+            "tired": 2,
+            "quiet": 2
+          },
+          "reply": [
+            "「影まで連れて来たか。お前の席はないぜ？なんてな」",
+            "「いいんじゃないか？弱さは悪じゃない、受け入れてこ？」"
+          ],
+          "masterExpression": "talk"
+        }
+      ],
+      "masterExpression": "gentle"
+    },
+    {
+      "id": "q6",
+      "kicker": "A SMALL WISH",
+      "question": "今夜ひとつだけ叶うなら？",
+      "hint": "大きな願いでなくて構いません。",
+      "dialogue": "願いごとなんて大袈裟なもんじゃなくていいよ。ほんの少し変わるなら、どうなってほしい？",
+      "answers": [
+        {
+          "label": "ぐっすり眠りたい",
+          "sub": "心と体を休めたい",
+          "score": {
+            "tired": 4,
+            "quiet": 2,
+            "energy": -1
+          },
+          "reply": [
+            "「それなら、眠りを邪魔しない余韻にしようか。」",
+            "「お疲れ様だ、ゆっくり休んでくれな？」"
+          ],
+          "masterExpression": "warm"
+        },
+        {
+          "label": "自分の気持ちを知りたい",
+          "sub": "本音を静かに整理したい",
+          "score": {
+            "quiet": 4
+          },
+          "reply": [
+            "「答えより、まず問いを温める一杯が必要だな。」",
+            "「時間は沢山あるぜ？ゆっくり向き合っていこう？」"
+          ],
+          "masterExpression": "pensive"
+        },
+        {
+          "label": "小さな幸運がほしい",
+          "sub": "明日を少し楽しみにしたい",
+          "score": {
+            "happy": 4,
+            "energy": 1
+          },
+          "reply": [
+            "「幸運は保証しないが、香りくらいは良くできるぜ？」",
+            "「今日ここに足を運んだこと、すでに幸運じゃん？俺だけか」"
+          ],
+          "masterExpression": "tease"
+        },
+        {
+          "label": "もう一歩進む勇気がほしい",
+          "sub": "迷っていることを始めたい",
+          "score": {
+            "energy": 4,
+            "happy": 1
+          },
+          "reply": [
+            "「背中は押さない…が、靴紐くらいなら結び直してやるよ。」",
+            "「簡単に見えて難しい事だもんな、大丈夫。お前なら出来るよ」"
+          ],
+          "masterExpression": "grin"
+        }
+      ],
+      "masterExpression": "warm"
+    },
+    {
+      "id": "q7",
+      "kicker": "THE LAST QUESTION",
+      "question": "最後に。今夜の珈琲へ求めるものは？",
+      "hint": "この答えで、今夜の一杯が決まります。",
+      "dialogue": "よし、だいたい分かった。最後にひとつだけ。今夜の一杯に、お前は何を求める？",
+      "answers": [
+        {
+          "label": "やさしさ",
+          "sub": "包み込むような味がほしい",
+          "score": {
+            "tired": 3,
+            "quiet": 3
+          },
+          "reply": [
+            "「やさしいだけ、じゃなぁ？ちゃんと余韻のあるものにする。」",
+            "「今日はちょっと、甘えたい気分か？」"
+          ],
+          "masterExpression": "gentle"
+        },
+        {
+          "label": "満たされる甘さ",
+          "sub": "頑張った自分を労いたい",
+          "score": {
+            "happy": 4,
+            "energy": 1
+          },
+          "reply": [
+            "「よし。今夜は砂糖は数えないことにしよう。」",
+            "「この一杯で頑張った心、包み込んでやろうなぁ？」"
+          ],
+          "masterExpression": "happy"
+        },
+        {
+          "label": "静けさ",
+          "sub": "余計なものを忘れられる味がいい",
+          "score": {
+            "quiet": 5
+          },
+          "reply": [
+            "「静かな一杯ほど、豆選びは難しい…が、それも楽しいもんだ。」",
+            "「その心の中の靄を吐き出して、この珈琲で満たして？」"
+          ],
+          "masterExpression": "pensive"
+        },
+        {
+          "label": "始める強さ",
+          "sub": "明日へ踏み出せる味がほしい",
+          "score": {
+            "energy": 5,
+            "happy": 1
+          },
+          "reply": [
+            "「強さだな。苦いだけの珈琲とは違うぜ？」",
+            "「気持ちを切り替えて、さ、明日が待ってるぜ？」"
+          ],
+          "masterExpression": "grin"
+        }
+      ],
+      "masterExpression": "normal"
+    }
+  ]
+}

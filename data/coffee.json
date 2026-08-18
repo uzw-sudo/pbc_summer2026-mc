@@ -1,0 +1,842 @@
+[
+  {
+    "id": "M-001",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "月灯りブレンド",
+      "subtitle": "やさしい甘みと夜風の余韻",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 2,
+        "sweetness": 4,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "静かな夜ほど、本来の力を発揮する人です。今日は少しだけ、自分を優先しても大丈夫。",
+    "comment": "えらく肩に力が入ってるなぁ？珈琲は逃げん……つか、ちゃんと寝てるか？つか寝ろよ分かったな？",
+    "dessert": "バウムクーヘン",
+    "luckyItem": "古い万年筆",
+    "constellation": "月冠座",
+    "selection": {
+      "target": {
+        "tired": 13,
+        "happy": 2,
+        "quiet": 18,
+        "energy": 2
+      }
+    }
+  },
+  {
+    "id": "M-002",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "三日月カフェオレ",
+      "subtitle": "まろやかなミルクと淡い焦がし香",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 3
+      }
+    },
+    "diagnosis": "気を張りすぎるより、少し余白を残した方がうまくいく日。頼ることも立派な選択です。",
+    "comment": "何でも一人で抱えんなよ？ほら、今日は少し甘めにしといたぜ。",
+    "dessert": "ミルククッキー",
+    "luckyItem": "白いハンカチ",
+    "constellation": "三日月座",
+    "selection": {
+      "target": {
+        "tired": 10,
+        "happy": 6,
+        "quiet": 15,
+        "energy": 4
+      }
+    }
+  },
+  {
+    "id": "M-003",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "雨宿り珈琲",
+      "subtitle": "深煎りの苦みと濡れた木の香り",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 5,
+        "sweetness": 1,
+        "acidity": 2,
+        "body": 5
+      }
+    },
+    "diagnosis": "急がなくても大丈夫。立ち止まる事で見えるものがあります。今日は結論を急がない方が吉。",
+    "comment": "雨の日はさ、無理に進まなくてもいいんだよ。屋根くらい貸すからさ？な？ゆっくりしてけ。",
+    "dessert": "ガトーショコラ",
+    "luckyItem": "小さな折りたたみ傘",
+    "constellation": "雨雲座",
+    "selection": {
+      "target": {
+        "tired": 12,
+        "happy": 2,
+        "quiet": 18,
+        "energy": 1
+      }
+    }
+  },
+  {
+    "id": "M-004",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "夜風アイス珈琲",
+      "subtitle": "すっきりとした苦みと透明な余韻",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 4,
+        "sweetness": 1,
+        "acidity": 3,
+        "body": 2
+      }
+    },
+    "diagnosis": "考えが絡まっている時程、環境を変えると答えが見えます。短い散歩や外気が味方になる日。",
+    "comment": "頭ん中、ちょっと熱持ってるなぁ？ 冷たいの飲んで、夜風に当たってこい。",
+    "dessert": "レモンサブレ",
+    "luckyItem": "銀色の鍵",
+    "constellation": "涼風座",
+    "selection": {
+      "target": {
+        "tired": 7,
+        "happy": 6,
+        "quiet": 10,
+        "energy": 9
+      }
+    }
+  },
+  {
+    "id": "M-005",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "午前二時の深煎り",
+      "subtitle": "重いコクとカカオのような余韻",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 5,
+        "sweetness": 1,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "集中力は高い反面、無理を見落としやすい日。区切りを決めて休むことが結果的に近道。",
+    "comment": "まだやる気かぁ？ ……止めはせんが、終わる時間くらい決めとけよ。",
+    "dessert": "ビターチョコレート",
+    "luckyItem": "古びた腕時計",
+    "constellation": "夜更け座",
+    "selection": {
+      "target": {
+        "tired": 8,
+        "happy": 4,
+        "quiet": 6,
+        "energy": 15
+      }
+    }
+  },
+  {
+    "id": "M-006",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "焦がし蜂蜜ラテ",
+      "subtitle": "香ばしい甘さとやわらかなミルク",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "今日は人からもらう優しさを素直に受け取れる日。遠慮しすぎないことが運を開きます。",
+    "comment": "甘いのも悪くないだろ？ たまには素直に『うまい』って顔しとけ。",
+    "dessert": "フィナンシェ",
+    "luckyItem": "蜂蜜色の小瓶",
+    "constellation": "蜜星座",
+    "selection": {
+      "target": {
+        "tired": 5,
+        "happy": 16,
+        "quiet": 8,
+        "energy": 7
+      }
+    }
+  },
+  {
+    "id": "M-007",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "霧夜ラテ",
+      "subtitle": "淡いミルク感と静かな苦み",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 3,
+        "sweetness": 4,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "先が見えなくても、今できる一歩だけで十分。全部を見通そうとしなくて大丈夫です。",
+    "comment": "先が見えない？ そりゃ夜だしな？足元が見えてりゃ十分だろ。なに、手くらい貸すさ。",
+    "dessert": "白いロールケーキ",
+    "luckyItem": "曇りガラスのビー玉",
+    "constellation": "霧灯座",
+    "selection": {
+      "target": {
+        "tired": 9,
+        "happy": 4,
+        "quiet": 16,
+        "energy": 6
+      }
+    }
+  },
+  {
+    "id": "M-008",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "黒糖きなこ珈琲",
+      "subtitle": "素朴な甘みと香ばしい余韻",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "新しい刺激より、慣れたものに安心を感じる日。身近な場所や人が心を整えてくれます。",
+    "comment": "派手じゃないけど、こういうのが落ち着く日もあるよな？",
+    "dessert": "きなこ餅",
+    "luckyItem": "木のスプーン",
+    "constellation": "黒糖座",
+    "selection": {
+      "target": {
+        "tired": 7,
+        "happy": 10,
+        "quiet": 15,
+        "energy": 3
+      }
+    }
+  },
+  {
+    "id": "M-009",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "星屑フラッペ",
+      "subtitle": "冷たい甘さとほろ苦いカカオ",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 2,
+        "body": 3
+      }
+    },
+    "diagnosis": "遊び心が良い流れを呼ぶ日。少しくだらないことや、予定外の寄り道を楽しんで。",
+    "comment": "……その顔。これ、ちょっと気になってただろ？いい顔してるぜ？",
+    "dessert": "星形メレンゲ",
+    "luckyItem": "透明なストロー",
+    "constellation": "星屑座",
+    "selection": {
+      "target": {
+        "tired": 2,
+        "happy": 18,
+        "quiet": 4,
+        "energy": 16
+      }
+    }
+  },
+  {
+    "id": "M-010",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "塩キャラメルラテ",
+      "subtitle": "甘さの奥に残る小さな塩気",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "良い事も悪い事も、片方だけでは決まりません。少し複雑なくらいが、丁度いい。",
+    "comment": "甘いだけじゃ飽きるだろ？ 人も珈琲も、少しくらい癖があった方が面白いって。",
+    "dessert": "キャラメルナッツ",
+    "luckyItem": "海塩の小袋",
+    "constellation": "潮星座",
+    "selection": {
+      "target": {
+        "tired": 8,
+        "happy": 9,
+        "quiet": 10,
+        "energy": 8
+      }
+    }
+  },
+  {
+    "id": "M-011",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "柚子香る夜珈琲",
+      "subtitle": "柑橘の香りと軽い酸味",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 2,
+        "sweetness": 2,
+        "acidity": 5,
+        "body": 2
+      }
+    },
+    "diagnosis": "凝り固まった考えをほぐす時。いつもと違う方法を一つだけ試すと流れが変わります。",
+    "comment": "ちょっと変わってる？ だからいいんだろ？当たり前だけが正解じゃないさ。",
+    "dessert": "柚子ピールチョコ",
+    "luckyItem": "黄色い糸",
+    "constellation": "柚月座",
+    "selection": {
+      "target": {
+        "tired": 4,
+        "happy": 10,
+        "quiet": 7,
+        "energy": 13
+      }
+    }
+  },
+  {
+    "id": "M-012",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "山椒モカ",
+      "subtitle": "カカオの甘苦さと鋭い香り",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 3,
+        "acidity": 2,
+        "body": 4
+      }
+    },
+    "diagnosis": "今日は直感が冴えています。小さな違和感を無視せず、自分の感覚を信じて。",
+    "comment": "ピリっとするだろ？ ……その違和感、大事にしとけ。勘って案外馬鹿にできんよ。",
+    "dessert": "チョコテリーヌ",
+    "luckyItem": "小さな鈴",
+    "constellation": "山椒座",
+    "selection": {
+      "target": {
+        "tired": 4,
+        "happy": 8,
+        "quiet": 8,
+        "energy": 15
+      }
+    }
+  },
+  {
+    "id": "M-013",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "月影コールドブリュー",
+      "subtitle": "澄んだ口当たりと長い余韻",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 3,
+        "sweetness": 2,
+        "acidity": 3,
+        "body": 2
+      }
+    },
+    "diagnosis": "静かな判断ができる日。即答するより一晩寝かせた答えの方があなたらしい選択になります。",
+    "comment": "急いで決めることでもないさ。珈琲だって、時間かけた方がうまい時もあるんだぜ？",
+    "dessert": "アーモンドビスコッティ",
+    "luckyItem": "青いガラス瓶",
+    "constellation": "月影座",
+    "selection": {
+      "target": {
+        "tired": 5,
+        "happy": 5,
+        "quiet": 19,
+        "energy": 4
+      }
+    }
+  },
+  {
+    "id": "M-014",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "眠れない夜のデカフェ",
+      "subtitle": "やわらかな香りと軽いコク",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 2,
+        "sweetness": 3,
+        "acidity": 2,
+        "body": 2
+      }
+    },
+    "diagnosis": "休む事に罪悪感を持たなくていい夜。成果より回復を優先すると明日の動きが軽くなります。",
+    "comment": "眠れないからって、余計に目ぇ覚ますもん飲むなよ。今日はこっち。",
+    "dessert": "カモミールクッキー",
+    "luckyItem": "柔らかい靴下",
+    "constellation": "眠月座",
+    "selection": {
+      "target": {
+        "tired": 18,
+        "happy": 2,
+        "quiet": 17,
+        "energy": 0
+      }
+    }
+  },
+  {
+    "id": "M-015",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "雷鳴エスプレッソ",
+      "subtitle": "鋭い苦みと一瞬の甘い余韻",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 5,
+        "sweetness": 1,
+        "acidity": 3,
+        "body": 5
+      }
+    },
+    "diagnosis": "迷いを断ち切る力がある日。長く考えていた事程、今日は小さく始めると勢いに乗れます。",
+    "comment": "考えすぎだ。ほら、一口飲んだら一個だけやれ。全部じゃなくていいんだよ。",
+    "dessert": "カカオニブクッキー",
+    "luckyItem": "黒いボールペン",
+    "constellation": "雷星座",
+    "selection": {
+      "target": {
+        "tired": 2,
+        "happy": 8,
+        "quiet": 4,
+        "energy": 20
+      }
+    }
+  },
+  {
+    "id": "M-016",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "宵待ちカプチーノ",
+      "subtitle": "ふわりとした泡とやさしい苦み",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 3,
+        "sweetness": 4,
+        "acidity": 1,
+        "body": 3
+      }
+    },
+    "diagnosis": "待つ事も選択の一つ。今は自分から追いかけるより流れが来る余地を残した方がうまくいきます。",
+    "comment": "待つのは苦手か？ まあ分かるけどな。でもまぁ今日は無理して追わなくていいんじゃねぇか？",
+    "dessert": "シフォンケーキ",
+    "luckyItem": "小さな砂時計",
+    "constellation": "宵待座",
+    "selection": {
+      "target": {
+        "tired": 6,
+        "happy": 7,
+        "quiet": 18,
+        "energy": 3
+      }
+    }
+  },
+  {
+    "id": "M-017",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "琥珀糖ラテ",
+      "subtitle": "透明な甘さと軽いロースト香",
+      "flavor": {
+        "aroma": 3,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 2,
+        "body": 3
+      }
+    },
+    "diagnosis": "小さなご褒美が効く日。がんばる理由を増やすより、終わった後の楽しみを先に決めて。",
+    "comment": "ご褒美は何にする？楽しみがないと頑張れない日もあるよな。",
+    "dessert": "琥珀糖",
+    "luckyItem": "透明な小箱",
+    "constellation": "琥珀座",
+    "selection": {
+      "target": {
+        "tired": 3,
+        "happy": 17,
+        "quiet": 7,
+        "energy": 11
+      }
+    }
+  },
+  {
+    "id": "M-018",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "夜汽車ブレンド",
+      "subtitle": "煙るような香ばしさと重厚なコク",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 2,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "少し遠くへ意識を向けると気分が整う日。旅の計画や未来の予定を考えるのに向いています。",
+    "comment": "どっか行きたい顔してるな。……飲みながら地図でも見るか。旅に出た気分になれるだろ？",
+    "dessert": "固めのプリン",
+    "luckyItem": "古い切符",
+    "constellation": "汽笛座",
+    "selection": {
+      "target": {
+        "tired": 3,
+        "happy": 11,
+        "quiet": 7,
+        "energy": 16
+      }
+    }
+  },
+  {
+    "id": "M-019",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "銀河ミルク珈琲",
+      "subtitle": "やわらかな甘みと深い余韻",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 2,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "誰かと比べる必要のない日。自分のペースを守るほど、自然と良い結果に近づきます。",
+    "comment": "隣のカップ見ても味は分からんよ？己の持ち味を生かしていこうぜ？",
+    "dessert": "ミルクレープ",
+    "luckyItem": "銀色のクリップ",
+    "constellation": "銀河座",
+    "selection": {
+      "target": {
+        "tired": 7,
+        "happy": 8,
+        "quiet": 16,
+        "energy": 5
+      }
+    }
+  },
+  {
+    "id": "M-020",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "薄明ショコラモカ",
+      "subtitle": "ビターショコラと朝前の静けさ",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 4,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "終わりかけのものを手放すのに向いた日。区切りをつけると新しい流れが入りやすくなります。",
+    "comment": "終わらせるのも仕事のうちだぜ。閉めた扉があるから、次を開けられるってな？",
+    "dessert": "ショコラサンド",
+    "luckyItem": "使い切ったノート",
+    "constellation": "薄明座",
+    "selection": {
+      "target": {
+        "tired": 8,
+        "happy": 5,
+        "quiet": 12,
+        "energy": 11
+      }
+    }
+  },
+  {
+    "id": "M-021",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "木漏れ月ブレンド",
+      "subtitle": "ナッツ香とやさしい酸味",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 3,
+        "sweetness": 3,
+        "acidity": 3,
+        "body": 3
+      }
+    },
+    "diagnosis": "今日は自然体がいちばん魅力的。無理に良く見せようとせず、普段通りの言葉を選んで。",
+    "comment": "気ぃ使いすぎると、お前らしさ消えるぜ？普通でいい、普通で。",
+    "dessert": "ナッツタルト",
+    "luckyItem": "葉っぱの栞",
+    "constellation": "木漏月座",
+    "selection": {
+      "target": {
+        "tired": 4,
+        "happy": 11,
+        "quiet": 13,
+        "energy": 8
+      }
+    }
+  },
+  {
+    "id": "M-022",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "灯火シナモンラテ",
+      "subtitle": "甘いスパイスとあたたかな余韻",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 2,
+        "sweetness": 4,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "誰かとの会話が心を温める日。短い連絡でも自分から声をかけると良い巡り合わせがありそう。",
+    "comment": "連絡しようか迷ってんのか？ 迷うくらいなら一言送っとけ。待ってるはずだぜ？",
+    "dessert": "シナモンロール",
+    "luckyItem": "橙色の灯り",
+    "constellation": "灯火座",
+    "selection": {
+      "target": {
+        "tired": 3,
+        "happy": 16,
+        "quiet": 6,
+        "energy": 12
+      }
+    }
+  },
+  {
+    "id": "M-023",
+    "rarity": "NORMAL",
+    "coffee": {
+      "name": "夜桜ラテ",
+      "subtitle": "ほのかな桜香と淡い甘み",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 1,
+        "sweetness": 4,
+        "acidity": 2,
+        "body": 2
+      }
+    },
+    "diagnosis": "今だけのものを大切にしたい日。写真や記録より、その瞬間を味わうことを優先して。",
+    "comment": "残そうとしすぎると、見逃すぞ。今は目の前をちゃんと見とけ。",
+    "dessert": "桜餅",
+    "luckyItem": "薄桃色の紙片",
+    "constellation": "夜桜座",
+    "selection": {
+      "target": {
+        "tired": 4,
+        "happy": 16,
+        "quiet": 12,
+        "energy": 8
+      }
+    }
+  },
+  {
+    "id": "M-024",
+    "rarity": "RARE",
+    "coffee": {
+      "name": "流星珈琲",
+      "subtitle": "一瞬だけ煌めく果実香と深い余韻",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 3,
+        "sweetness": 3,
+        "acidity": 5,
+        "body": 3
+      }
+    },
+    "diagnosis": "偶然に見える出来事が、思わぬ方向へつながる日。気になった事に少しだけ手を伸ばして。",
+    "comment": "……お、今見えたか？ 願い事しとけよ。三回は言えなくても、一回くらいなら間に合うだろ？",
+    "dessert": "金平糖",
+    "luckyItem": "星形のチャーム",
+    "constellation": "流星座",
+    "selection": {
+      "target": {
+        "tired": 2,
+        "happy": 14,
+        "quiet": 7,
+        "energy": 18
+      }
+    }
+  },
+  {
+    "id": "M-025",
+    "rarity": "RARE",
+    "coffee": {
+      "name": "新月ブラック",
+      "subtitle": "光を吸い込むような深い苦み",
+      "flavor": {
+        "aroma": 4,
+        "bitterness": 5,
+        "sweetness": 1,
+        "acidity": 1,
+        "body": 5
+      }
+    },
+    "diagnosis": "今は答えが見えなくても問題ありません。何も決めない時間が次の始まりを準備しています。",
+    "comment": "真っ暗だな？ だが、新月ってのは何もないんじゃない。これから満ちる途中なんだぜ？",
+    "dessert": "黒胡麻サブレ",
+    "luckyItem": "黒い封筒",
+    "constellation": "新月座",
+    "selection": {
+      "target": {
+        "tired": 11,
+        "happy": 3,
+        "quiet": 20,
+        "energy": 2
+      }
+    }
+  },
+  {
+    "id": "M-026",
+    "rarity": "RARE",
+    "coffee": {
+      "name": "宵星アフォガート",
+      "subtitle": "冷たい甘さに落ちる熱い苦み",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 5,
+        "acidity": 1,
+        "body": 4
+      }
+    },
+    "diagnosis": "相反する気持ちの両方を持っていていい日。決めきれない自分を責めず、まず両方を認めて。",
+    "comment": "冷たいのと熱いの、一緒でもうまいだろ？ 気持ちも似たようなもんだ。",
+    "dessert": "バニラアイス",
+    "luckyItem": "二色のリボン",
+    "constellation": "宵星座",
+    "selection": {
+      "target": {
+        "tired": 9,
+        "happy": 9,
+        "quiet": 12,
+        "energy": 8
+      }
+    }
+  },
+  {
+    "id": "M-027",
+    "rarity": "RARE",
+    "coffee": {
+      "name": "月蝕モカ",
+      "subtitle": "濃いカカオと赤い果実の残り香",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 5,
+        "sweetness": 3,
+        "acidity": 4,
+        "body": 5
+      }
+    },
+    "diagnosis": "隠していた感情が少しだけ出やすい日。無理に抑えるより言葉にできる範囲で認めてあげて。",
+    "comment": "隠してるつもりでも顔に出てるぜ？……溜め込むよりは吐き出せよ？ちゃんと受け止めるよ。",
+    "dessert": "ベリーショコラ",
+    "luckyItem": "赤いガラス玉",
+    "constellation": "月蝕座",
+    "selection": {
+      "target": {
+        "tired": 12,
+        "happy": 7,
+        "quiet": 13,
+        "energy": 5
+      }
+    }
+  },
+  {
+    "id": "M-028",
+    "rarity": "RARE",
+    "coffee": {
+      "name": "午前零時の一杯",
+      "subtitle": "日付の境目にだけ現れる静かなコク",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 2,
+        "acidity": 2,
+        "body": 5
+      }
+    },
+    "diagnosis": "切り替えに強い日。昨日の失敗を今日まで持ち込まないと決めるだけで、流れが変わります。",
+    "comment": "日付、変わったぜ？昨日のことは昨日に置いてけ。持って帰るには重いだろ。",
+    "dessert": "時計型クッキー",
+    "luckyItem": "日付の変わったレシート",
+    "constellation": "零時座",
+    "selection": {
+      "target": {
+        "tired": 4,
+        "happy": 10,
+        "quiet": 7,
+        "energy": 18
+      }
+    }
+  },
+  {
+    "id": "M-029",
+    "rarity": "FULL_MOON",
+    "coffee": {
+      "name": "FULL MOON",
+      "subtitle": "満ちきった夜にだけ淹れる特別な一杯",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 4,
+        "sweetness": 5,
+        "acidity": 3,
+        "body": 5
+      }
+    },
+    "diagnosis": "積み重ねてきたものが形になりやすい特別な夜。遠慮せず、自分がここまで来たことを認めてください。他の誰でもなく、貴方だから。",
+    "comment": "これ引いたが、おめでとう。レア中のレアだぜ。あ、いや、なんでもないこっちの話。……ほら、冷める前に飲めよ。最高の一杯だから。",
+    "dessert": "月型バウムクーヘン",
+    "luckyItem": "満月のコイン",
+    "constellation": "満月座",
+    "selection": {
+      "target": {
+        "tired": 2,
+        "happy": 20,
+        "quiet": 10,
+        "energy": 14
+      }
+    }
+  },
+  {
+    "id": "M-030",
+    "rarity": "SECRET",
+    "coffee": {
+      "name": "店主の気まぐれ",
+      "subtitle": "メニューには載っていない、名もない一杯",
+      "flavor": {
+        "aroma": 5,
+        "bitterness": 3,
+        "sweetness": 3,
+        "acidity": 2,
+        "body": 5
+      }
+    },
+    "diagnosis": "今日は決められた答えより、自分だけの答えが似合う日。誰かの正解から少し離れてみて。",
+    "comment": "名前？ ないよ。今日のお前見て適当に淹れただけ。……そういうのも、たまにはいいだろ？",
+    "dessert": "焼きたてクロワッサン",
+    "luckyItem": "名前のない紙片",
+    "constellation": "名無し座",
+    "selection": {
+      "target": {
+        "tired": 10,
+        "happy": 10,
+        "quiet": 10,
+        "energy": 10
+      }
+    }
+  }
+]

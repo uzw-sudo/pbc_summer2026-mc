@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#020711">
+  <title>線香花火｜真夜中珈琲屋台</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/sparkler.css">
+</head>
+
+<body>
+  <canvas id="nightSky" class="night-sky" aria-hidden="true"></canvas>
+
+  <main class="sparkler-page">
+    <section class="sparkler-scene" aria-labelledby="sparklerTitle">
+      <header class="sparkler-brand">
+        <p class="brand-kicker">MIDNIGHT COFFEE STAND</p>
+        <h1 id="sparklerTitle">真夜中珈琲屋台</h1>
+        <p>店主があなたのための一本を選んでいます。</p>
+      </header>
+
+      <section class="master-message" aria-label="店主の言葉">
+        <div class="master-label">
+          <span>MASTER</span>
+          <strong>店主</strong>
+        </div>
+        <p id="sparklerDialogue">ほら。<br>火ぃ、気ぃつけろよ。</p>
+      </section>
+
+      <section class="sparkler-main" aria-label="線香花火">
+        <div id="sparklerField" class="sparkler-field" data-stage="waiting">
+          <span class="hanging-stick" aria-hidden="true"></span>
+          <span class="sparkler-ember" aria-hidden="true"></span>
+          <canvas id="sparkCanvas" aria-label="線香花火のアニメーション"></canvas>
+        </div>
+
+        <div class="sparkler-guide">
+          <p class="guide-kicker">線香花火を眺めてみよう</p>
+          <p id="stageLabel" class="stage-label">火をつけて、そっと見守ってね。</p>
+        </div>
+
+        <div class="sparkler-actions">
+          <button id="lightButton" class="primary-button" type="button">火をつける</button>
+          <button id="wishButton" class="wish-button" type="button" disabled>
+            <span>願い事をする</span>
+            <span class="wish-mark" aria-hidden="true">✦</span>
+          </button>
+        </div>
+
+        <div id="stageDots" class="stage-progress" aria-label="線香花火の進行">
+          <div class="stage-item" data-stage-index="0">
+            <span class="stage-name">蕾</span>
+            <span class="stage-dot"></span>
+          </div>
+          <div class="stage-item" data-stage-index="1">
+            <span class="stage-name">牡丹</span>
+            <span class="stage-dot"></span>
+          </div>
+          <div class="stage-item" data-stage-index="2">
+            <span class="stage-name">松葉</span>
+            <span class="stage-dot"></span>
+          </div>
+          <div class="stage-item" data-stage-index="3">
+            <span class="stage-name">散り菊</span>
+            <span class="stage-dot"></span>
+          </div>
+          <div class="stage-item" data-stage-index="4">
+            <span class="stage-name">消える</span>
+            <span class="stage-dot"></span>
+          </div>
+        </div>
+
+        <p id="sparklerStatus" class="sparkler-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <article id="sparklerResult" class="sparkler-result" hidden>
+        <div class="result-paper">
+          <p class="result-kicker">TONIGHT'S SPARKLER</p>
+          <p id="resultRarity" class="result-rarity">NORMAL</p>
+          <h2 id="resultName">牡丹</h2>
+          <p id="resultSubtitle" class="result-subtitle"></p>
+          <div class="result-rule"></div>
+          <p id="resultMessage" class="result-message"></p>
+          <p id="resultMaster" class="result-master"></p>
+          <dl class="result-details">
+            <div>
+              <dt>今夜の色</dt>
+              <dd id="resultColor"></dd>
+            </div>
+            <div>
+              <dt>持ち帰る言葉</dt>
+              <dd id="resultWord"></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="result-actions">
+          <button id="againButton" type="button">もう一本だけ選ぶ</button>
+          <a class="result-return-button" href="../menu/index.html">
+            屋台へ戻る
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="../js/nightSkyEngine.js" defer></script>
+  <script src="../js/dialogueEngine.js" defer></script>
+  <script src="../js/sparkler.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,860 @@
+:root {
+  --night: #020711;
+  --night2: #08182a;
+  --paper: #ead9aa;
+  --ink: #2a190e;
+  --gold: #c2a967
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0
+}
+
+body {
+  min-width: 320px;
+  color: #f2e8cf;
+  background: radial-gradient(circle at 50% -10%, rgba(49, 79, 119, .35), transparent 43%), linear-gradient(180deg, var(--night2), var(--night));
+  font-family: "Noto Serif JP", serif;
+  overflow-x: hidden
+}
+
+.night-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none
+}
+
+.menu-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  padding: max(18px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom))
+}
+
+.menu-header {
+  text-align: center
+}
+
+.menu-header p,
+.service-heading p,
+.service-en,
+.speaker-label span {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: .2em
+}
+
+.menu-header p {
+  margin: 0;
+  color: rgba(229, 211, 167, .66);
+  font-size: .68rem
+}
+
+.menu-header h1 {
+  margin: .25rem 0 0;
+  font-size: clamp(1.35rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: .16em
+}
+
+.menu-scene {
+  position: relative;
+  width: min(100%, 1080px);
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: minmax(240px, .78fr) minmax(460px, 1.35fr);
+  grid-template-rows: auto 1fr;
+  gap: 16px 30px
+}
+
+.master-stage {
+  position: relative;
+  grid-row: 1/3;
+  min-height: 590px;
+  overflow: hidden
+}
+
+.master-image {
+  position: absolute;
+  z-index: 3;
+  left: 4%;
+  bottom: 6%;
+  max-width: 92%;
+  max-height: 91%;
+  object-fit: contain;
+  object-position: bottom center
+}
+
+.master-image[src=""],
+.master-image:not([src]) {
+  display: none
+}
+
+.master-fallback {
+  position: absolute;
+  left: 24%;
+  bottom: 17%;
+  z-index: 2;
+  width: 48%;
+  height: 58%;
+  border-radius: 46% 46% 10% 10%;
+  background: linear-gradient(90deg, #121318, #28211d, #0c0e12);
+  opacity: .82
+}
+
+.lantern-light {
+  position: absolute;
+  left: 0;
+  top: 18%;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(219, 155, 68, .22), transparent 65%);
+  filter: blur(14px)
+}
+
+.dialogue-area {
+  align-self: end;
+  min-height: 130px;
+  padding: 20px 25px;
+  border-top: 1px solid rgba(211, 187, 127, .42);
+  border-bottom: 1px solid rgba(211, 187, 127, .2);
+  background: rgba(5, 13, 23, .68);
+  backdrop-filter: blur(4px)
+}
+
+.speaker-label {
+  display: flex;
+  gap: .7rem;
+  align-items: baseline;
+  margin-bottom: .7rem
+}
+
+.speaker-label span {
+  color: rgba(211, 191, 141, .62);
+  font-size: .62rem
+}
+
+.speaker-label strong {
+  font-size: .76rem;
+  font-weight: 500;
+  letter-spacing: .12em
+}
+
+.master-dialogue {
+  min-height: 3.8em;
+  margin: 0;
+  font-size: clamp(.84rem, 1.5vw, 1.02rem);
+  line-height: 1.95;
+  letter-spacing: .055em
+}
+
+.service-menu {
+  align-self: start;
+  padding: 23px 0 0
+}
+
+.service-menu[hidden] {
+  display: none
+}
+
+.service-heading {
+  text-align: center;
+  margin-bottom: 16px
+}
+
+.service-heading p {
+  margin: 0 0 5px;
+  color: rgba(224, 207, 165, .7);
+  font-size: .67rem
+}
+
+.service-heading h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: .12em
+}
+
+.service-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px
+}
+
+.service-card {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 19px rgba(0, 0, 0, .38));
+  transition: transform .25s ease, filter .25s ease
+}
+
+.service-card:hover,
+.service-card:focus-visible {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 17px 25px rgba(0, 0, 0, .46));
+  outline: 1px solid rgba(217, 193, 132, .65);
+  outline-offset: 3px
+}
+
+.service-card.is-selected {
+  transform: translateY(-3px) scale(.985)
+}
+
+.service-paper {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/images/menu-paper.png");
+  background-size: 100% 100%;
+  background-position: center
+}
+
+.service-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 9%;
+  text-align: center
+}
+
+.service-icon {
+  font-size: 1.35rem;
+  margin-bottom: 4px
+}
+
+.service-en {
+  font-size: .64rem;
+  margin-bottom: 7px
+}
+
+.service-content strong {
+  font-size: clamp(.82rem, 1.45vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: .07em
+}
+
+.service-description {
+  margin-top: 9px;
+  font-size: clamp(.58rem, 1vw, .72rem);
+  line-height: 1.65
+}
+
+.menu-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  visibility: hidden;
+  opacity: 0;
+  background: #030710;
+  color: #efe3c1;
+  transition: opacity .65s ease, visibility 0s linear .65s
+}
+
+.menu-transition.is-active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .65s ease
+}
+
+.menu-transition p {
+  font-size: clamp(.8rem, 1.7vw, 1rem);
+  letter-spacing: .13em;
+  text-align: center
+}
+
+@media(max-width:820px) {
+  .menu-scene {
+    display: flex;
+    flex-direction: column
+  }
+
+  .master-stage {
+    min-height: 240px
+  }
+
+  .master-image {
+    left: 27%;
+    max-width: 48%;
+    max-height: 100%
+  }
+
+  .master-fallback {
+    left: 39%;
+    bottom: 12%;
+    width: 23%;
+    height: 76%
+  }
+
+  .dialogue-area {
+    min-height: 112px
+  }
+
+  .service-menu {
+    padding-top: 3px
+  }
+}
+
+@media(max-width:560px) {
+  .menu-page {
+    padding-inline: 8px
+  }
+
+  .master-stage {
+    min-height: 180px
+  }
+
+  .dialogue-area {
+    padding: 16px 18px
+  }
+
+  .service-choices {
+    grid-template-columns: 1fr;
+    gap: 11px
+  }
+
+  .service-card {
+    aspect-ratio: 12/5.7
+  }
+
+  .service-description {
+    margin-top: 5px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    animation: none !important;
+    transition: none !important
+  }
+}
+
+
+/* ===== Mobile alignment fix 2026-08-04 ===== */
+.master-fallback {
+  display: none !important;
+}
+
+.dialogue-area {
+  text-align: center;
+}
+
+.speaker-label {
+  justify-content: center;
+}
+
+.master-dialogue {
+  width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+  .menu-page {
+    padding-inline: 12px;
+  }
+
+  .menu-scene {
+    width: min(100%, 680px);
+    margin-top: 14px;
+    gap: 14px;
+  }
+
+  .master-stage {
+    width: 100%;
+    min-height: 230px;
+  }
+
+  .master-image {
+    left: 50%;
+    bottom: 5%;
+    max-width: min(54%, 260px);
+    max-height: 94%;
+    transform: translateX(-50%);
+  }
+
+  .counter {
+    display: none !important;
+  }
+
+  .dialogue-area {
+    width: 100%;
+    min-height: 118px;
+    padding: 18px 20px;
+    align-self: stretch;
+  }
+
+  .service-menu {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .service-heading {
+    margin-bottom: 14px;
+  }
+
+  .service-choices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .service-card {
+    min-height: 142px;
+    aspect-ratio: auto;
+  }
+
+  .service-content {
+    padding: 14px 8px 12px;
+  }
+
+  .service-icon {
+    margin-bottom: 2px;
+    font-size: 1.05rem;
+  }
+
+  .service-en {
+    margin-bottom: 5px;
+    font-size: .52rem;
+    letter-spacing: .11em;
+  }
+
+  .service-content strong {
+    font-size: clamp(.68rem, 3.1vw, .86rem);
+    line-height: 1.5;
+  }
+
+  .service-description {
+    margin-top: 5px;
+    font-size: clamp(.5rem, 2.35vw, .63rem);
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 420px) {
+  .menu-page {
+    padding-inline: 7px;
+  }
+
+  .menu-header h1 {
+    font-size: 1.28rem;
+  }
+
+  .master-stage {
+    min-height: 205px;
+  }
+
+  .dialogue-area {
+    padding: 16px 12px;
+  }
+
+  .master-dialogue {
+    font-size: .79rem;
+    line-height: 1.9;
+  }
+
+  .service-heading h2 {
+    font-size: 1rem;
+  }
+
+  .service-card {
+    min-height: 134px;
+  }
+}
+
+/* ==================================================
+   店内メニュー：スマホ表示・最終修正
+================================================== */
+
+@media (max-width: 700px) {
+
+  /* 店主の台詞欄を中央へ */
+  .master-message,
+  .dialogue-area,
+  .menu-dialogue {
+    position: relative !important;
+    inset: auto !important;
+
+    width: calc(100% - 28px) !important;
+    max-width: 680px !important;
+
+    margin: 18px auto 22px !important;
+    padding: 20px 18px !important;
+
+    text-align: center !important;
+    direction: ltr !important;
+    writing-mode: horizontal-tb !important;
+  }
+
+  .master-label,
+  .speaker-label {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+
+    width: 100% !important;
+    margin: 0 auto 12px !important;
+    text-align: center !important;
+  }
+
+  .master-message p,
+  .master-dialogue,
+  #masterDialogue {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+
+    text-align: center !important;
+    line-height: 2 !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+
+  /* 「今夜はどうする？」を中央へ */
+  .service-menu,
+  .menu-selection {
+    width: calc(100% - 28px) !important;
+    margin: 0 auto !important;
+  }
+
+  .service-menu__header,
+  .menu-selection__header {
+    width: 100% !important;
+    margin: 0 auto 14px !important;
+    text-align: center !important;
+  }
+
+  /* 2枚のメニュー札を横並びに固定 */
+  .service-menu__choices,
+  .menu-choices {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .service-card,
+  .menu-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    aspect-ratio: 12 / 7 !important;
+    margin: 0 !important;
+  }
+
+  .service-card__content,
+  .menu-card__content {
+    padding: 8% 5% !important;
+  }
+
+  .service-card__en,
+  .menu-card__en {
+    margin-bottom: 5px !important;
+    font-size: clamp(0.44rem, 2.25vw, 0.61rem) !important;
+    letter-spacing: 0.11em !important;
+    white-space: nowrap !important;
+  }
+
+  .service-card strong,
+  .menu-card strong {
+    font-size: clamp(0.61rem, 3vw, 0.8rem) !important;
+    line-height: 1.55 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .service-card__description,
+  .menu-card__description {
+    margin-top: 5px !important;
+    font-size: clamp(0.43rem, 2.1vw, 0.57rem) !important;
+    line-height: 1.45 !important;
+
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media(max-width:560px) {
+
+  /* =========================
+     ページ全体
+  ========================= */
+
+  .menu-page {
+    padding-inline: 10px;
+  }
+
+
+  /* =========================
+     ロゴを小さく
+  ========================= */
+
+  .menu-header {
+    margin-bottom: 4px;
+  }
+
+  .menu-header p {
+    font-size: .48rem;
+    letter-spacing: .18em;
+  }
+
+  .menu-header h1 {
+    margin: .15rem 0 0;
+    font-size: 1.15rem;
+    letter-spacing: .13em;
+  }
+
+
+  /* =========================
+     鵜沢さんを大きく
+  ========================= */
+
+  .master-stage {
+    min-height: 245px;
+  }
+
+  .master-image {
+    left: 50%;
+    bottom: 0;
+
+    width: auto;
+    max-width: 72%;
+    max-height: 100%;
+
+    transform: translateX(-50%);
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+
+  /* =========================
+     セリフ欄を少し大きく
+  ========================= */
+
+  .dialogue-area {
+    width: 100%;
+    min-height: 130px;
+
+    margin: 4px auto 8px;
+    padding: 18px 18px;
+
+    text-align: center;
+  }
+
+  .speaker-label {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .speaker-label span {
+    font-size: .58rem;
+  }
+
+  .speaker-label strong {
+    font-size: .78rem;
+  }
+
+  .master-dialogue {
+    min-height: 3.8em;
+
+    font-size: .92rem;
+    line-height: 2;
+    letter-spacing: .045em;
+
+    text-align: center;
+  }
+
+
+  /* =========================
+     メニュー全体を小さく
+  ========================= */
+
+  .service-menu {
+    width: 92%;
+    margin: 0 auto;
+    padding-top: 5px;
+  }
+
+  .service-heading {
+    margin-bottom: 9px;
+  }
+
+  .service-heading p {
+    font-size: .52rem;
+  }
+
+  .service-heading h2 {
+    font-size: .9rem;
+  }
+
+
+  /* =========================
+     2枚は横並び
+  ========================= */
+
+  .service-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+
+    width: 100%;
+    margin: 0 auto;
+  }
+
+
+  /* =========================
+     選択札を小さく
+  ========================= */
+
+  .service-card {
+    width: 100%;
+    aspect-ratio: 12 / 7;
+  }
+
+  .service-content {
+    padding: 6%;
+  }
+
+  .service-icon {
+    margin-bottom: 2px;
+    font-size: .9rem;
+  }
+
+  .service-en {
+    margin-bottom: 4px;
+
+    font-size: .42rem;
+    letter-spacing: .11em;
+  }
+
+  .service-content strong {
+    font-size: .65rem;
+    line-height: 1.45;
+    letter-spacing: .025em;
+  }
+
+  .service-description {
+    margin-top: 4px;
+
+    font-size: .46rem;
+    line-height: 1.45;
+  }
+
+  .service-description {
+    display: none;
+  }
+
+  /* ========================================
+   スマホ：鵜沢さんを大きく・札を薄く
+  ======================================== */
+
+  /* 鵜沢さんの表示領域を大きく */
+  .master-stage {
+    min-height: 290px;
+  }
+
+  /* 鵜沢さん本人も大きく */
+  .master-image {
+    left: 50%;
+    bottom: 0;
+
+    width: auto;
+    max-width: 82%;
+    max-height: 100%;
+
+    transform: translateX(-50%);
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+
+  /* 「今夜はどうする？」周辺を詰める */
+  .service-menu {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2px;
+  }
+
+  .service-heading {
+    margin-bottom: 6px;
+  }
+
+  .service-heading p {
+    margin-bottom: 2px;
+  }
+
+  .service-heading h2 {
+    font-size: .86rem;
+  }
+
+
+  /* 札を横長・薄型にする */
+  .service-card {
+    aspect-ratio: 2.35 / 1;
+  }
+
+
+  /* 札内部の上下余白を減らす */
+  .service-content {
+    padding: 4% 5%;
+  }
+
+  .service-icon {
+    margin-bottom: 1px;
+    font-size: .85rem;
+  }
+
+  .service-en {
+    margin-bottom: 2px;
+    font-size: .4rem;
+  }
+
+  /* メイン文字は読めるサイズを維持 */
+  .service-content strong {
+    font-size: .66rem;
+    line-height: 1.35;
+  }
+
+  /* 説明文はスマホでは非表示 */
+  .service-description {
+    display: none;
+  }
+}
+/* ========================================
+   PC版：セリフ＋選択メニューを少し下げる
+======================================== */
+
+@media (min-width: 821px) {
+
+  /* 店主のセリフ */
+  .dialogue-area {
+    transform: translateY(35px);
+  }
+
+  /* 「今夜はどうする？」＋選択ボタン */
+  .service-menu {
+    transform: translateY(35px);
+  }
+
+}

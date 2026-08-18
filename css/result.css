@@ -1,0 +1,1517 @@
+:root {
+  --night-1: #030814;
+  --night-2: #071426;
+  --ink: #27180e;
+  --paper-line: rgba(53, 31, 16, .42);
+  --card-max-width: 760px;
+  --card-aspect-ratio: 5 / 7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--night-1);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% -10%,
+      rgba(46, 77, 126, .33),
+      transparent 44%),
+    linear-gradient(180deg, var(--night-2), var(--night-1));
+  font-family: "Noto Serif JP", serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.night-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.result-page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding:
+    max(22px, env(safe-area-inset-top)) 10px max(34px, env(safe-area-inset-bottom));
+}
+
+/* =========================
+   カード本体
+========================= */
+
+.result-card {
+  position: relative;
+  width: min(100%, var(--card-max-width));
+  aspect-ratio: var(--card-aspect-ratio);
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--ink);
+  isolation: isolate;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .48));
+}
+
+/* =========================
+   画像レイヤー
+========================= */
+
+.card-art,
+.card-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-art {
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.card-layer {
+  display: block;
+  object-fit: fill;
+}
+
+/*
+  推奨レイヤー順
+  1. 紙
+  2. コーヒー染み
+  3. 枠・飾り
+*/
+.card-paper {
+  z-index: 1;
+}
+
+.coffee-stain {
+  z-index: 2;
+}
+
+.card-frame {
+  z-index: 3;
+}
+
+/* =========================
+   文字・Canvas
+========================= */
+
+.card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: grid;
+  grid-template-rows:
+    11.5% 14% 25% 15% 13% 10% 11.5%;
+
+  padding: 5.4% 7.7% 4.6%;
+}
+
+.card-content>* {
+  min-width: 0;
+}
+
+.card-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--paper-line);
+  text-align: center;
+}
+
+.brand-en,
+.eyebrow,
+.section-kicker,
+.letter-label,
+.gift-label,
+.numbers {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: .13em;
+}
+
+.brand-en {
+  margin: 0 0 .25em;
+  font-size: clamp(.45rem, 1.25vw, .76rem);
+}
+
+.card-brand h1 {
+  margin: 0;
+  font-size: clamp(1rem, 3.25vw, 2rem);
+  font-weight: 500;
+  letter-spacing: .14em;
+}
+
+.brand-caption {
+  margin: .35em 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(.4rem, 1.05vw, .66rem);
+  letter-spacing: .08em;
+}
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--paper-line);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: clamp(.42rem, 1.05vw, .68rem);
+}
+
+.selection-label {
+  margin: .35em 0 .22em;
+  font-size: clamp(.53rem, 1.35vw, .83rem);
+}
+
+.selection h2 {
+  max-width: 100%;
+  margin: 0;
+  font-size: clamp(1.1rem, 4.15vw, 2.55rem);
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.selection>p:last-child {
+  margin: .45em 0 0;
+  font-size: clamp(.46rem, 1.15vw, .74rem);
+  line-height: 1.6;
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5.2%;
+  padding: 4.4% 0 3.4%;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.flavor-block,
+.constellation-block {
+  min-height: 0;
+}
+
+.flavor-block h3,
+.constellation-block h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(.48rem, 1.35vw, .83rem);
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.flavor-block {
+  display: flex;
+  flex-direction: column;
+}
+
+#flavorChart {
+  width: 100%;
+  height: calc(100% - 1.3rem);
+  display: block;
+}
+
+.constellation-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 6% 7%;
+  color: #eadbb7;
+  background: rgba(16, 15, 17, .92);
+}
+
+.constellation-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.constellation-copy p {
+  margin: .35em 0 0;
+  font-size: clamp(.4rem, 1vw, .63rem);
+  line-height: 1.55;
+}
+
+#starChart {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.diagnosis-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3.5% 1% 3%;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.section-kicker {
+  margin: 0 0 .25em;
+  font-size: clamp(.4rem, .95vw, .62rem);
+}
+
+.diagnosis-section h3 {
+  margin: 0 0 .45em;
+  font-size: clamp(.7rem, 1.65vw, 1rem);
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+.diagnosis-section p:last-child {
+  margin: 0;
+  font-size: clamp(.55rem, 1.45vw, .9rem);
+  line-height: 1.85;
+  letter-spacing: .035em;
+}
+
+/* ========================================
+   NORMAL：FROM THE MASTER 紙片
+======================================== */
+
+.master-letter {
+  position: relative;
+
+  align-self: center;
+
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* 破れた端から文字を離す */
+  padding:
+    0 clamp(38px, 6vw, 64px);
+
+  /* 旧背景を削除 */
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+
+  z-index: 1;
+  overflow: visible;
+}
+
+
+/* 紙片PNG */
+.master-letter::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+  height: auto;
+
+  /* 作った1800×320pxの紙片 */
+  aspect-ratio: 1800 / 320;
+
+  transform: translate(-50%, -50%);
+
+  background-image:
+    url("../assets/images/master-note-normal.png");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+
+/* 旧破れ線は使用しない */
+.master-letter::after {
+  content: none;
+  display: none;
+}
+
+.letter-label {
+  margin: 0 0 .25em;
+  font-size: clamp(.42rem, .95vw, .61rem);
+}
+
+.master-letter p:last-child {
+  margin: 0;
+  font-size: clamp(.53rem, 1.35vw, .84rem);
+  line-height: 1.75;
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  border-top: 1px solid rgba(53, 31, 16, .18);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.gift-grid>div {
+  padding: 0 7%;
+}
+
+.gift-grid>div+div {
+  border-left: 1px solid var(--paper-line);
+}
+
+.gift-label {
+  margin: 0 0 .35em;
+  font-size: clamp(.43rem, 1vw, .64rem);
+}
+
+.gift-grid p:last-child {
+  margin: 0;
+  font-size: clamp(.57rem, 1.45vw, .9rem);
+  font-weight: 600;
+}
+
+.card-footer {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: end;
+  gap: 4%;
+  padding-top: 3%;
+}
+
+.numbers {
+  align-self: center;
+  font-size: clamp(.42rem, .95vw, .62rem);
+  line-height: 1.75;
+}
+
+.numbers p {
+  margin: 0;
+}
+
+/* ========================================
+   SECRET：フッターメッセージ位置調整
+======================================== */
+
+.footer-message {
+  position: relative;
+  right: 50px;
+
+  margin: 0;
+  text-align: right;
+  font-size: clamp(.56rem, 1.4vw, .88rem);
+  letter-spacing: .13em;
+}
+
+/* =========================
+   共有ボタン
+========================= */
+
+/* ========================================
+   結果ページ 操作ボタン
+======================================== */
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* 共有・もう一杯 共通 */
+.share-button,
+.order-again-button {
+  min-width: 220px;
+  min-height: 48px;
+
+  padding: 12px 22px;
+
+  border: 1px solid rgba(218, 198, 143, .6);
+  border-radius: 999px;
+
+  color: #f6edd4;
+  background: rgba(11, 20, 35, .8);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, .25);
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease;
+}
+
+
+.share-button:hover,
+.order-again-button:hover {
+  transform: translateY(-1px);
+
+  background:
+    rgba(20, 34, 54, .94);
+
+  border-color:
+    rgba(230, 207, 145, .9);
+}
+
+
+.share-button:active,
+.order-again-button:active {
+  transform: translateY(1px);
+}
+
+
+/* ========================================
+   スマホ
+======================================== */
+
+@media (max-width: 560px) {
+
+  .action-buttons {
+    gap: 8px;
+  }
+
+  .share-button,
+  .order-again-button {
+    min-width: 0;
+    flex: 1;
+
+    min-height: 44px;
+
+    padding: 10px 8px;
+
+    font-size: .78rem;
+  }
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 420px) {
+  .result-page {
+    padding-inline: 7px;
+  }
+
+  .result-card {
+    width: 100%;
+  }
+
+  .card-content {
+    padding-inline: 7.2%;
+  }
+
+  .actions {
+    margin-top: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* Version 9: card reveal and rarity effects */
+.result-card {
+  opacity: 0;
+  transform: translateY(-4%) scale(.985);
+}
+
+.result-card.is-ready {
+  animation: midnight-card-print 1.15s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+.result-card.is-ready .coffee-stain {
+  animation: midnight-stain .7s .62s both;
+}
+
+.result-card.is-ready .card-frame {
+  animation: midnight-stamp .42s .82s both;
+}
+
+.result-card[data-rarity="rare"] {
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .48)) drop-shadow(0 0 18px rgba(220, 190, 112, .20));
+}
+
+.result-card[data-rarity="secret"] {
+  color: #efe2c2;
+
+  filter:
+    drop-shadow(0 24px 40px rgba(0, 0, 0, .52))
+    drop-shadow(0 0 18px rgba(226, 198, 128, .24))
+    drop-shadow(0 0 38px rgba(190, 205, 235, .12));
+}
+
+.result-card[data-effect="gold-dust"]::after,
+.result-card[data-effect="moon-drop"]::after,
+.result-card[data-effect="silver-script"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  opacity: .44;
+  background-image: radial-gradient(circle at 18% 22%, rgba(255, 239, 177, .9) 0 1px, transparent 1.7px), radial-gradient(circle at 78% 34%, rgba(255, 249, 221, .8) 0 1.2px, transparent 2px), radial-gradient(circle at 63% 78%, rgba(255, 238, 176, .72) 0 1px, transparent 1.8px);
+  background-size: 83px 91px, 117px 103px, 71px 79px;
+  animation: midnight-dust 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes midnight-card-print {
+  0% {
+    opacity: 0;
+    transform: translateY(-5%) scale(.985)
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(.7%) scale(1)
+  }
+
+  100% {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes midnight-stain {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: scale(.96)
+  }
+
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none
+  }
+}
+
+@keyframes midnight-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.025)
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(.995)
+  }
+
+  100% {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes midnight-dust {
+  from {
+    opacity: .22;
+    transform: translateY(0)
+  }
+
+  to {
+    opacity: .52;
+    transform: translateY(-3px)
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .result-card,
+  .result-card.is-ready,
+  .result-card.is-ready .coffee-stain,
+  .result-card.is-ready .card-frame,
+  .result-card::after {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ========================================
+   RARE CARD THEME
+======================================== */
+
+
+/* ----------------------------------------
+   RAREカード背景
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .card-paper {
+  content: url("../assets/images/card-rare.png");
+}
+
+
+/* RARE画像自体に装飾が入っているため非表示 */
+.result-card[data-rarity="rare"] .coffee-stain,
+.result-card[data-rarity="rare"] .card-frame {
+  display: none;
+}
+
+
+/* ----------------------------------------
+   カード全体
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] {
+  color: #f2e6c8;
+
+  filter:
+    drop-shadow(0 24px 40px rgba(0, 0, 0, .48)) drop-shadow(0 0 18px rgba(220, 190, 112, .20));
+}
+
+
+/* ----------------------------------------
+   タイトル
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] #coffeeName {
+  color: #f6e5ad;
+
+  text-shadow:
+    0 0 10px rgba(221, 185, 92, .18);
+}
+
+.result-card[data-rarity="rare"] #coffeeSubtitle {
+  color: #d8c9a6;
+}
+
+.result-card[data-rarity="rare"] .card-brand h1 {
+  color: #ead7a4;
+}
+
+
+/* ----------------------------------------
+   英字・小見出し
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .brand-en,
+.result-card[data-rarity="rare"] .eyebrow,
+.result-card[data-rarity="rare"] .section-kicker,
+.result-card[data-rarity="rare"] .letter-label,
+.result-card[data-rarity="rare"] .gift-label {
+  color: #caa64f;
+}
+
+.result-card[data-rarity="rare"] .brand-caption,
+.result-card[data-rarity="rare"] .selection-label {
+  color: #c9b991;
+}
+
+
+/* ----------------------------------------
+   区切り線
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .card-brand,
+.result-card[data-rarity="rare"] .selection,
+.result-card[data-rarity="rare"] .visual-grid,
+.result-card[data-rarity="rare"] .diagnosis-section,
+.result-card[data-rarity="rare"] .gift-grid,
+.result-card[data-rarity="rare"] .card-footer {
+  border-color: rgba(202, 166, 79, .32);
+}
+
+
+/* ----------------------------------------
+   FLAVOR PROFILE
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .flavor-block h3 {
+  color: #d8bb71;
+}
+
+
+/* ----------------------------------------
+   星座エリア
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .constellation-block {
+  background: rgba(8, 6, 4, .48);
+
+  border: 1px solid rgba(202, 166, 79, .32);
+
+  box-shadow:
+    inset 0 0 24px rgba(0, 0, 0, .18);
+}
+
+.result-card[data-rarity="rare"] #constellationName {
+  color: #ead08b;
+}
+
+.result-card[data-rarity="rare"] #constellationText {
+  color: #d2c39e;
+}
+
+
+/* ----------------------------------------
+   診断
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .diagnosis-section,
+.result-card[data-rarity="rare"] .diagnosis-section h3,
+.result-card[data-rarity="rare"] #diagnosis {
+  color: #eee2c5;
+}
+
+
+/* ----------------------------------------
+   FROM THE MASTER
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .master-letter {
+  color: #f1e5c7;
+
+  background: rgba(28, 16, 7, .52);
+
+  border:
+    1px solid rgba(202, 166, 79, .32);
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, .22);
+}
+
+.result-card[data-rarity="rare"] #masterComment {
+  color: #f3ead4;
+}
+
+
+/* ----------------------------------------
+   今夜のお供・ラッキーアイテム
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] #dessert,
+.result-card[data-rarity="rare"] #luckyItem {
+  color: #f0e3c2;
+}
+
+
+/* ----------------------------------------
+   フッター
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .numbers {
+  color: #cdb57b;
+}
+
+.result-card[data-rarity="rare"] .footer-message {
+  color: #e5d4a8;
+}
+
+/* ========================================
+   SECRET CARD THEME
+   M-019「店主の気まぐれ」完成版
+======================================== */
+/* ========================================
+   SECRET：専用背景
+======================================== */
+
+.result-card[data-rarity="secret"] .card-paper {
+  content: url("../assets/images/card-secret.png");
+}
+
+
+/* SECRET背景に染み・通常フレームが含まれている場合は消す */
+.result-card[data-rarity="secret"] .coffee-stain {
+  display: none;
+}
+
+.result-card[data-rarity="secret"] .card-frame {
+  display: none;
+}
+
+
+/* ----------------------------------------
+   カード全体
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] {
+  color: #efe2c2;
+
+  filter:
+    drop-shadow(0 24px 40px rgba(0, 0, 0, .52)) drop-shadow(0 0 24px rgba(218, 196, 120, .18));
+}
+
+
+/* ----------------------------------------
+   タイトル
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] #coffeeName {
+  color: #f5e7c5;
+
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, .04),
+    0 0 18px rgba(206, 170, 96, .12);
+}
+
+.result-card[data-rarity="secret"] #coffeeSubtitle {
+  color: #cfc1a3;
+}
+
+.result-card[data-rarity="secret"] .card-brand h1 {
+  color: #ead9b6;
+}
+
+
+/* ----------------------------------------
+   英字・小見出し
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] .brand-en,
+.result-card[data-rarity="secret"] .eyebrow,
+.result-card[data-rarity="secret"] .section-kicker,
+.result-card[data-rarity="secret"] .gift-label {
+  color: #c6a665;
+}
+
+.result-card[data-rarity="secret"] .brand-caption,
+.result-card[data-rarity="secret"] .selection-label {
+  color: #b9aa8d;
+}
+
+
+/* ----------------------------------------
+   区切り線
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] .card-brand,
+.result-card[data-rarity="secret"] .selection,
+.result-card[data-rarity="secret"] .visual-grid,
+.result-card[data-rarity="secret"] .diagnosis-section,
+.result-card[data-rarity="secret"] .gift-grid,
+.result-card[data-rarity="secret"] .card-footer {
+  border-color: rgba(183, 147, 86, .28);
+}
+
+
+/* ----------------------------------------
+   FLAVOR PROFILE
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] .flavor-block h3 {
+  color: #d4b879;
+}
+
+
+/* ----------------------------------------
+   星座エリア
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] .constellation-block {
+  background: rgba(7, 7, 8, .12);
+
+  border:
+    1px solid rgba(205, 164, 91, .38);
+
+  box-shadow:
+    inset 0 0 24px rgba(0, 0, 0, .14);
+}
+
+.result-card[data-rarity="secret"] #constellationName {
+  color: #f2d88a;
+}
+
+.result-card[data-rarity="secret"] #constellationText {
+  color: #e7ddc6;
+}
+
+
+/* ----------------------------------------
+   診断
+---------------------------------------- */
+
+.result-card[data-rarity="secret"] .diagnosis-section,
+.result-card[data-rarity="secret"] .diagnosis-section h3,
+.result-card[data-rarity="secret"] #diagnosis {
+  color: #e5d7ba;
+}
+
+
+/* ========================================
+   SECRET：FROM THE MASTER 紙片完成版
+======================================== */
+
+.result-card[data-rarity="secret"] .master-letter {
+  position: relative;
+
+  width: 95%;
+  height: 100%;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  /*
+    文字を紙の破れた端から離す
+  */
+  padding:
+    0 clamp(38px, 6vw, 64px);
+
+  /*
+    以前の四角い背景を完全削除
+  */
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+
+  /*
+    紙片画像より文字を上へ
+  */
+  z-index: 1;
+
+  overflow: visible;
+
+  color: #342215;
+}
+
+
+/* ========================================
+   紙片PNG本体
+======================================== */
+
+.result-card[data-rarity="secret"] .master-letter::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 1800 / 320;
+
+  transform:
+    translate(-50%, -50%);
+
+  background-image:
+    url("../assets/images/master-note-secret.png");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+
+  /* ★追加 */
+  background-color: rgba(70, 45, 20, .10);
+  background-blend-mode: multiply;
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+
+/* 古い下線用疑似要素は使わない */
+.result-card[data-rarity="secret"] .master-letter::after {
+  content: none;
+  display: none;
+}
+
+
+/* ========================================
+   FROM THE MASTER
+======================================== */
+
+.result-card[data-rarity="secret"] .letter-label {
+  position: relative;
+  z-index: 2;
+
+  margin: 0 0 3px;
+
+  color: #27180e;
+
+  font-size:
+    clamp(.48rem, .9vw, .64rem);
+
+  letter-spacing: .14em;
+}
+
+
+/* ========================================
+   鵜沢さんのセリフ
+======================================== */
+
+.result-card[data-rarity="secret"] #masterComment {
+  position: relative;
+  z-index: 2;
+
+  margin: 0;
+
+  color: #5a3a20;
+
+  font-size:
+    clamp(.60rem, 1.15vw, .82rem);
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   スマホ
+======================================== */
+
+@media (max-width: 560px) {
+
+  .result-card[data-rarity="secret"] .master-letter {
+    width: 96%;
+
+    padding:
+      0 28px;
+  }
+
+  .result-card[data-rarity="secret"] .letter-label {
+    font-size: .44rem;
+    margin-bottom: 1px;
+  }
+
+  .result-card[data-rarity="secret"] #masterComment {
+    font-size: .56rem;
+    line-height: 1.35;
+  }
+}
+/* ========================================
+   RARE 最終視認性調整
+======================================== */
+
+
+/* ----------------------------------------
+   FLAVOR PROFILE
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .flavor-block {
+  color: #ead9aa;
+}
+
+.result-card[data-rarity="rare"] .flavor-block h3 {
+  color: #d8b85e;
+}
+
+
+/* ----------------------------------------
+   FROM THE MASTER
+   NORMALの四角背景を完全解除
+---------------------------------------- */
+
+.result-card[data-rarity="rare"] .master-letter {
+  position: relative;
+
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding:
+    0
+    clamp(38px, 6vw, 64px);
+
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+
+  overflow: visible;
+  color: #eee1bd;
+}
+
+
+/* 紙片 */
+.result-card[data-rarity="rare"] .master-letter::before {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1800 / 320;
+
+  transform: translate(-50%, -50%);
+
+  background-image:
+    url("../assets/images/master-note-normal.png"); /* dedicated rare note not present; safe fallback */
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+
+/* 古い紙端表現を解除 */
+.result-card[data-rarity="rare"] .master-letter::after {
+  content: none;
+  display: none;
+}
+
+
+/* FROM THE MASTER */
+.result-card[data-rarity="rare"] .letter-label {
+  position: relative;
+  z-index: 2;
+
+  margin: 0 0 3px;
+
+  color: #d5ad4f;
+
+  font-size:
+    clamp(.48rem, .9vw, .64rem);
+
+  letter-spacing: .14em;
+}
+
+
+/* 鵜沢さんのセリフ */
+.result-card[data-rarity="rare"] #masterComment {
+  position: relative;
+  z-index: 2;
+
+  margin: 0;
+
+  color: #f1e5c6;
+
+  font-size:
+    clamp(.60rem, 1.15vw, .82rem);
+
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------
+   スマホ
+---------------------------------------- */
+
+@media (max-width: 560px) {
+
+  .result-card[data-rarity="rare"] .master-letter {
+    width: 96%;
+    padding: 0 28px;
+  }
+
+  .result-card[data-rarity="rare"] .letter-label {
+    font-size: .44rem;
+    margin-bottom: 1px;
+  }
+
+  .result-card[data-rarity="rare"] #masterComment {
+    font-size: .56rem;
+    line-height: 1.35;
+  }
+}
+/* ========================================
+   SECRET：背景の月光
+======================================== */
+
+.result-card[data-rarity="secret"] .card-art::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 4;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(255, 232, 174, .24) 0%,
+      rgba(218, 184, 112, .08) 22%,
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 82% 72%,
+      rgba(225, 205, 158, .08) 0%,
+      transparent 32%
+    );
+
+  mix-blend-mode: screen;
+}
+/* ========================================
+   カードと操作ボタンの間隔
+======================================== */
+
+.actions {
+  margin-top: 25px;
+}
+/* ========================================
+   Version 10: 4種カード最終切替
+   NORMAL / RARE / FULL MOON / SECRET
+======================================== */
+
+/* FULL MOON：旧SECRETの夜色テーマを独立 */
+.result-card[data-rarity="full_moon"] .card-paper {
+  content: url("../assets/images/card-fullmoon.png");
+}
+
+.result-card[data-rarity="full_moon"] .coffee-stain,
+.result-card[data-rarity="full_moon"] .card-frame {
+  display: none;
+}
+
+.result-card[data-rarity="full_moon"] {
+  color: #efe2c2;
+  filter: drop-shadow(0 24px 40px rgba(0,0,0,.52)) drop-shadow(0 0 26px rgba(227,190,82,.22));
+}
+
+.result-card[data-rarity="full_moon"] #coffeeName,
+.result-card[data-rarity="full_moon"] .card-brand h1 {
+  color: #f6e5ad;
+  text-shadow: 0 0 12px rgba(235,196,83,.24);
+}
+
+.result-card[data-rarity="full_moon"] #coffeeSubtitle,
+.result-card[data-rarity="full_moon"] .brand-caption,
+.result-card[data-rarity="full_moon"] .selection-label,
+.result-card[data-rarity="full_moon"] #constellationText {
+  color: #d8c9a6;
+}
+
+.result-card[data-rarity="full_moon"] .brand-en,
+.result-card[data-rarity="full_moon"] .eyebrow,
+.result-card[data-rarity="full_moon"] .section-kicker,
+.result-card[data-rarity="full_moon"] .letter-label,
+.result-card[data-rarity="full_moon"] .gift-label,
+.result-card[data-rarity="full_moon"] .flavor-block h3 {
+  color: #d8b85e;
+}
+
+.result-card[data-rarity="full_moon"] .card-brand,
+.result-card[data-rarity="full_moon"] .selection,
+.result-card[data-rarity="full_moon"] .visual-grid,
+.result-card[data-rarity="full_moon"] .diagnosis-section,
+.result-card[data-rarity="full_moon"] .gift-grid,
+.result-card[data-rarity="full_moon"] .card-footer {
+  border-color: rgba(218,177,94,.32);
+}
+
+.result-card[data-rarity="full_moon"] .constellation-block {
+  background: rgba(7,7,8,.30);
+  border: 1px solid rgba(218,177,94,.34);
+}
+
+.result-card[data-rarity="full_moon"] #constellationName,
+.result-card[data-rarity="full_moon"] .diagnosis-section,
+.result-card[data-rarity="full_moon"] .diagnosis-section h3,
+.result-card[data-rarity="full_moon"] #diagnosis,
+.result-card[data-rarity="full_moon"] #dessert,
+.result-card[data-rarity="full_moon"] #luckyItem,
+.result-card[data-rarity="full_moon"] #masterComment {
+  color: #eee2c5;
+}
+
+.result-card[data-rarity="full_moon"] .numbers,
+.result-card[data-rarity="full_moon"] .footer-message {
+  color: #d5bd7c;
+}
+
+.result-card[data-rarity="full_moon"] .master-letter {
+  position: relative;
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 clamp(38px,6vw,64px);
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.result-card[data-rarity="full_moon"] .master-letter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  aspect-ratio: 1800 / 320;
+  transform: translate(-50%,-50%);
+  background: url("../assets/images/master-note-secret.png") center / 100% auto no-repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* SECRET：月なしの明るい紙。インク色で静かに差別化 */
+.result-card[data-rarity="secret"] {
+  color: #3e2818;
+  filter: drop-shadow(0 24px 40px rgba(0,0,0,.40));
+}
+
+.result-card[data-rarity="secret"] #coffeeName,
+.result-card[data-rarity="secret"] .card-brand h1,
+.result-card[data-rarity="secret"] .diagnosis-section,
+.result-card[data-rarity="secret"] .diagnosis-section h3,
+.result-card[data-rarity="secret"] #diagnosis,
+.result-card[data-rarity="secret"] #dessert,
+.result-card[data-rarity="secret"] #luckyItem,
+.result-card[data-rarity="secret"] .numbers,
+.result-card[data-rarity="secret"] .footer-message {
+  color: #3b2517;
+  text-shadow: none;
+}
+
+.result-card[data-rarity="secret"] #coffeeSubtitle,
+.result-card[data-rarity="secret"] .brand-caption,
+.result-card[data-rarity="secret"] .selection-label,
+.result-card[data-rarity="secret"] #constellationText {
+  color: #715038;
+}
+
+.result-card[data-rarity="secret"] .brand-en,
+.result-card[data-rarity="secret"] .eyebrow,
+.result-card[data-rarity="secret"] .section-kicker,
+.result-card[data-rarity="secret"] .gift-label,
+.result-card[data-rarity="secret"] .flavor-block h3,
+.result-card[data-rarity="secret"] .letter-label {
+  color: #6b4328;
+}
+
+.result-card[data-rarity="secret"] .card-brand,
+.result-card[data-rarity="secret"] .selection,
+.result-card[data-rarity="secret"] .visual-grid,
+.result-card[data-rarity="secret"] .diagnosis-section,
+.result-card[data-rarity="secret"] .gift-grid,
+.result-card[data-rarity="secret"] .card-footer {
+  border-color: rgba(78,48,27,.24);
+}
+
+.result-card[data-rarity="secret"] .constellation-block {
+  background: rgba(52,35,23,.88);
+  border: 1px solid rgba(78,48,27,.24);
+}
+
+.result-card[data-rarity="secret"] #constellationName {
+  color: #eadbb7;
+}
+
+.result-card[data-rarity="secret"] .card-art::after {
+  content: none;
+  display: none;
+}
+
+/* ========================================
+   Version 10.1 : FROM THE MASTER CLEAN
+   紙片PNG・半透明背景・ブレンドを完全解除
+   NORMAL / RARE / FULL MOON / SECRET 共通
+======================================== */
+
+.result-card .master-letter,
+.result-card[data-rarity="normal"] .master-letter,
+.result-card[data-rarity="rare"] .master-letter,
+.result-card[data-rarity="full_moon"] .master-letter,
+.result-card[data-rarity="secret"] .master-letter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 1%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  overflow: visible;
+}
+
+/* 紙片PNG・旧装飾を完全に停止 */
+.result-card .master-letter::before,
+.result-card .master-letter::after,
+.result-card[data-rarity="normal"] .master-letter::before,
+.result-card[data-rarity="normal"] .master-letter::after,
+.result-card[data-rarity="rare"] .master-letter::before,
+.result-card[data-rarity="rare"] .master-letter::after,
+.result-card[data-rarity="full_moon"] .master-letter::before,
+.result-card[data-rarity="full_moon"] .master-letter::after,
+.result-card[data-rarity="secret"] .master-letter::before,
+.result-card[data-rarity="secret"] .master-letter::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  background-blend-mode: normal !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+/* ラベルと台詞は常に100%表示 */
+.result-card .letter-label,
+.result-card #masterComment {
+  position: relative;
+  z-index: 2;
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow: none;
+}
+
+/* 紙片が無くなった分、スマホでも左右余白をカード本文に合わせる */
+@media (max-width: 560px) {
+  .result-card .master-letter,
+  .result-card[data-rarity="normal"] .master-letter,
+  .result-card[data-rarity="rare"] .master-letter,
+  .result-card[data-rarity="full_moon"] .master-letter,
+  .result-card[data-rarity="secret"] .master-letter {
+    width: 100%;
+    padding: 0 1%;
+  }
+}

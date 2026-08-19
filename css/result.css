@@ -447,6 +447,7 @@ button {
 
 /* 共有・もう一杯 共通 */
 .share-button,
+.copy-button,
 .order-again-button {
   min-width: 220px;
   min-height: 48px;
@@ -472,6 +473,7 @@ button {
 
 
 .share-button:hover,
+.copy-button:hover,
 .order-again-button:hover {
   transform: translateY(-1px);
 
@@ -484,6 +486,7 @@ button {
 
 
 .share-button:active,
+.copy-button:active,
 .order-again-button:active {
   transform: translateY(1px);
 }
@@ -497,9 +500,11 @@ button {
 
   .action-buttons {
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .share-button,
+  .copy-button,
   .order-again-button {
     min-width: 0;
     flex: 1;

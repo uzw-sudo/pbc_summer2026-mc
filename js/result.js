@@ -2,7 +2,7 @@
 (() => {
   const DATA_PATH="../data/coffee.json";
   const $=id=>document.getElementById(id);
-  const el={card:$("resultCard"),paper:document.querySelector(".card-paper"),stain:document.querySelector(".coffee-stain"),frame:document.querySelector(".card-frame"),coffeeName:$("coffeeName"),coffeeSubtitle:$("coffeeSubtitle"),constellationName:$("constellationName"),constellationText:$("constellationText"),diagnosis:$("diagnosis"),masterComment:$("masterComment"),dessert:$("dessert"),luckyItem:$("luckyItem"),orderNumber:$("orderNumber"),moonNumber:$("moonNumber"),shareButton:$("shareButton"),shareStatus:$("shareStatus")};
+  const el={card:$("resultCard"),paper:document.querySelector(".card-paper"),stain:document.querySelector(".coffee-stain"),frame:document.querySelector(".card-frame"),coffeeName:$("coffeeName"),coffeeSubtitle:$("coffeeSubtitle"),constellationName:$("constellationName"),constellationText:$("constellationText"),diagnosis:$("diagnosis"),masterComment:$("masterComment"),dessert:$("dessert"),luckyItem:$("luckyItem"),orderNumber:$("orderNumber"),moonNumber:$("moonNumber"),xShareButton:$("xShareButton"),copyResultButton:$("copyResultButton"),shareStatus:$("shareStatus")};
   let current=null,resizeTimer=0;
   function text(node,value,fallback="―"){if(node)node.textContent=String(value??"").trim()||fallback;}
   function image(node,path,fallback){if(!node)return;node.onerror=()=>{node.onerror=null;if(fallback)node.src=fallback;};node.src=path||fallback;}
@@ -92,7 +92,42 @@
   }
 }
   function render(card){current=card;const c=card.coffee||{},star=card.constellation||{};text(el.coffeeName,c.name);text(el.coffeeSubtitle,c.subtitle);text(el.constellationName,star.name);text(el.constellationText,star.text);text(el.diagnosis,card.diagnosisText);text(el.masterComment,card.masterComment);text(el.dessert,card.dessert);text(el.luckyItem,card.luckyItem);metadata(card.id);presentation(card);document.title=c.name?`${c.name}｜真夜中珈琲屋台`:"診断結果｜真夜中珈琲屋台";requestAnimationFrame(canvases);}
-  async function share(){const name=el.coffeeName?.textContent?.trim()||"今夜の一杯";const d={title:"真夜中珈琲屋台",text:`真夜中珈琲屋台で「${name}」が選ばれました。`,url:location.href};try{if(navigator.share){await navigator.share(d);text(el.shareStatus,"共有画面を開きました。","");}else{await navigator.clipboard.writeText(`${d.text}\n${d.url}`);text(el.shareStatus,"結果の文章とURLをコピーしました。","");}}catch(e){if(e?.name!=="AbortError")text(el.shareStatus,"共有できませんでした。スクリーンショットをご利用ください。","");}}
+  const SHARE_ENTRY_URL = "https://uzw-sudo.github.io/midnightcoffee-oideyasu/midnight_coffee_v9/";
+
+  function shareText(){
+    const name=el.coffeeName?.textContent?.trim()||"今夜の一杯";
+    const rarity=String(current?.rarity||"normal").toLowerCase();
+    let lead="真夜中珈琲屋台で、\n今夜の私に出された一杯は──";
+    if(rarity==="full_moon") lead="真夜中珈琲屋台で、\n今夜だけの特別な一杯が出ました──";
+    if(rarity==="secret") lead="真夜中珈琲屋台で、\n見たことのない一杯が出ました──";
+    return `${lead}\n\n☕「${name}」\n\n今夜、あなたに出される一杯は？\n\n#真夜中珈琲屋台 #今夜の一杯 #PBT夏祭り2026`;
+  }
+
+  function shareOnX(){
+    const url=`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText())}&url=${encodeURIComponent(SHARE_ENTRY_URL)}`;
+    window.open(url,"_blank","noopener,noreferrer");
+    text(el.shareStatus,"Xの投稿画面を開きました。","");
+  }
+
+  async function copyResult(){
+    const value=`${shareText()}\n${SHARE_ENTRY_URL}`;
+    try{
+      await navigator.clipboard.writeText(value);
+      text(el.shareStatus,"結果をコピーしました ☕","");
+    }catch(e){
+      const area=document.createElement("textarea");
+      area.value=value;
+      area.setAttribute("readonly","");
+      area.style.position="fixed";
+      area.style.opacity="0";
+      document.body.appendChild(area);
+      area.select();
+      const ok=document.execCommand("copy");
+      area.remove();
+      text(el.shareStatus,ok?"結果をコピーしました ☕":"コピーできませんでした。","");
+    }
+  }
+
   async function init(){
   try{
     const cards=await MidnightData.loadJson(DATA_PATH);
@@ -172,7 +207,7 @@
     );
   }
 }
-  el.shareButton?.addEventListener("click",share);window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(canvases,120)},{passive:true});document.addEventListener("DOMContentLoaded",init);
+  el.xShareButton?.addEventListener("click",shareOnX);el.copyResultButton?.addEventListener("click",copyResult);window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(canvases,120)},{passive:true});document.addEventListener("DOMContentLoaded",init);
 })();
 /* ========================================
    もう一杯注文する

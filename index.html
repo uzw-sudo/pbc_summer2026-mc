@@ -68,7 +68,87 @@
       </div>
 
       <div class="ground-haze" aria-hidden="true"></div>
+
+      <!-- SECRET: 暗がりの猫 -->
+      <button
+        id="catEyesButton"
+        class="cat-eyes-button"
+        type="button"
+        aria-label="暗がりで光る二つの目"
+      >
+        <span class="cat-eye cat-eye-left" aria-hidden="true"></span>
+        <span class="cat-eye cat-eye-right" aria-hidden="true"></span>
+      </button>
     </section>
+
+    <!-- SECRET TAKE OUT -->
+    <div id="catTakeoutModal" class="cat-takeout-modal" aria-hidden="true">
+      <div class="cat-takeout-backdrop" data-cat-close></div>
+
+      <section
+        class="cat-takeout-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="catTakeoutTitle"
+      >
+        <button id="catTakeoutClose" class="cat-takeout-close" type="button" aria-label="閉じる">×</button>
+
+        <div class="cat-silhouette" aria-hidden="true">
+          <span class="cat-ear cat-ear-left"></span>
+          <span class="cat-ear cat-ear-right"></span>
+          <span class="cat-face-eye cat-face-eye-left"></span>
+          <span class="cat-face-eye cat-face-eye-right"></span>
+        </div>
+
+        <div id="catNameStep" class="cat-takeout-step">
+          <p class="cat-takeout-kicker">SECRET TAKE OUT</p>
+          <h2 id="catTakeoutTitle">……見つかった。</h2>
+          <p class="cat-takeout-message">
+            猫を見つけてくれてありがとう。<br>
+            お礼に、帰り道の一杯をどうぞ。
+          </p>
+
+          <label class="cat-name-label" for="catGuestName">カップに書く名前</label>
+          <input
+            id="catGuestName"
+            class="cat-name-input"
+            type="text"
+            maxlength="16"
+            autocomplete="off"
+            placeholder="お名前"
+          >
+          <p id="catNameError" class="cat-name-error" aria-live="polite"></p>
+
+          <button id="catReceiveButton" class="cat-receive-button" type="button">
+            一杯、受け取る
+          </button>
+        </div>
+
+        <div id="catCupStep" class="cat-takeout-step cat-cup-step" hidden>
+          <p class="cat-takeout-kicker">MIDNIGHT COFFEE STAND / TAKE OUT</p>
+          <h2>帰り道の一杯。</h2>
+
+          <div class="takeout-cup-wrap" aria-label="名前入りテイクアウトカップ">
+            <div class="takeout-lid" aria-hidden="true"></div>
+            <div class="takeout-cup">
+              <div class="takeout-sleeve">
+                <span class="takeout-mark">☾</span>
+                <span id="catCupName" class="takeout-name"></span>
+                <span class="takeout-paw" aria-hidden="true">🐾</span>
+              </div>
+            </div>
+          </div>
+
+          <p id="catDrinkName" class="cat-drink-name"></p>
+          <p id="catDrinkNote" class="cat-drink-note"></p>
+          <p class="cat-master-line">「帰り道、冷める前に飲めよ。」</p>
+
+          <button id="catDoneButton" class="cat-done-button" type="button">
+            持って帰る
+          </button>
+        </div>
+      </section>
+    </div>
 
     <div
       id="openingTransition"

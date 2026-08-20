@@ -1211,3 +1211,48 @@ button {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+/* =========================================================
+   TAKE OUT カップ画像サイズ強制補正
+========================================================= */
+
+.cat-takeout-dialog {
+  overflow-x: hidden !important;
+}
+
+.takeout-cup-art {
+  position: relative !important;
+
+  width: 260px !important;
+  max-width: 72vw !important;
+
+  height: 347px !important;
+  max-height: 46vh !important;
+
+  margin: 18px auto 8px !important;
+
+  overflow: hidden !important;
+}
+
+.takeout-cup-image {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: 100% !important;
+  max-height: 100% !important;
+
+  object-fit: contain !important;
+
+  display: block !important;
+}
+@media (max-width: 560px) {
+  .takeout-cup-art {
+    width: 220px !important;
+    height: 293px !important;
+    max-width: 65vw !important;
+  }
+}

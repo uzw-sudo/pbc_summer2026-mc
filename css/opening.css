@@ -644,3 +644,570 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .cat-eye { animation: none !important; }
 }
+
+
+/* =========================================================
+   SECRET TAKE OUT v2 : CUP / COMPLETE / CARD
+========================================================= */
+.takeout-cup-art {
+  position: relative;
+  width: min(62vw, 250px);
+  aspect-ratio: 3 / 4;
+  margin: 14px auto 2px;
+}
+.takeout-cup-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 22px rgba(0,0,0,.34));
+}
+.takeout-cup-name {
+  position: absolute;
+  left: 50%;
+  top: 54.5%;
+  width: 31%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  color: #3a2a1d;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(.72rem, 2.6vw, 1rem);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cat-cup-message {
+  margin-bottom: 5px;
+}
+.cat-complete-step {
+  padding: 8px 0 3px;
+}
+.cat-complete-visual {
+  position: relative;
+  min-height: 110px;
+  margin: 14px auto 4px;
+  display: grid;
+  place-items: center;
+}
+.cat-complete-cat {
+  font-size: 3.1rem;
+  filter: grayscale(1) brightness(.28) sepia(.2);
+}
+.cat-complete-tail {
+  position: absolute;
+  left: 42%;
+  top: 31px;
+  color: #a98d56;
+  font-size: 3.2rem;
+  transform: rotate(-15deg);
+  opacity: .42;
+}
+.cat-complete-paws {
+  position: absolute;
+  bottom: 0;
+  color: #b79b5d;
+  font-size: .72rem;
+  letter-spacing: .8em;
+  opacity: .52;
+}
+
+/* TAKE OUT CARD preview */
+.cat-card-step {
+  width: 100%;
+}
+.takeout-card-preview {
+  position: relative;
+  width: min(100%, 330px);
+  aspect-ratio: 4 / 5;
+  margin: 18px auto 14px;
+  overflow: hidden;
+  padding: 20px 20px 18px;
+  border: 1px solid rgba(208,182,111,.72);
+  color: #e9dfc4;
+  background:
+    radial-gradient(circle at 76% 15%, rgba(220,194,112,.18) 0 8%, transparent 9%),
+    radial-gradient(circle at 20% 26%, rgba(255,255,255,.07) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 38%, rgba(255,255,255,.06) 0 1px, transparent 2px),
+    linear-gradient(180deg, #071320 0%, #09131d 48%, #160e0b 100%);
+  box-shadow:
+    inset 0 0 0 5px rgba(8,13,19,.55),
+    inset 0 0 0 6px rgba(196,164,94,.22),
+    0 18px 45px rgba(0,0,0,.35);
+}
+.takeout-card-preview::before,
+.takeout-card-preview::after {
+  content: "";
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  opacity: .46;
+  pointer-events: none;
+}
+.takeout-card-preview::before {
+  left: 7px;
+  top: 7px;
+  border-left: 1px solid #c3a05b;
+  border-top: 1px solid #c3a05b;
+}
+.takeout-card-preview::after {
+  right: 7px;
+  bottom: 7px;
+  border-right: 1px solid #c3a05b;
+  border-bottom: 1px solid #c3a05b;
+}
+.takeout-card-stars {
+  color: rgba(226,201,132,.7);
+  font-size: .7rem;
+  letter-spacing: .22em;
+}
+.takeout-card-brand {
+  margin: 7px 0 0;
+  color: #d3b772;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .67rem;
+  letter-spacing: .18em;
+}
+.takeout-card-title {
+  margin: 3px 0 0;
+  color: #f0dfaf;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.24rem;
+  letter-spacing: .12em;
+}
+.takeout-card-subtitle {
+  margin: 2px 0 5px;
+  color: rgba(234,220,184,.65);
+  font-size: .58rem;
+}
+.takeout-card-cup {
+  position: relative;
+  width: 45%;
+  aspect-ratio: 3/4;
+  margin: 3px auto -2px;
+}
+.takeout-card-cup img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.takeout-card-cup-name {
+  position: absolute;
+  left: 50%;
+  top: 54.5%;
+  width: 31%;
+  transform: translate(-50%, -50%);
+  color: #352619;
+  font-size: .52rem;
+  font-weight: 600;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.takeout-card-info {
+  margin: 4px auto 0;
+  width: 88%;
+  border-top: 1px solid rgba(207,180,110,.28);
+  border-bottom: 1px solid rgba(207,180,110,.22);
+  padding: 6px 1px;
+}
+.takeout-card-info p {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 8px;
+  margin: 3px 0;
+  text-align: left;
+  align-items: baseline;
+}
+.takeout-card-info span {
+  color: #ac9259;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .58rem;
+  letter-spacing: .14em;
+}
+.takeout-card-info strong {
+  color: #eee2c1;
+  font-size: .67rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.takeout-card-thanks {
+  margin: 7px 0 0;
+  color: rgba(232,219,183,.7);
+  font-size: .55rem;
+  line-height: 1.7;
+}
+.takeout-card-paw {
+  position: absolute;
+  right: 22px;
+  bottom: 17px;
+  color: #c2a15f;
+  font-size: .8rem;
+  filter: grayscale(1) sepia(.8);
+}
+.takeout-card-preview[data-theme="amber"] {
+  background: linear-gradient(180deg, #1c1209 0%, #211307 58%, #0e0a08 100%);
+}
+.takeout-card-preview[data-theme="rose"] {
+  background: linear-gradient(180deg, #211017 0%, #2a121c 58%, #100a0d 100%);
+}
+.takeout-card-preview[data-theme="green"] {
+  background: linear-gradient(180deg, #0c1916 0%, #10221c 58%, #090e0d 100%);
+}
+.takeout-card-preview[data-theme="purple"] {
+  background: linear-gradient(180deg, #150e22 0%, #241536 58%, #0b0810 100%);
+}
+
+.cat-card-status {
+  min-height: 1.5em;
+  margin: 3px 0 8px;
+  color: rgba(234,221,184,.75);
+  font-size: .68rem;
+}
+.cat-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.cat-card-button,
+.cat-card-close-button {
+  min-height: 42px;
+  padding: 9px 15px;
+  border: 1px solid rgba(218,198,143,.52);
+  border-radius: 999px;
+  color: #f4ead0;
+  background: rgba(20,31,45,.88);
+  font: inherit;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.cat-card-button:hover,
+.cat-card-close-button:hover {
+  background: rgba(31,45,62,.98);
+  border-color: rgba(232,210,150,.84);
+}
+.cat-card-button-secondary {
+  background: rgba(12,20,30,.72);
+}
+.cat-card-close-button {
+  margin-top: 10px;
+  min-width: 120px;
+  background: transparent;
+  color: rgba(235,224,197,.72);
+}
+
+@media (max-width: 560px) {
+  .takeout-card-preview {
+    width: min(100%, 300px);
+    padding: 16px 16px 14px;
+  }
+  .cat-card-button {
+    flex: 1 1 30%;
+    min-width: 88px;
+    padding-inline: 8px;
+    font-size: .64rem;
+  }
+}
+
+
+/* =========================================================
+   FINAL TAKE OUT — supplied cup/card artwork + dynamic text
+========================================================= */
+
+/* 鵜沢さんが油性ペンで書いたような名前 */
+.takeout-cup-name,
+.takeout-card-cup-name,
+.takeout-card-for {
+  font-family: "Klee One", "Noto Serif JP", cursive !important;
+  font-weight: 600 !important;
+}
+
+/* 受取画面のカップ */
+.takeout-cup-art {
+  position: relative;
+  width: min(70vw, 300px);
+  aspect-ratio: 3 / 4;
+  margin: 12px auto 4px;
+}
+.takeout-cup-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.takeout-cup-name {
+  position: absolute;
+  left: 50%;
+  top: 51.8%;
+  width: 42%;
+  transform: translate(-50%, -50%) rotate(-1.4deg);
+  z-index: 2;
+  color: #241812;
+  font-size: clamp(.95rem, 3.8vw, 1.34rem);
+  letter-spacing: -.04em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.takeout-cup-drink {
+  position: absolute;
+  left: 50%;
+  top: 61.4%;
+  width: 47%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #2c2019;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(.56rem, 2.2vw, .78rem);
+  font-weight: 500;
+  letter-spacing: .01em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* 採用済みの takeout-card.png をそのままカード台紙にする */
+.takeout-card-preview {
+  position: relative !important;
+  width: min(100%, 380px) !important;
+  aspect-ratio: 2 / 3 !important;
+  margin: 18px auto 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.38) !important;
+}
+.takeout-card-preview::before,
+.takeout-card-preview::after {
+  display: none !important;
+}
+.takeout-card-base-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.takeout-card-overlay {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  color: #26180f;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+/* カード内カップ：名前 */
+.takeout-card-cup-name {
+  left: 50%;
+  top: 49.0%;
+  width: 26%;
+  transform: translate(-50%, -50%) rotate(-1.4deg);
+  font-size: clamp(.78rem, 3.2vw, 1.18rem) !important;
+  letter-spacing: -.045em;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* カード内カップ：ドリンク名 */
+.takeout-card-cup-drink {
+  left: 50%;
+  top: 55.2%;
+  width: 34%;
+  transform: translateX(-50%);
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(.42rem, 1.65vw, .61rem);
+  font-weight: 500;
+  text-align: center;
+  white-space: normal;
+}
+
+/* FOR：名前だけ手書き */
+.takeout-card-for {
+  left: 31.5%;
+  top: 74.5%;
+  width: 43%;
+  transform: rotate(-1deg);
+  font-size: clamp(.9rem, 3.6vw, 1.3rem) !important;
+  letter-spacing: -.035em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* DRINK / DATE：印刷文字 */
+.takeout-card-drink {
+  left: 31.5%;
+  top: 80.4%;
+  width: 43%;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(.55rem, 2.25vw, .78rem);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.takeout-card-date {
+  left: 31.5%;
+  top: 86.2%;
+  width: 43%;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: clamp(.62rem, 2.55vw, .9rem);
+  font-weight: 600;
+  letter-spacing: .035em;
+}
+
+@media (max-width: 560px) {
+  .takeout-card-preview {
+    width: min(100%, 320px) !important;
+  }
+}
+/* ドリンク説明文と「持って帰る」ボタンの間隔 */
+.cat-drink-note {
+  margin-bottom: 11px;
+}
+/* =========================================================
+   TAKE OUT CARD 記入位置 最終調整
+   ========================================================= */
+
+/* FOR：名前 */
+.takeout-card-for {
+  left: 35.5% !important;
+  top: 76.9% !important;
+
+  width: 39% !important;
+
+  transform: translateY(-50%) rotate(-1deg) !important;
+
+  font-family: "Klee One", "Noto Serif JP", cursive !important;
+  font-size: clamp(.82rem, 3.2vw, 1.18rem) !important;
+  font-weight: 600 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+}
+
+
+/* DRINK：ドリンク名 */
+.takeout-card-drink {
+  left: 35.5% !important;
+  top: 82.5% !important;
+
+  width: 39% !important;
+
+  transform: translateY(-50%) !important;
+
+  font-family: "Noto Serif JP", serif !important;
+  font-size: clamp(.48rem, 1.9vw, .68rem) !important;
+  font-weight: 500 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+}
+
+
+/* DATE：日付 */
+.takeout-card-date {
+  left: 35.5% !important;
+  top: 88.0% !important;
+
+  width: 39% !important;
+
+  transform: translateY(-50%) !important;
+
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+  font-size: clamp(.55rem, 2.1vw, .76rem) !important;
+  font-weight: 600 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+}
+/* =========================================================
+   TAKE OUT CARD 下部記入欄・位置確定版
+   ========================================================= */
+
+/* FOR：お名前 */
+.takeout-card-for {
+  position: absolute !important;
+
+  left: 28% !important;
+  top: 73.7% !important;
+
+  width: 46% !important;
+
+  transform: translateY(-50%) rotate(-1deg) !important;
+
+  font-family: "Klee One", "Noto Serif JP", cursive !important;
+  font-size: clamp(.82rem, 3.2vw, 1.18rem) !important;
+  font-weight: 600 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+
+  color: #26180f !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+
+/* DRINK：ドリンク名 */
+.takeout-card-drink {
+  position: absolute !important;
+
+  left: 28% !important;
+  top: 80.1% !important;
+
+  width: 46% !important;
+
+  transform: translateY(-50%) !important;
+
+  font-family: "Noto Serif JP", serif !important;
+  font-size: clamp(.48rem, 1.9vw, .68rem) !important;
+  font-weight: 500 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+
+  color: #26180f !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+
+/* DATE：日付 */
+.takeout-card-date {
+  position: absolute !important;
+
+  left: 28% !important;
+  top: 85.6% !important;
+
+  width: 46% !important;
+
+  transform: translateY(-50%) !important;
+
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+  font-size: clamp(.55rem, 2.1vw, .76rem) !important;
+  font-weight: 600 !important;
+
+  line-height: 1 !important;
+  text-align: left !important;
+
+  color: #26180f !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}

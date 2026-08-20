@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
@@ -100,12 +100,13 @@
           <span class="cat-face-eye cat-face-eye-right"></span>
         </div>
 
+        <!-- STEP 1 : 名前 -->
         <div id="catNameStep" class="cat-takeout-step">
           <p class="cat-takeout-kicker">SECRET TAKE OUT</p>
           <h2 id="catTakeoutTitle">……見つかった。</h2>
           <p class="cat-takeout-message">
-            猫を見つけてくれてありがとう。<br>
-            お礼に、帰り道の一杯をどうぞ。
+            猫を見つけてくれてありがとな？<br>
+            お礼に、これ、持ってけ
           </p>
 
           <label class="cat-name-label" for="catGuestName">カップに書く名前</label>
@@ -124,27 +125,87 @@
           </button>
         </div>
 
+        <!-- STEP 2 : カップ -->
         <div id="catCupStep" class="cat-takeout-step cat-cup-step" hidden>
           <p class="cat-takeout-kicker">MIDNIGHT COFFEE STAND / TAKE OUT</p>
-          <h2>帰り道の一杯。</h2>
+          <h2>はい、これ。</h2>
+          <p class="cat-takeout-message cat-cup-message">
+            帰り道、冷める前に飲めよ。
+          </p>
 
-          <div class="takeout-cup-wrap" aria-label="名前入りテイクアウトカップ">
-            <div class="takeout-lid" aria-hidden="true"></div>
-            <div class="takeout-cup">
-              <div class="takeout-sleeve">
-                <span class="takeout-mark">☾</span>
-                <span id="catCupName" class="takeout-name"></span>
-                <span class="takeout-paw" aria-hidden="true">🐾</span>
-              </div>
-            </div>
+          <div class="takeout-cup-art" aria-label="名前入りテイクアウトカップ">
+            <img src="./assets/images/takeout-cup.png" alt="" class="takeout-cup-image">
+            <span id="catCupName" class="takeout-cup-name"></span>
+            <span id="catCupDrink" class="takeout-cup-drink"></span>
           </div>
 
           <p id="catDrinkName" class="cat-drink-name"></p>
           <p id="catDrinkNote" class="cat-drink-note"></p>
-          <p class="cat-master-line">「帰り道、冷める前に飲めよ。」</p>
 
           <button id="catDoneButton" class="cat-done-button" type="button">
             持って帰る
+          </button>
+        </div>
+
+        <!-- STEP 3 : 完了 -->
+        <div id="catCompleteStep" class="cat-takeout-step cat-complete-step" hidden>
+          <p class="cat-takeout-kicker">TAKE OUT COMPLETE</p>
+          <h2>大事に持って帰ってね。</h2>
+
+          <div class="cat-complete-visual" aria-hidden="true">
+            <span class="cat-complete-tail">⌁</span>
+            <span class="cat-complete-cat">🐈‍⬛</span>
+            <span class="cat-complete-paws">🐾　🐾</span>
+          </div>
+
+          <p class="cat-takeout-message">
+            気が向いたら、<br>
+            遊びにおいで。
+          </p>
+
+          <button id="catShowCardButton" class="cat-done-button" type="button">
+            テイクアウトカードを見る
+          </button>
+        </div>
+
+        <!-- STEP 4 : TAKE OUT CARD -->
+        <div id="catCardStep" class="cat-takeout-step cat-card-step" hidden>
+          <p class="cat-takeout-kicker">TAKE OUT CARD</p>
+          <h2>猫を見つけた夜の、特別な一杯。</h2>
+
+          <article id="takeoutCardPreview" class="takeout-card-preview" aria-label="テイクアウトカード">
+            <img
+              class="takeout-card-base-image"
+              src="./assets/images/takeout-card.png"
+              alt="真夜中珈琲屋台 TAKE OUT CARD"
+            >
+
+            <!-- カップ部分 -->
+            <span id="takeoutCardCupName" class="takeout-card-overlay takeout-card-cup-name"></span>
+            <span id="takeoutCardCupDrink" class="takeout-card-overlay takeout-card-cup-drink"></span>
+
+            <!-- 下部の記入欄 -->
+            <span id="takeoutCardName" class="takeout-card-overlay takeout-card-for"></span>
+            <span id="takeoutCardDrink" class="takeout-card-overlay takeout-card-drink"></span>
+            <span id="takeoutCardDate" class="takeout-card-overlay takeout-card-date"></span>
+          </article>
+
+          <p id="catCardStatus" class="cat-card-status" role="status" aria-live="polite"></p>
+
+          <div class="cat-card-actions">
+            <button id="catSaveCardButton" class="cat-card-button" type="button">
+              画像を保存
+            </button>
+            <button id="catShareCardButton" class="cat-card-button" type="button">
+              シェア
+            </button>
+            <button id="catXShareButton" class="cat-card-button cat-card-button-secondary" type="button">
+              Xでシェア
+            </button>
+          </div>
+
+          <button id="catCardCloseButton" class="cat-card-close-button" type="button">
+            閉じる
           </button>
         </div>
       </section>

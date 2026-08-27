@@ -34,7 +34,6 @@
   const takeoutCardDate = document.getElementById("takeoutCardDate");
   const catCardStatus = document.getElementById("catCardStatus");
   const catSaveCardButton = document.getElementById("catSaveCardButton");
-  const catShareCardButton = document.getElementById("catShareCardButton");
   const catXShareButton = document.getElementById("catXShareButton");
 
   const CUP_IMAGE_PATH = "./assets/images/takeout-cup.png";
@@ -372,40 +371,11 @@ drawFittedText({
     return `真夜中珈琲屋台で猫を見つけました。\nお礼にもらったテイクアウトは\n☕「${reward.name}」${rareLine}\n\n#真夜中珈琲屋台 #PBT夏祭り2026`;
   }
 
-  async function shareCard() {
-    try {
-      catCardStatus.textContent = "シェア用カードを作っています……";
-      const blob = await makeCardBlob();
-      const file = new File([blob], filename(), { type: "image/png" });
-      const data = {
-        title: "真夜中珈琲屋台 TAKE OUT",
-        text: shareText(),
-        url: SHARE_URL
-      };
-
-      if (navigator.canShare?.({ files: [file] }) && navigator.share) {
-        await navigator.share({ ...data, files: [file] });
-        catCardStatus.textContent = "シェア画面を開きました。";
-      } else if (navigator.share) {
-        await navigator.share(data);
-        catCardStatus.textContent = "シェア画面を開きました。画像は「画像を保存」から使えます。";
-      } else {
-        await navigator.clipboard.writeText(`${shareText()}\n${SHARE_URL}`);
-        catCardStatus.textContent = "投稿文とURLをコピーしました。画像は「画像を保存」から使えます。";
-      }
-    } catch (error) {
-      if (error?.name !== "AbortError") {
-        console.error(error);
-        catCardStatus.textContent = "シェアできませんでした。";
-      }
-    }
-  }
-
   function shareOnX() {
     const text = shareText();
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(SHARE_URL)}`;
     window.open(url, "_blank", "noopener,noreferrer");
-    catCardStatus.textContent = "Xの投稿画面を開きました。画像を添付する場合は先に保存してください。";
+    catCardStatus.textContent = "Xを開きました。画像を付ける場合は先に保存してください。";
   }
 
   enterButton?.addEventListener("click", enterShop);
@@ -419,7 +389,6 @@ drawFittedText({
   catCardCloseButton?.addEventListener("click", closeCatTakeout);
 
   catSaveCardButton?.addEventListener("click", saveCard);
-  catShareCardButton?.addEventListener("click", shareCard);
   catXShareButton?.addEventListener("click", shareOnX);
 
   catGuestName?.addEventListener("keydown", event => {

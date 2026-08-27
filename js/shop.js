@@ -4,7 +4,7 @@
   const RESULT_PATH="../result/index.html";
   const $=id=>document.getElementById(id);
   const el={dialogue:$("masterDialogue"),masterImage:$("masterImage"),mobileMasterImage:$("mobileMasterImage"),current:$("questionCurrent"),total:$("questionTotal"),kicker:$("questionKicker"),title:$("questionTitle"),hint:$("questionHint"),answerList:$("answerList"),backButton:$("backButton"),status:$("questionStatus"),orderNumber:$("temporaryOrderNumber"),transition:$("brewingTransition"),brewingMessage:$("brewingMessage")};
-  let questions=[],index=0,answers=[],locked=false;
+  let questions=[],index=0,answers=[],locked=false,awaitingAdvance=false;
   const format=n=>String(n).padStart(2,"0");
   const MASTER_IMAGES = {
     normal: "../assets/images/master_normal.png",
@@ -54,11 +54,34 @@
     preload.src = nextSource;
   }
 
-  function render(){ const q=questions[index]; if(!q)return; setMasterImage(q.masterExpression || q.masterImage); locked=false; el.current.textContent=format(index+1); el.total.textContent=format(questions.length); el.kicker.textContent=q.kicker||"TONIGHT'S ORDER"; el.title.textContent=q.question||""; el.hint.textContent=q.hint||""; el.backButton.disabled=index===0; el.answerList.replaceChildren(); q.answers.forEach((a,i)=>{const b=document.createElement("button");b.type="button";b.className="answer-option";b.setAttribute("role","radio");b.setAttribute("aria-checked",answers[index]===i?"true":"false");if(answers[index]===i)b.classList.add("is-selected");const main=document.createElement("span");main.className="answer-main";main.textContent=a.label;const sub=document.createElement("span");sub.className="answer-sub";sub.textContent=a.sub||"";b.append(main,sub);b.addEventListener("click",()=>select(i,b));el.answerList.append(b);}); MidnightDialogue.type(el.dialogue,q.dialogue,62); }
+  function render(){ const q=questions[index]; if(!q)return; awaitingAdvance=false; document.body.classList.remove("is-awaiting-advance"); setMasterImage(q.masterExpression || q.masterImage); locked=false; el.current.textContent=format(index+1); el.total.textContent=format(questions.length); el.kicker.textContent=q.kicker||"TONIGHT'S ORDER"; el.title.textContent=q.question||""; el.hint.textContent=q.hint||""; el.backButton.disabled=index===0; el.answerList.replaceChildren(); q.answers.forEach((a,i)=>{const b=document.createElement("button");b.type="button";b.className="answer-option";b.setAttribute("role","radio");b.setAttribute("aria-checked",answers[index]===i?"true":"false");if(answers[index]===i)b.classList.add("is-selected");const main=document.createElement("span");main.className="answer-main";main.textContent=a.label;const sub=document.createElement("span");sub.className="answer-sub";sub.textContent=a.sub||"";b.append(main,sub);b.addEventListener("click",()=>select(i,b));el.answerList.append(b);}); MidnightDialogue.type(el.dialogue,q.dialogue,62); }
   function score(){const s={tired:0,happy:0,quiet:0,energy:0};questions.forEach((q,qi)=>{const a=q.answers?.[answers[qi]];Object.entries(a?.score||{}).forEach(([k,v])=>s[k]=Number(s[k]||0)+Number(v||0));});return s;}
-  async function select(answerIndex,button){if(locked)return;locked=true;answers[index]=answerIndex;el.answerList.querySelectorAll(".answer-option").forEach(x=>{x.classList.remove("is-selected");x.setAttribute("aria-checked","false")});button.classList.add("is-selected");button.setAttribute("aria-checked","true");const answer=questions[index].answers[answerIndex];setMasterImage(answer.masterExpression || answer.masterImage || questions[index].replyExpression || questions[index].replyImage || questions[index].masterExpression || questions[index].masterImage);el.status.textContent="注文票へ印をつけました。";const reply=MidnightDialogue.choose(answer.reply,`${MidnightStorage.orderNumber()}:${questions[index].id}`);if(reply)await MidnightDialogue.type(el.dialogue,reply,58);setTimeout(()=>{if(index<questions.length-1){index++;el.status.textContent="";render();}else finish();},520);}
+  async function select(answerIndex,button){if(locked)return;locked=true;answers[index]=answerIndex;el.answerList.querySelectorAll(".answer-option").forEach(x=>{x.classList.remove("is-selected");x.setAttribute("aria-checked","false")});button.classList.add("is-selected");button.setAttribute("aria-checked","true");const answer=questions[index].answers[answerIndex];setMasterImage(answer.masterExpression || answer.masterImage || questions[index].replyExpression || questions[index].replyImage || questions[index].masterExpression || questions[index].masterImage);el.status.textContent="注文票へ印をつけました。";const reply=MidnightDialogue.choose(answer.reply,`${MidnightStorage.orderNumber()}:${questions[index].id}`);if(reply)await MidnightDialogue.type(el.dialogue,reply,58);awaitingAdvance=true;document.body.classList.add("is-awaiting-advance");el.status.textContent=index<questions.length-1?"画面をタップして、次の質問へ。":"画面をタップして、注文を渡す。";}
+
+  function advanceAfterReply(){
+    if(!awaitingAdvance)return;
+    awaitingAdvance=false;
+    document.body.classList.remove("is-awaiting-advance");
+    if(index<questions.length-1){
+      index++;
+      el.status.textContent="";
+      render();
+    }else{
+      el.status.textContent="";
+      finish();
+    }
+  }
   async function finish(){MidnightStorage.setScore(score());MidnightStorage.setAnswers(answers);localStorage.removeItem(MidnightStorage.KEYS.card);localStorage.removeItem(MidnightStorage.KEYS.variants);el.brewingMessage.textContent="君に合う一杯を、いま淹れているところだぁ。";el.transition.classList.add("is-active");el.transition.setAttribute("aria-hidden","false");setTimeout(()=>{window.MidnightNightSky?.shoot({x:innerWidth*.78,y:innerHeight*.12,speed:14});el.brewingMessage.textContent="お。……願い事しとけよ。";},850);setTimeout(()=>location.href=RESULT_PATH,3300);}
   function back(){if(index===0||locked)return;index--;el.status.textContent="";render();}
   async function init(){el.orderNumber.textContent=MidnightStorage.orderNumber();MidnightStorage.resetDiagnosis();try{const data=await MidnightData.loadJson(QUESTIONS_PATH);questions=data.questions||[];if(!questions.length)throw new Error("質問データがありません。");answers=[];render();}catch(error){console.error(error);el.title.textContent="注文票を開けませんでした。";el.hint.textContent="GitHub Pages または Live Server で開いてください。";}}
-  el.backButton?.addEventListener("click",back);document.addEventListener("DOMContentLoaded",init);
+  el.backButton?.addEventListener("click",back);
+  document.addEventListener("click",()=>{ if(awaitingAdvance) advanceAfterReply(); });
+  document.addEventListener("keydown",event=>{
+    if(!awaitingAdvance)return;
+    if(event.key==="Enter"||event.key===" "){
+      event.preventDefault();
+      advanceAfterReply();
+    }
+  });
+  document.addEventListener("DOMContentLoaded",init);
 })();

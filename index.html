@@ -1,43 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#06101d">
 
   <title>真夜中珈琲屋台</title>
-  <meta
-    name="description"
-    content="眠れない夜にだけ現れる、真夜中の珈琲屋台。"
-  >
+  <meta name="description" content="眠れない夜にだけ現れる、真夜中の珈琲屋台。">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&family=Yuji Syuku&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="./css/opening.css">
 </head>
 
 <body>
-  <canvas
-    id="nightSky"
-    class="night-sky"
-    aria-hidden="true"
-  ></canvas>
+  <canvas id="nightSky" class="night-sky" aria-hidden="true"></canvas>
 
   <main class="opening-page">
     <section class="opening-scene" aria-labelledby="openingTitle">
 
       <div class="moon-wrap">
-        <button
-          id="moonButton"
-          class="moon-button"
-          type="button"
-          aria-label="月明かりをたどって屋台へ入る"
-        >
+        <button id="moonButton" class="moon-button" type="button" aria-label="月明かりをたどって屋台へ入る">
           <span class="moon" aria-hidden="true"></span>
           <span class="moon-glow" aria-hidden="true"></span>
         </button>
@@ -53,11 +41,7 @@
           ひっそり灯る珈琲屋台。
         </p>
 
-        <button
-          id="enterButton"
-          class="enter-button"
-          type="button"
-        >
+        <button id="enterButton" class="enter-button" type="button">
           <span class="button-en">FOLLOW THE LIGHT</span>
           <span class="button-ja">灯りをたどる</span>
         </button>
@@ -70,12 +54,7 @@
       <div class="ground-haze" aria-hidden="true"></div>
 
       <!-- SECRET: 暗がりの猫 -->
-      <button
-        id="catEyesButton"
-        class="cat-eyes-button"
-        type="button"
-        aria-label="暗がりで光る二つの目"
-      >
+      <button id="catEyesButton" class="cat-eyes-button" type="button" aria-label="暗がりで光る二つの目">
         <span class="cat-eye cat-eye-left" aria-hidden="true"></span>
         <span class="cat-eye cat-eye-right" aria-hidden="true"></span>
       </button>
@@ -85,12 +64,7 @@
     <div id="catTakeoutModal" class="cat-takeout-modal" aria-hidden="true">
       <div class="cat-takeout-backdrop" data-cat-close></div>
 
-      <section
-        class="cat-takeout-dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="catTakeoutTitle"
-      >
+      <section class="cat-takeout-dialog" role="dialog" aria-modal="true" aria-labelledby="catTakeoutTitle">
         <button id="catTakeoutClose" class="cat-takeout-close" type="button" aria-label="閉じる">×</button>
 
         <div class="cat-silhouette" aria-hidden="true">
@@ -102,22 +76,17 @@
 
         <!-- STEP 1 : 名前 -->
         <div id="catNameStep" class="cat-takeout-step">
+          <h2 id="catTakeoutTitle" class="cat-speech-bubble">にゃ…！みっかっちゃったにゃ…</h2>
           <p class="cat-takeout-kicker">SECRET TAKE OUT</p>
-          <h2 id="catTakeoutTitle">……見つかった。</h2>
           <p class="cat-takeout-message">
-            猫を見つけてくれてありがとな？<br>
+            あ、お前…どこ行ってたんだよ…<br>
+            つか見つけてくれてありがとなぁ？<br>
             お礼に、これ、持ってけ
           </p>
 
           <label class="cat-name-label" for="catGuestName">カップに書く名前</label>
-          <input
-            id="catGuestName"
-            class="cat-name-input"
-            type="text"
-            maxlength="16"
-            autocomplete="off"
-            placeholder="お名前"
-          >
+          <input id="catGuestName" class="cat-name-input" type="text" maxlength="16" autocomplete="off"
+            placeholder="お名前">
           <p id="catNameError" class="cat-name-error" aria-live="polite"></p>
 
           <button id="catReceiveButton" class="cat-receive-button" type="button">
@@ -128,7 +97,7 @@
         <!-- STEP 2 : カップ -->
         <div id="catCupStep" class="cat-takeout-step cat-cup-step" hidden>
           <p class="cat-takeout-kicker">MIDNIGHT COFFEE STAND / TAKE OUT</p>
-          <h2>はい、これ。</h2>
+          <h2>ん、これな。</h2>
           <p class="cat-takeout-message cat-cup-message">
             帰り道、冷める前に飲めよ。
           </p>
@@ -150,17 +119,15 @@
         <!-- STEP 3 : 完了 -->
         <div id="catCompleteStep" class="cat-takeout-step cat-complete-step" hidden>
           <p class="cat-takeout-kicker">TAKE OUT COMPLETE</p>
-          <h2>大事に持って帰ってね。</h2>
-
+          <h2>見つけてくれてありがとにゃん</h2>
+          <br>
           <div class="cat-complete-visual" aria-hidden="true">
-            <span class="cat-complete-tail">⌁</span>
-            <span class="cat-complete-cat">🐈‍⬛</span>
-            <span class="cat-complete-paws">🐾　🐾</span>
+            <img src="./assets/images/takeout-cat.png" alt="" class="cat-complete-cat-image">
           </div>
 
           <p class="cat-takeout-message">
             気が向いたら、<br>
-            遊びにおいで。
+            また見つけに来てにゃ
           </p>
 
           <button id="catShowCardButton" class="cat-done-button" type="button">
@@ -174,11 +141,7 @@
           <h2>猫を見つけた夜の、特別な一杯。</h2>
 
           <article id="takeoutCardPreview" class="takeout-card-preview" aria-label="テイクアウトカード">
-            <img
-              class="takeout-card-base-image"
-              src="./assets/images/takeout-card.png"
-              alt="真夜中珈琲屋台 TAKE OUT CARD"
-            >
+            <img class="takeout-card-base-image" src="./assets/images/takeout-card.png" alt="真夜中珈琲屋台 TAKE OUT CARD">
 
             <!-- カップ部分 -->
             <span id="takeoutCardCupName" class="takeout-card-overlay takeout-card-cup-name"></span>
@@ -211,11 +174,7 @@
       </section>
     </div>
 
-    <div
-      id="openingTransition"
-      class="opening-transition"
-      aria-hidden="true"
-    >
+    <div id="openingTransition" class="opening-transition" aria-hidden="true">
       <p>今夜も、ひとり分だけ席が空いている。</p>
     </div>
   </main>
@@ -223,4 +182,5 @@
   <script src="./js/nightSkyEngine.js" defer></script>
   <script src="./js/opening.js" defer></script>
 </body>
+
 </html>

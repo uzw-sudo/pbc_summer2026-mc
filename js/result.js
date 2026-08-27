@@ -92,7 +92,7 @@
   }
 }
   function render(card){current=card;const c=card.coffee||{},star=card.constellation||{};text(el.coffeeName,c.name);text(el.coffeeSubtitle,c.subtitle);text(el.constellationName,star.name);text(el.constellationText,star.text);text(el.diagnosis,card.diagnosisText);text(el.masterComment,card.masterComment);text(el.dessert,card.dessert);text(el.luckyItem,card.luckyItem);metadata(card.id);presentation(card);document.title=c.name?`${c.name}｜真夜中珈琲屋台`:"診断結果｜真夜中珈琲屋台";requestAnimationFrame(canvases);}
-  const SHARE_ENTRY_URL = "https://uzw-sudo.github.io/midnightcoffee-oideyasu/midnight_coffee_v9/";
+  const SHARE_ENTRY_URL = "https://uzw-sudo.github.io/pbc_summer2026-mc/";
 
   function shareText(){
     const name=el.coffeeName?.textContent?.trim()||"今夜の一杯";

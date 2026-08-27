@@ -9,10 +9,10 @@
   ];
 
   const RESULTS = [
-    { name:"牡丹", subtitle:"小さな喜びがひらく夜", rarity:"NORMAL", color:"琥珀色", word:"ほどける", message:"今夜の花火は、ぱっと明るく開く牡丹。\n大きな変化より、すぐそばにある小さな喜びを見つけられる夜です。", master:"「いい顔してたぞ。……こっちまで嬉しくなるわ。」" },
-    { name:"松葉", subtitle:"一歩を踏み出す夜", rarity:"NORMAL", color:"金緑色", word:"進む", message:"細く鋭い火花が、迷いを切り分ける松葉。\n決め切れなかったことへ、明日は小さな一歩を置けそうです。", master:"「全部決めなくていいさ。自分のペースで歩いていこうぜ？」" },
-    { name:"散り菊", subtitle:"手放して眠る夜", rarity:"NORMAL", color:"淡金色", word:"休む", message:"静かにほどけて落ちる散り菊。\n今日抱えていたものを、今夜だけは床へ置いても構いません。", master:"「抱えたまま寝ると、朝まで疲れるぞ。ここに置いてけ。」" },
-    { name:"月雫", subtitle:"心をやわらかくする夜", rarity:"RARE", color:"月白色", word:"やさしく", message:"月明かりを含んだような、淡い雫の火花。\n自分へ向ける言葉を、誰かへ向けるときと同じくらい優しくしてください。", master:"「自分にだけ厳しいの、そろそろやめようぜ？」" },
+    { name:"牡丹", subtitle:"小さな喜びがひらく夜", rarity:"NORMAL", color:"琥珀色", word:"ほどける", message:"今夜の花火は、ぱっと明るく開く牡丹。\n大きな変化より、すぐそばにある小さな喜びを見つけられる夜です。", master:"「いい顔してたぞ……こっちまで嬉しくなるわ。」" },
+    { name:"松葉", subtitle:"一歩を踏み出す夜", rarity:"NORMAL", color:"金緑色", word:"進む", message:"細く鋭い火花が、迷いを切り分ける松葉。\n決め切れなかったことへ、明日は小さな一歩を置けそうです。", master:"「全部決めなくていいよ。自分のペースで歩いていこうぜ？」" },
+    { name:"散り菊", subtitle:"手放して眠る夜", rarity:"NORMAL", color:"淡金色", word:"休む", message:"静かにほどけて落ちる散り菊。\n今日抱えていたものを、今夜だけは床へ置いても構いません。", master:"「抱えたまま寝るとさ、疲れ取れないぜ？ここに置いてけ。」" },
+    { name:"月雫", subtitle:"心をやわらかくする夜", rarity:"RARE", color:"月白色", word:"やさしく", message:"月明かりを含んだような、淡い雫の火花。\n自分へ向ける言葉を、誰かへ向けるときと同じくらい優しくしてください。", master:"「自分にだけ厳しいの、そろそろやめようぜ？甘やかしてやれって」" },
     { name:"星結び", subtitle:"縁が静かにつながる夜", rarity:"RARE", color:"青金色", word:"つながる", message:"離れた火花が一瞬だけ線を結ぶ星結び。\n忘れていた人や言葉が、近いうちに穏やかな形で戻ってきそうです。", master:"「会いたいなら、会いたいって言えばいい。難しく考えんなよ？」" },
     { name:"願い星", subtitle:"願いが夜空へ届く一本", rarity:"SECRET", color:"銀青色", word:"願う", message:"最後の火玉が落ちる直前、空へ一粒だけ昇った願い星。\n願いは叶うかどうかだけじゃない。口にした瞬間から、進む方向を照らします。", master:"「お。今の見えたかぁ？　……願い事しとけよ。」" },
     { name:"帰り灯", subtitle:"帰る場所を思い出す夜", rarity:"NORMAL", color:"橙色", word:"帰る", message:"消える前に、足元を照らすように残った帰り灯。\n遠くへ行き過ぎた心が、自分の居場所へ戻ってくる夜です。", master:"「帰る場所があるなら、迎えてもらえ。夜道、気ぃつけろよ？」" },
@@ -226,6 +226,9 @@
     el.resultMaster.textContent = result.master;
     el.resultColor.textContent = result.color;
     el.resultWord.textContent = result.word;
+
+    /* レアリティに応じて結果台紙を切り替える */
+    el.result.dataset.rarity = String(result.rarity || "NORMAL").toLowerCase();
     el.result.hidden = false;
 
     window.setTimeout(() => {
@@ -274,7 +277,7 @@
     /* 進行中の花火実況を止め、願い事の台詞を優先する */
     window.MidnightDialogue?.stop?.();
     window.MidnightNightSky?.shoot({ x: innerWidth * .78, y: innerHeight * .12 });
-    await speak("お。……今見えたかぁ？　願い事しとけよ。");
+    await speak("お。……今見えたか？　願い事しとけよ。");
 
     wishSpeaking = false;
 
@@ -300,6 +303,7 @@
     particles = [];
 
     el.result.hidden = true;
+    delete el.result.dataset.rarity;
     el.field.classList.remove("is-burning", "is-finished");
     el.field.dataset.stage = "waiting";
     el.light.disabled = false;

@@ -60,9 +60,7 @@ button {
   place-items: center;
   overflow: hidden;
   padding:
-    max(24px, env(safe-area-inset-top))
-    18px
-    max(26px, env(safe-area-inset-bottom));
+    max(24px, env(safe-area-inset-top)) 18px max(26px, env(safe-area-inset-bottom));
 }
 
 /* Moon */
@@ -119,8 +117,7 @@ button {
   width: min(88vw, 500px);
   margin-top: 3vh;
   padding:
-    clamp(24px, 4vw, 38px)
-    clamp(20px, 4vw, 38px);
+    clamp(24px, 4vw, 38px) clamp(20px, 4vw, 38px);
   text-align: center;
   background:
     linear-gradient(180deg, rgba(3, 9, 17, .66), rgba(3, 8, 15, .34));
@@ -183,12 +180,10 @@ button {
   inset: 0;
   transform: translateX(-110%);
   background:
-    linear-gradient(
-      100deg,
+    linear-gradient(100deg,
       transparent 30%,
       rgba(255, 255, 255, .14),
-      transparent 70%
-    );
+      transparent 70%);
   transition: transform .6s ease;
 }
 
@@ -242,11 +237,9 @@ button {
   z-index: 1;
   height: 28%;
   background:
-    radial-gradient(
-      ellipse at 48% 100%,
+    radial-gradient(ellipse at 48% 100%,
       rgba(111, 119, 133, .13),
-      transparent 65%
-    );
+      transparent 65%);
   filter: blur(18px);
 }
 
@@ -283,6 +276,7 @@ button {
 }
 
 @keyframes moonBreath {
+
   0%,
   100% {
     opacity: .62;
@@ -321,6 +315,7 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -348,6 +343,7 @@ button {
   filter: drop-shadow(0 0 7px rgba(216, 190, 93, .18));
   transition: opacity .25s ease, transform .25s ease, filter .25s ease;
 }
+
 .cat-eyes-button:hover,
 .cat-eyes-button:focus-visible {
   opacity: 1;
@@ -355,6 +351,7 @@ button {
   filter: drop-shadow(0 0 10px rgba(225, 199, 102, .42));
   outline: none;
 }
+
 .cat-eye {
   position: absolute;
   top: 14px;
@@ -366,6 +363,7 @@ button {
   animation: catBlink 6.4s infinite;
   transform-origin: center;
 }
+
 .cat-eye::after {
   content: "";
   position: absolute;
@@ -375,12 +373,29 @@ button {
   border-radius: 50%;
   background: rgba(3, 7, 12, .95);
 }
-.cat-eye-left { left: 14px; transform: rotate(4deg); }
-.cat-eye-right { right: 14px; transform: rotate(-4deg); }
+
+.cat-eye-left {
+  left: 14px;
+  transform: rotate(4deg);
+}
+
+.cat-eye-right {
+  right: 14px;
+  transform: rotate(-4deg);
+}
 
 @keyframes catBlink {
-  0%, 43%, 47%, 100% { transform: scaleY(1); }
-  45% { transform: scaleY(.08); }
+
+  0%,
+  43%,
+  47%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  45% {
+    transform: scaleY(.08);
+  }
 }
 
 .cat-takeout-modal {
@@ -394,17 +409,20 @@ button {
   opacity: 0;
   transition: opacity .35s ease, visibility 0s linear .35s;
 }
+
 .cat-takeout-modal.is-open {
   visibility: visible;
   opacity: 1;
   transition: opacity .35s ease;
 }
+
 .cat-takeout-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(1, 5, 10, .82);
   backdrop-filter: blur(5px);
 }
+
 .cat-takeout-dialog {
   position: relative;
   z-index: 1;
@@ -421,6 +439,7 @@ button {
   box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
   text-align: center;
 }
+
 .cat-takeout-close {
   position: absolute;
   top: 10px;
@@ -433,6 +452,7 @@ button {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 .cat-silhouette {
   position: relative;
   width: 88px;
@@ -440,8 +460,9 @@ button {
   margin: 4px auto 15px;
   border-radius: 48% 48% 43% 43%;
   background: #010307;
-  box-shadow: 0 12px 28px rgba(0,0,0,.48);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .48);
 }
+
 .cat-ear {
   position: absolute;
   top: -17px;
@@ -450,8 +471,17 @@ button {
   background: #010307;
   clip-path: polygon(50% 0, 100% 100%, 0 84%);
 }
-.cat-ear-left { left: 4px; transform: rotate(-9deg); }
-.cat-ear-right { right: 4px; transform: scaleX(-1) rotate(-9deg); }
+
+.cat-ear-left {
+  left: 4px;
+  transform: rotate(-9deg);
+}
+
+.cat-ear-right {
+  right: 4px;
+  transform: scaleX(-1) rotate(-9deg);
+}
+
 .cat-face-eye {
   position: absolute;
   top: 26px;
@@ -461,8 +491,14 @@ button {
   background: #d8bd58;
   box-shadow: 0 0 8px rgba(224, 198, 86, .62);
 }
-.cat-face-eye-left { left: 23px; }
-.cat-face-eye-right { right: 23px; }
+
+.cat-face-eye-left {
+  left: 23px;
+}
+
+.cat-face-eye-right {
+  right: 23px;
+}
 
 .cat-takeout-kicker {
   margin: 0 0 8px;
@@ -471,6 +507,7 @@ button {
   font-size: .72rem;
   letter-spacing: .22em;
 }
+
 .cat-takeout-dialog h2 {
   margin: 0;
   color: #f0e5c7;
@@ -478,12 +515,14 @@ button {
   font-weight: 500;
   letter-spacing: .12em;
 }
+
 .cat-takeout-message {
   margin: 17px 0 22px;
   color: rgba(235, 225, 199, .78);
   font-size: .82rem;
   line-height: 2;
 }
+
 .cat-name-label {
   display: block;
   margin-bottom: 8px;
@@ -491,6 +530,7 @@ button {
   font-size: .7rem;
   letter-spacing: .12em;
 }
+
 .cat-name-input {
   width: min(100%, 280px);
   height: 44px;
@@ -503,16 +543,19 @@ button {
   font: inherit;
   text-align: center;
 }
+
 .cat-name-input:focus {
   border-color: rgba(225, 201, 137, .7);
   box-shadow: 0 0 0 2px rgba(225, 201, 137, .08);
 }
+
 .cat-name-error {
   min-height: 1.4em;
   margin: 6px 0 5px;
   color: #d9b7a5;
   font-size: .68rem;
 }
+
 .cat-receive-button,
 .cat-done-button {
   min-width: 190px;
@@ -527,12 +570,16 @@ button {
   letter-spacing: .12em;
   cursor: pointer;
 }
+
 .cat-receive-button:hover,
 .cat-done-button:hover {
   background: rgba(30, 44, 61, .98);
   border-color: rgba(232, 210, 150, .85);
 }
-.cat-cup-step[hidden] { display: none; }
+
+.cat-cup-step[hidden] {
+  display: none;
+}
 
 .takeout-cup-wrap {
   position: relative;
@@ -540,6 +587,7 @@ button {
   height: 225px;
   margin: 22px auto 8px;
 }
+
 .takeout-lid {
   position: absolute;
   z-index: 2;
@@ -549,8 +597,9 @@ button {
   height: 24px;
   border-radius: 50% 50% 28% 28%;
   background: linear-gradient(#211d18, #0d0c0b);
-  box-shadow: 0 5px 8px rgba(0,0,0,.3);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, .3);
 }
+
 .takeout-lid::before {
   content: "";
   position: absolute;
@@ -561,6 +610,7 @@ button {
   border-radius: 50%;
   background: #302a22;
 }
+
 .takeout-cup {
   position: absolute;
   top: 20px;
@@ -569,10 +619,11 @@ button {
   height: 192px;
   clip-path: polygon(4% 0, 96% 0, 83% 100%, 17% 100%);
   background:
-    linear-gradient(90deg, rgba(87,63,36,.16), transparent 18% 82%, rgba(87,63,36,.14)),
+    linear-gradient(90deg, rgba(87, 63, 36, .16), transparent 18% 82%, rgba(87, 63, 36, .14)),
     #dfd0aa;
   box-shadow: inset 0 0 24px rgba(92, 65, 34, .18);
 }
+
 .takeout-sleeve {
   position: absolute;
   top: 71px;
@@ -582,18 +633,20 @@ button {
   padding: 9px 12px;
   color: #d8c696;
   background: #241c16;
-  border-top: 1px solid rgba(214,190,132,.26);
-  border-bottom: 1px solid rgba(214,190,132,.22);
+  border-top: 1px solid rgba(214, 190, 132, .26);
+  border-bottom: 1px solid rgba(214, 190, 132, .22);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .takeout-mark {
   font-family: serif;
   font-size: 1rem;
   line-height: 1;
 }
+
 .takeout-name {
   display: block;
   max-width: 100%;
@@ -605,17 +658,20 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .takeout-paw {
   margin-top: 2px;
   font-size: .62rem;
   filter: grayscale(1) sepia(.5);
 }
+
 .cat-drink-name {
   margin: 8px 0 4px;
   color: #e9d18c;
   font-size: 1rem;
   letter-spacing: .08em;
 }
+
 .cat-drink-note {
   margin: 0 auto;
   max-width: 320px;
@@ -623,6 +679,7 @@ button {
   font-size: .74rem;
   line-height: 1.8;
 }
+
 .cat-master-line {
   margin: 17px 0 19px;
   color: rgba(240, 230, 201, .82);
@@ -636,13 +693,16 @@ button {
     bottom: max(14px, env(safe-area-inset-bottom));
     transform: scale(.88);
   }
+
   .cat-takeout-dialog {
     padding: 27px 20px 24px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cat-eye { animation: none !important; }
+  .cat-eye {
+    animation: none !important;
+  }
 }
 
 
@@ -655,13 +715,15 @@ button {
   aspect-ratio: 3 / 4;
   margin: 14px auto 2px;
 }
+
 .takeout-cup-image {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 16px 22px rgba(0,0,0,.34));
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .34));
 }
+
 .takeout-cup-name {
   position: absolute;
   left: 50%;
@@ -678,23 +740,23 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .cat-cup-message {
   margin-bottom: 5px;
 }
+
 .cat-complete-step {
   padding: 8px 0 3px;
 }
-.cat-complete-visual {
-  position: relative;
-  min-height: 110px;
-  margin: 14px auto 4px;
-  display: grid;
-  place-items: center;
+
+.cat-complete-cat-image {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
 }
-.cat-complete-cat {
-  font-size: 3.1rem;
-  filter: grayscale(1) brightness(.28) sepia(.2);
-}
+
 .cat-complete-tail {
   position: absolute;
   left: 42%;
@@ -704,6 +766,7 @@ button {
   transform: rotate(-15deg);
   opacity: .42;
 }
+
 .cat-complete-paws {
   position: absolute;
   bottom: 0;
@@ -717,6 +780,7 @@ button {
 .cat-card-step {
   width: 100%;
 }
+
 .takeout-card-preview {
   position: relative;
   width: min(100%, 330px);
@@ -724,18 +788,19 @@ button {
   margin: 18px auto 14px;
   overflow: hidden;
   padding: 20px 20px 18px;
-  border: 1px solid rgba(208,182,111,.72);
+  border: 1px solid rgba(208, 182, 111, .72);
   color: #e9dfc4;
   background:
-    radial-gradient(circle at 76% 15%, rgba(220,194,112,.18) 0 8%, transparent 9%),
-    radial-gradient(circle at 20% 26%, rgba(255,255,255,.07) 0 1px, transparent 2px),
-    radial-gradient(circle at 72% 38%, rgba(255,255,255,.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 15%, rgba(220, 194, 112, .18) 0 8%, transparent 9%),
+    radial-gradient(circle at 20% 26%, rgba(255, 255, 255, .07) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 38%, rgba(255, 255, 255, .06) 0 1px, transparent 2px),
     linear-gradient(180deg, #071320 0%, #09131d 48%, #160e0b 100%);
   box-shadow:
-    inset 0 0 0 5px rgba(8,13,19,.55),
-    inset 0 0 0 6px rgba(196,164,94,.22),
-    0 18px 45px rgba(0,0,0,.35);
+    inset 0 0 0 5px rgba(8, 13, 19, .55),
+    inset 0 0 0 6px rgba(196, 164, 94, .22),
+    0 18px 45px rgba(0, 0, 0, .35);
 }
+
 .takeout-card-preview::before,
 .takeout-card-preview::after {
   content: "";
@@ -745,23 +810,27 @@ button {
   opacity: .46;
   pointer-events: none;
 }
+
 .takeout-card-preview::before {
   left: 7px;
   top: 7px;
   border-left: 1px solid #c3a05b;
   border-top: 1px solid #c3a05b;
 }
+
 .takeout-card-preview::after {
   right: 7px;
   bottom: 7px;
   border-right: 1px solid #c3a05b;
   border-bottom: 1px solid #c3a05b;
 }
+
 .takeout-card-stars {
-  color: rgba(226,201,132,.7);
+  color: rgba(226, 201, 132, .7);
   font-size: .7rem;
   letter-spacing: .22em;
 }
+
 .takeout-card-brand {
   margin: 7px 0 0;
   color: #d3b772;
@@ -769,6 +838,7 @@ button {
   font-size: .67rem;
   letter-spacing: .18em;
 }
+
 .takeout-card-title {
   margin: 3px 0 0;
   color: #f0dfaf;
@@ -776,22 +846,26 @@ button {
   font-size: 1.24rem;
   letter-spacing: .12em;
 }
+
 .takeout-card-subtitle {
   margin: 2px 0 5px;
-  color: rgba(234,220,184,.65);
+  color: rgba(234, 220, 184, .65);
   font-size: .58rem;
 }
+
 .takeout-card-cup {
   position: relative;
   width: 45%;
   aspect-ratio: 3/4;
   margin: 3px auto -2px;
 }
+
 .takeout-card-cup img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
 .takeout-card-cup-name {
   position: absolute;
   left: 50%;
@@ -806,13 +880,15 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .takeout-card-info {
   margin: 4px auto 0;
   width: 88%;
-  border-top: 1px solid rgba(207,180,110,.28);
-  border-bottom: 1px solid rgba(207,180,110,.22);
+  border-top: 1px solid rgba(207, 180, 110, .28);
+  border-bottom: 1px solid rgba(207, 180, 110, .22);
   padding: 6px 1px;
 }
+
 .takeout-card-info p {
   display: grid;
   grid-template-columns: 54px 1fr;
@@ -821,12 +897,14 @@ button {
   text-align: left;
   align-items: baseline;
 }
+
 .takeout-card-info span {
   color: #ac9259;
   font-family: "Cormorant Garamond", serif;
   font-size: .58rem;
   letter-spacing: .14em;
 }
+
 .takeout-card-info strong {
   color: #eee2c1;
   font-size: .67rem;
@@ -835,12 +913,14 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .takeout-card-thanks {
   margin: 7px 0 0;
-  color: rgba(232,219,183,.7);
+  color: rgba(232, 219, 183, .7);
   font-size: .55rem;
   line-height: 1.7;
 }
+
 .takeout-card-paw {
   position: absolute;
   right: 22px;
@@ -849,15 +929,19 @@ button {
   font-size: .8rem;
   filter: grayscale(1) sepia(.8);
 }
+
 .takeout-card-preview[data-theme="amber"] {
   background: linear-gradient(180deg, #1c1209 0%, #211307 58%, #0e0a08 100%);
 }
+
 .takeout-card-preview[data-theme="rose"] {
   background: linear-gradient(180deg, #211017 0%, #2a121c 58%, #100a0d 100%);
 }
+
 .takeout-card-preview[data-theme="green"] {
   background: linear-gradient(180deg, #0c1916 0%, #10221c 58%, #090e0d 100%);
 }
+
 .takeout-card-preview[data-theme="purple"] {
   background: linear-gradient(180deg, #150e22 0%, #241536 58%, #0b0810 100%);
 }
@@ -865,41 +949,46 @@ button {
 .cat-card-status {
   min-height: 1.5em;
   margin: 3px 0 8px;
-  color: rgba(234,221,184,.75);
+  color: rgba(234, 221, 184, .75);
   font-size: .68rem;
 }
+
 .cat-card-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
 }
+
 .cat-card-button,
 .cat-card-close-button {
   min-height: 42px;
   padding: 9px 15px;
-  border: 1px solid rgba(218,198,143,.52);
+  border: 1px solid rgba(218, 198, 143, .52);
   border-radius: 999px;
   color: #f4ead0;
-  background: rgba(20,31,45,.88);
+  background: rgba(20, 31, 45, .88);
   font: inherit;
   font-size: .7rem;
   letter-spacing: .08em;
   cursor: pointer;
 }
+
 .cat-card-button:hover,
 .cat-card-close-button:hover {
-  background: rgba(31,45,62,.98);
-  border-color: rgba(232,210,150,.84);
+  background: rgba(31, 45, 62, .98);
+  border-color: rgba(232, 210, 150, .84);
 }
+
 .cat-card-button-secondary {
-  background: rgba(12,20,30,.72);
+  background: rgba(12, 20, 30, .72);
 }
+
 .cat-card-close-button {
   margin-top: 10px;
   min-width: 120px;
   background: transparent;
-  color: rgba(235,224,197,.72);
+  color: rgba(235, 224, 197, .72);
 }
 
 @media (max-width: 560px) {
@@ -907,6 +996,7 @@ button {
     width: min(100%, 300px);
     padding: 16px 16px 14px;
   }
+
   .cat-card-button {
     flex: 1 1 30%;
     min-width: 88px;
@@ -920,12 +1010,12 @@ button {
    FINAL TAKE OUT — supplied cup/card artwork + dynamic text
 ========================================================= */
 
-/* 鵜沢さんが油性ペンで書いたような名前 */
+/* 鵜沢さんが油性ペンでサッと書いたような名前 */
 .takeout-cup-name,
 .takeout-card-cup-name,
 .takeout-card-for {
-  font-family: "Klee One", "Noto Serif JP", cursive !important;
-  font-weight: 600 !important;
+  font-family: "Yuji Syuku", "Klee One", "Noto Serif JP", cursive !important;
+  font-weight: 400 !important;
 }
 
 /* 受取画面のカップ */
@@ -935,6 +1025,7 @@ button {
   aspect-ratio: 3 / 4;
   margin: 12px auto 4px;
 }
+
 .takeout-cup-image {
   position: absolute;
   inset: 0;
@@ -942,10 +1033,11 @@ button {
   height: 100%;
   object-fit: contain;
 }
+
 .takeout-cup-name {
   position: absolute;
   left: 50%;
-  top: 51.8%;
+  top: 54%;
   width: 42%;
   transform: translate(-50%, -50%) rotate(-1.4deg);
   z-index: 2;
@@ -958,10 +1050,11 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .takeout-cup-drink {
   position: absolute;
   left: 50%;
-  top: 61.4%;
+  top: 63%;
   width: 47%;
   transform: translateX(-50%);
   z-index: 2;
@@ -984,12 +1077,14 @@ button {
   border: 0 !important;
   overflow: hidden !important;
   background: transparent !important;
-  box-shadow: 0 18px 45px rgba(0,0,0,.38) !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .38) !important;
 }
+
 .takeout-card-preview::before,
 .takeout-card-preview::after {
   display: none !important;
 }
+
 .takeout-card-base-image {
   position: absolute;
   inset: 0;
@@ -998,6 +1093,7 @@ button {
   height: 100%;
   object-fit: contain;
 }
+
 .takeout-card-overlay {
   position: absolute;
   z-index: 2;
@@ -1056,6 +1152,7 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .takeout-card-date {
   left: 31.5%;
   top: 86.2%;
@@ -1071,10 +1168,12 @@ button {
     width: min(100%, 320px) !important;
   }
 }
+
 /* ドリンク説明文と「持って帰る」ボタンの間隔 */
 .cat-drink-note {
   margin-bottom: 11px;
 }
+
 /* =========================================================
    TAKE OUT CARD 記入位置 最終調整
    ========================================================= */
@@ -1088,9 +1187,9 @@ button {
 
   transform: translateY(-50%) rotate(-1deg) !important;
 
-  font-family: "Klee One", "Noto Serif JP", cursive !important;
+  font-family: "Yomogi", "Klee One", "Noto Serif JP", cursive !important;
   font-size: clamp(.82rem, 3.2vw, 1.18rem) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 
   line-height: 1 !important;
   text-align: left !important;
@@ -1131,6 +1230,7 @@ button {
   line-height: 1 !important;
   text-align: left !important;
 }
+
 /* =========================================================
    TAKE OUT CARD 下部記入欄・位置確定版
    ========================================================= */
@@ -1146,9 +1246,9 @@ button {
 
   transform: translateY(-50%) rotate(-1deg) !important;
 
-  font-family: "Klee One", "Noto Serif JP", cursive !important;
+  font-family: "Yomogi", "Klee One", "Noto Serif JP", cursive !important;
   font-size: clamp(.82rem, 3.2vw, 1.18rem) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 
   line-height: 1 !important;
   text-align: left !important;
@@ -1211,6 +1311,7 @@ button {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+
 /* =========================================================
    TAKE OUT カップ画像サイズ強制補正
 ========================================================= */
@@ -1249,10 +1350,173 @@ button {
 
   display: block !important;
 }
+
 @media (max-width: 560px) {
   .takeout-cup-art {
     width: 220px !important;
     height: 293px !important;
     max-width: 65vw !important;
+  }
+}
+
+/* =========================================================
+   TAKE OUT CARD UI FINAL TUNING 2026-08-25
+   - スクロールバーを非表示（スクロール機能は維持）
+   - 上部スポットライト追加
+   - 上部の猫顔／見出しを小さく
+   - カード下の鵜沢台詞を大きく
+   - FOR / DRINK / DATE の入力値を大きく
+========================================================= */
+
+/* 右側のスクロールバーだけ隠す。内容が長い場合のホイール/タッチスクロールは維持 */
+.cat-takeout-dialog {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  background:
+    radial-gradient(ellipse 110px 150px at 50% -22px,
+      rgba(225, 195, 112, .20) 0%,
+      rgba(184, 151, 79, .10) 34%,
+      rgba(7, 13, 21, 0) 72%),
+    linear-gradient(rgba(7, 13, 21, .96), rgba(5, 10, 17, .98)) !important;
+}
+
+.cat-takeout-dialog::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+/* TAKE OUT CARD画面では上部を少しコンパクトに */
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-silhouette {
+  width: 68px !important;
+  height: 48px !important;
+  margin: 0 auto 10px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-ear {
+  top: -13px !important;
+  width: 27px !important;
+  height: 29px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye {
+  top: 20px !important;
+  width: 12px !important;
+  height: 5px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye-left {
+  left: 18px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye-right {
+  right: 18px !important;
+}
+
+.cat-card-step .cat-takeout-kicker {
+  margin-bottom: 5px !important;
+  font-size: .64rem !important;
+}
+
+.cat-card-step>h2 {
+  font-size: clamp(.92rem, 3.5vw, 1.08rem) !important;
+  letter-spacing: .09em !important;
+  line-height: 1.45 !important;
+}
+
+/* カード下の鵜沢さんのレア台詞 */
+.cat-card-status {
+  min-height: 1.7em !important;
+  margin: 7px 0 12px !important;
+  color: rgba(240, 225, 187, .88) !important;
+  font-size: clamp(.82rem, 3vw, .98rem) !important;
+  line-height: 1.7 !important;
+  letter-spacing: .035em !important;
+}
+
+/* FOR / DRINK / DATE の「記入される内容」を読みやすく拡大 */
+.takeout-card-for {
+  font-size: clamp(.98rem, 3.7vw, 1.34rem) !important;
+}
+
+.takeout-card-drink {
+  font-size: clamp(.58rem, 2.2vw, .80rem) !important;
+}
+
+.takeout-card-date {
+  font-size: clamp(.64rem, 2.35vw, .86rem) !important;
+}
+
+@media (max-width: 560px) {
+  .cat-takeout-dialog {
+    padding-top: 24px !important;
+  }
+
+  .cat-card-step .takeout-card-preview {
+    margin-top: 14px !important;
+  }
+}
+
+/* =========================================================
+   SECRET CAT SPEECH BUBBLE
+   最初の「にゃ…！」だけ猫の吹き出しにする
+========================================================= */
+
+#catNameStep .cat-speech-bubble {
+  position: relative;
+  display: table;
+  width: auto;
+  max-width: 92%;
+  margin: 2px auto 17px;
+  padding: 10px 20px 11px;
+  border: 1px solid rgba(218, 198, 143, .48);
+  border-radius: 15px;
+  color: #f0e5c7;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17, 27, 39, .96),
+      rgba(8, 15, 24, .97)
+    );
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, .30),
+    inset 0 0 18px rgba(225, 195, 112, .025);
+  font-size: clamp(.98rem, 3.5vw, 1.16rem);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .08em;
+}
+
+/* 猫へ向かう吹き出しのしっぽ */
+#catNameStep .cat-speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgb(15, 24, 35);
+  border-left: 1px solid rgba(218, 198, 143, .48);
+  border-top: 1px solid rgba(218, 198, 143, .48);
+}
+
+/* 猫と吹き出しを近づける */
+.cat-takeout-dialog:has(#catNameStep:not([hidden])) .cat-silhouette {
+  margin-bottom: 5px;
+}
+
+/* SECRET TAKE OUT は吹き出しの下へ */
+#catNameStep .cat-takeout-kicker {
+  margin: 0 0 12px;
+}
+
+/* スマホ調整 */
+@media (max-width: 560px) {
+  #catNameStep .cat-speech-bubble {
+    max-width: 96%;
+    padding: 9px 14px 10px;
+    font-size: .96rem;
+    letter-spacing: .055em;
   }
 }

@@ -38,7 +38,7 @@
   const catXShareButton = document.getElementById("catXShareButton");
 
   const CUP_IMAGE_PATH = "./assets/images/takeout-cup.png";
-  const SHARE_URL = "https://uzw-sudo.github.io/midnightcoffee-oideyasu/midnight_coffee_v9/";
+  const SHARE_URL = "https://uzw-sudo.github.io/pbc_summer2026-mc/";
 
   const TAKEOUTS = [
     { name: "月夜のカフェオレ", note: "やわらかなミルクと、夜更けのための深煎り。", theme: "navy" },

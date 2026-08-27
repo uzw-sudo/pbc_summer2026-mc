@@ -327,7 +327,7 @@ button {
 
 .question-block h2 {
   margin: 0;
-  font-size: clamp(1.05rem, 2.25vw, 1.55rem);
+  font-size: clamp(.92rem, 1.75vw, 1.18rem);
   font-weight: 500;
   line-height: 1.55;
   letter-spacing: .07em;

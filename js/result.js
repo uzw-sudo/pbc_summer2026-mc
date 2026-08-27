@@ -2,7 +2,7 @@
 (() => {
   const DATA_PATH="../data/coffee.json";
   const $=id=>document.getElementById(id);
-  const el={card:$("resultCard"),paper:document.querySelector(".card-paper"),stain:document.querySelector(".coffee-stain"),frame:document.querySelector(".card-frame"),coffeeName:$("coffeeName"),coffeeSubtitle:$("coffeeSubtitle"),constellationName:$("constellationName"),constellationText:$("constellationText"),diagnosis:$("diagnosis"),masterComment:$("masterComment"),dessert:$("dessert"),luckyItem:$("luckyItem"),orderNumber:$("orderNumber"),moonNumber:$("moonNumber"),xShareButton:$("xShareButton"),copyResultButton:$("copyResultButton"),shareStatus:$("shareStatus")};
+  const el={card:$("resultCard"),paper:document.querySelector(".card-paper"),stain:document.querySelector(".coffee-stain"),frame:document.querySelector(".card-frame"),coffeeName:$("coffeeName"),coffeeSubtitle:$("coffeeSubtitle"),constellationName:$("constellationName"),constellationText:$("constellationText"),diagnosis:$("diagnosis"),masterComment:$("masterComment"),dessert:$("dessert"),luckyItem:$("luckyItem"),orderNumber:$("orderNumber"),moonNumber:$("moonNumber"),xShareButton:$("xShareButton"),shareStatus:$("shareStatus")};
   let current=null,resizeTimer=0;
   function text(node,value,fallback="―"){if(node)node.textContent=String(value??"").trim()||fallback;}
   function image(node,path,fallback){if(!node)return;node.onerror=()=>{node.onerror=null;if(fallback)node.src=fallback;};node.src=path||fallback;}
@@ -109,24 +109,6 @@
     text(el.shareStatus,"Xの投稿画面を開きました。","");
   }
 
-  async function copyResult(){
-    const value=`${shareText()}\n${SHARE_ENTRY_URL}`;
-    try{
-      await navigator.clipboard.writeText(value);
-      text(el.shareStatus,"結果をコピーしました ☕","");
-    }catch(e){
-      const area=document.createElement("textarea");
-      area.value=value;
-      area.setAttribute("readonly","");
-      area.style.position="fixed";
-      area.style.opacity="0";
-      document.body.appendChild(area);
-      area.select();
-      const ok=document.execCommand("copy");
-      area.remove();
-      text(el.shareStatus,ok?"結果をコピーしました ☕":"コピーできませんでした。","");
-    }
-  }
 
   async function init(){
   try{
@@ -207,7 +189,7 @@
     );
   }
 }
-  el.xShareButton?.addEventListener("click",shareOnX);el.copyResultButton?.addEventListener("click",copyResult);window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(canvases,120)},{passive:true});document.addEventListener("DOMContentLoaded",init);
+  el.xShareButton?.addEventListener("click",shareOnX);window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(canvases,120)},{passive:true});document.addEventListener("DOMContentLoaded",init);
 })();
 /* ========================================
    もう一杯注文する

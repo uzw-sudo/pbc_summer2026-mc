@@ -447,8 +447,13 @@ button {
 
 /* 共有・もう一杯 共通 */
 .share-button,
-.copy-button,
+.return-stall-button,
 .order-again-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
   min-width: 220px;
   min-height: 48px;
 
@@ -473,7 +478,7 @@ button {
 
 
 .share-button:hover,
-.copy-button:hover,
+.return-stall-button:hover,
 .order-again-button:hover {
   transform: translateY(-1px);
 
@@ -486,7 +491,7 @@ button {
 
 
 .share-button:active,
-.copy-button:active,
+.return-stall-button:active,
 .order-again-button:active {
   transform: translateY(1px);
 }
@@ -504,7 +509,7 @@ button {
   }
 
   .share-button,
-  .copy-button,
+  .return-stall-button,
   .order-again-button {
     min-width: 0;
     flex: 1;

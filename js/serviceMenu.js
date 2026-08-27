@@ -17,7 +17,7 @@
   }
 
   async function intro() {
-    await speak("いらっしゃい……今日は、どうする？");
+    await speak("いらっしゃい。……今日は、どうする？");
     await wait(450);
     await speak("珈琲でも淹れるか？　それとも、線香花火を一本持ってくか？");
     menu.hidden = false;
@@ -39,7 +39,7 @@
     moving = true;
     sparkler.classList.add("is-selected");
     await speak("線香花火な。……一本だけだぜ？火ぃ、気ぃつけろよ？");
-    transitionText.textContent = "店主から、細い花火を一本受け取った";
+    transitionText.textContent = "店主から、細い花火を一本受け取った。";
     transition.classList.add("is-active");
     await wait(950);
     location.href = "../sparkler/index.html";
@@ -51,7 +51,7 @@
     await wait(300);
     await speak("お。");
     await wait(470);
-    await speak("今見えたか？　……願い事しとけよ");
+    await speak("今見えたか？　……願い事しとけよ。");
   }
 
   coffee?.addEventListener("click", chooseCoffee);

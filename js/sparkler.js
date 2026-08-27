@@ -30,6 +30,7 @@
     status: document.getElementById("sparklerStatus"),
     result: document.getElementById("sparklerResult"),
     again: document.getElementById("againButton"),
+    xShare: document.getElementById("sparklerXShareButton"),
     resultName: document.getElementById("resultName"),
     resultRarity: document.getElementById("resultRarity"),
     resultSubtitle: document.getElementById("resultSubtitle"),
@@ -48,6 +49,9 @@
   let stageTimer = 0;
   let wishSpeaking = false;
   let pendingStageDialogue = "";
+  let currentResult = null;
+
+  const SHARE_URL = "https://uzw-sudo.github.io/pbc_summer2026-mc/";
 
   function resizeCanvas() {
     if (!el.canvas || !ctx) return;
@@ -219,6 +223,7 @@
     await speak("火ぃ、消えたな。……最後まで見てたなら、結果も持って帰れ。");
 
     const result = chooseResult();
+    currentResult = result;
     el.resultName.textContent = result.name;
     el.resultRarity.textContent = result.rarity;
     el.resultSubtitle.textContent = result.subtitle;
@@ -292,6 +297,25 @@
     }
   }
 
+
+  function sparklerShareText() {
+    const result = currentResult;
+    if (!result) return "真夜中珈琲屋台で、線香花火を一本。\n\n#真夜中珈琲屋台 #線香花火 #PBT夏祭り2026";
+
+    const rarity = String(result.rarity || "NORMAL").toUpperCase();
+    let lead = "真夜中珈琲屋台で、\n今夜の線香花火が残したものは──";
+    if (rarity === "RARE") lead = "真夜中珈琲屋台で、\n少し特別な線香花火が残したものは──";
+    if (rarity === "SECRET") lead = "真夜中珈琲屋台で、\n秘密の線香花火が残したものは──";
+
+    return `${lead}\n\n🎇「${result.name}」\n${result.subtitle}\n\n持ち帰る言葉：${result.word}\n\n今夜、あなたの花火は何を残す？\n\n#真夜中珈琲屋台 #線香花火 #PBT夏祭り2026`;
+  }
+
+  function shareSparklerOnX() {
+    if (!currentResult) return;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(sparklerShareText())}&url=${encodeURIComponent(SHARE_URL)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   function reset() {
     window.clearTimeout(stageTimer);
 
@@ -303,6 +327,7 @@
     particles = [];
 
     el.result.hidden = true;
+    currentResult = null;
     delete el.result.dataset.rarity;
     el.field.classList.remove("is-burning", "is-finished");
     el.field.dataset.stage = "waiting";
@@ -328,4 +353,5 @@
   el.light?.addEventListener("click", light);
   el.wish?.addEventListener("click", wish);
   el.again?.addEventListener("click", reset);
+  el.xShare?.addEventListener("click", shareSparklerOnX);
 })();

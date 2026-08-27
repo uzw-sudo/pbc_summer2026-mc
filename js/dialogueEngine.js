@@ -12,6 +12,8 @@
   }
 
   async function type(element, message, speed = 60) {
+    /* 鵜沢さんの台詞を少しゆっくり表示する（全画面共通） */
+    speed = Math.round(speed * 1.30);
     if (!element) return;
 
     const currentToken = ++token;

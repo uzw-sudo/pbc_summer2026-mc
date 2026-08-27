@@ -1137,3 +1137,29 @@ button {
   }
 
 }
+
+/* =========================================================
+   QUESTION ADVANCE ON TAP 2026-08-27
+   鵜沢さんの返事が終わった後だけ、画面タップで次の質問へ
+========================================================= */
+body.is-awaiting-advance {
+  cursor: pointer;
+}
+
+body.is-awaiting-advance .question-status {
+  color: rgba(239, 221, 174, .82);
+  letter-spacing: .08em;
+  animation: questionAdvanceHint 1.8s ease-in-out infinite;
+}
+
+@keyframes questionAdvanceHint {
+  0%, 100% { opacity: .58; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.is-awaiting-advance .question-status {
+    animation: none;
+    opacity: .9;
+  }
+}

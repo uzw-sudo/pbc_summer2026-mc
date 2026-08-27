@@ -1521,3 +1521,99 @@ button {
     letter-spacing: .055em;
   }
 }
+
+
+/* =========================================================
+   TAKE OUT CARD COMPACT FINAL 2026-08-27
+   - カード上部の重複見出しを削除した前提で余白を圧縮
+   - 画像を保存 / Xでシェア / 閉じる を1列に並べる
+   - できるだけ1画面内に収める
+========================================================= */
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) {
+  padding: 16px 18px 14px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-silhouette {
+  width: 54px !important;
+  height: 38px !important;
+  margin: 0 auto 5px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-ear {
+  top: -10px !important;
+  width: 22px !important;
+  height: 24px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye {
+  top: 16px !important;
+  width: 10px !important;
+  height: 4px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye-left {
+  left: 14px !important;
+}
+
+.cat-takeout-dialog:has(.cat-card-step:not([hidden])) .cat-face-eye-right {
+  right: 14px !important;
+}
+
+.cat-card-step .takeout-card-preview {
+  width: min(100%, 330px, calc((100svh - 190px) * 2 / 3)) !important;
+  margin: 4px auto 6px !important;
+}
+
+.cat-card-step .cat-card-status {
+  min-height: 1.2em !important;
+  margin: 3px 0 6px !important;
+  font-size: clamp(.56rem, 1.8vw, .68rem) !important;
+  line-height: 1.35 !important;
+  letter-spacing: .02em !important;
+}
+
+.cat-card-step .cat-card-actions {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 7px !important;
+  width: 100%;
+  margin: 0 auto !important;
+}
+
+.cat-card-step .cat-card-button,
+.cat-card-step .cat-card-close-button {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 7px 8px !important;
+  font-size: clamp(.60rem, 1.9vw, .70rem) !important;
+  white-space: nowrap;
+}
+
+.cat-card-step .cat-card-close-button {
+  background: transparent !important;
+  color: rgba(235, 224, 197, .78) !important;
+}
+
+@media (max-width: 560px) {
+  .cat-takeout-dialog:has(.cat-card-step:not([hidden])) {
+    padding: 13px 12px 12px !important;
+  }
+
+  .cat-card-step .takeout-card-preview {
+    width: min(100%, 305px, calc((100svh - 175px) * 2 / 3)) !important;
+    margin-top: 2px !important;
+  }
+
+  .cat-card-step .cat-card-actions {
+    gap: 5px !important;
+  }
+
+  .cat-card-step .cat-card-button,
+  .cat-card-step .cat-card-close-button {
+    min-height: 36px !important;
+    padding-inline: 5px !important;
+    font-size: .58rem !important;
+  }
+}

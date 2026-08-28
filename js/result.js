@@ -105,6 +105,11 @@
 
   function shareOnX(){
     const url=`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText())}&url=${encodeURIComponent(SHARE_ENTRY_URL)}`;
+    window.MidnightAnalytics?.track("coffee_x_share", {
+      coffee_id: current?.id || "",
+      coffee_name: current?.coffee?.name || "",
+      rarity: String(current?.rarity || "normal").toLowerCase()
+    });
     window.open(url,"_blank","noopener,noreferrer");
     text(el.shareStatus,"Xの投稿画面を開きました。","");
   }
@@ -175,6 +180,17 @@
 
     render(resolved.card);
 
+    // 同じ結果ページの再読み込みでは「もう1杯」と数えない。
+    window.MidnightAnalytics?.trackOnce(
+      `coffee_result:${MidnightStorage.orderNumber()}:${resolved.card.id}`,
+      "coffee_result",
+      {
+        coffee_id: resolved.card.id,
+        coffee_name: resolved.card.coffee?.name || "",
+        rarity: String(resolved.card.rarity || "normal").toLowerCase()
+      }
+    );
+
   }catch(e){
     console.error(e);
 
@@ -202,6 +218,7 @@ if (orderAgainButton) {
   orderAgainButton.addEventListener(
     "click",
     () => {
+      window.MidnightAnalytics?.track("coffee_order_again", { source: "result" });
       // 「もう一杯」は新しい注文として扱い、抽選用の注文番号も更新する。
       MidnightStorage.resetOrderNumber?.();
       MidnightStorage.resetDiagnosis?.();

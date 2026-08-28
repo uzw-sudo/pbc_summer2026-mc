@@ -26,6 +26,7 @@
   async function chooseCoffee() {
     if (moving) return;
     moving = true;
+    window.MidnightAnalytics?.track("coffee_order_started", { source: "service_menu" });
     coffee.classList.add("is-selected");
     await speak("珈琲だな？……なら、少し話を聞かせてくれるか？");
     transitionText.textContent = "店主が注文票を差し出した。";
@@ -37,6 +38,7 @@
   async function chooseSparkler() {
     if (moving) return;
     moving = true;
+    window.MidnightAnalytics?.track("sparkler_selected", { source: "service_menu" });
     sparkler.classList.add("is-selected");
     await speak("線香花火な。……一本だけだぜ？火ぃ、気ぃつけろよ？");
     transitionText.textContent = "店主から、細い花火を一本受け取った。";

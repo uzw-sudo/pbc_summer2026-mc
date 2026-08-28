@@ -224,6 +224,11 @@
 
     const result = chooseResult();
     currentResult = result;
+    window.MidnightAnalytics?.track("sparkler_result", {
+      sparkler_name: result.name,
+      rarity: String(result.rarity || "NORMAL").toLowerCase(),
+      wished: wished
+    });
     el.resultName.textContent = result.name;
     el.resultRarity.textContent = result.rarity;
     el.resultSubtitle.textContent = result.subtitle;
@@ -253,6 +258,7 @@
     if (running) return;
 
     running = true;
+    window.MidnightAnalytics?.track("sparkler_started");
     wished = false;
     wishSpeaking = false;
     pendingStageDialogue = "";
@@ -274,6 +280,7 @@
     if (!running || wished) return;
 
     wished = true;
+    window.MidnightAnalytics?.track("sparkler_wish_made");
     wishSpeaking = true;
     pendingStageDialogue = "";
     el.wish.disabled = true;
@@ -313,10 +320,12 @@
   function shareSparklerOnX() {
     if (!currentResult) return;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(sparklerShareText())}&url=${encodeURIComponent(SHARE_URL)}`;
+    window.MidnightAnalytics?.track("sparkler_x_share", { sparkler_name: currentResult.name, rarity: String(currentResult.rarity || "NORMAL").toLowerCase() });
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function reset() {
+    window.MidnightAnalytics?.track("sparkler_again", { source: "result" });
     window.clearTimeout(stageTimer);
 
     running = false;

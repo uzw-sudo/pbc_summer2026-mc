@@ -75,6 +75,7 @@
 
   function openCatTakeout() {
     if (!catModal) return;
+    window.MidnightAnalytics?.track("cat_found");
     reward = null;
     catNameError.textContent = "";
     catCardStatus.textContent = "";
@@ -127,6 +128,11 @@
     catDrinkName.textContent = drink.name;
     catDrinkNote.textContent = drink.note;
     showStep(catCupStep);
+
+    window.MidnightAnalytics?.track("takeout_received", {
+      drink_name: drink.name,
+      rarity: drink.rare ? "rare" : "normal"
+    });
 
     try {
       localStorage.setItem("midnightCoffee.catTakeoutReward", JSON.stringify(reward));
@@ -358,6 +364,7 @@ drawFittedText({
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1500);
+      window.MidnightAnalytics?.track("takeout_card_saved", { drink_name: reward?.name || "", rarity: reward?.rare ? "rare" : "normal" });
       catCardStatus.textContent = "テイクアウトカードを保存しました。";
     } catch (error) {
       console.error(error);
@@ -374,6 +381,7 @@ drawFittedText({
   function shareOnX() {
     const text = shareText();
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(SHARE_URL)}`;
+    window.MidnightAnalytics?.track("takeout_x_share", { drink_name: reward?.name || "", rarity: reward?.rare ? "rare" : "normal" });
     window.open(url, "_blank", "noopener,noreferrer");
     catCardStatus.textContent = "Xを開きました。画像を付ける場合は先に保存してください。";
   }

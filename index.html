@@ -16,6 +16,232 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="./css/opening.css">
+
+  <!-- CLOSED PAGE 2026-09-04 -->
+  <style>
+    .opening-copy-closed {
+      z-index: 8;
+      width: min(92vw, 620px);
+    }
+
+    /* 閉店看板 */
+    .closed-sign {
+      position: relative;
+      width: min(78vw, 430px);
+      margin: 0 auto clamp(18px, 2.8vh, 28px);
+      padding: clamp(26px, 4vh, 38px) clamp(24px, 4vw, 42px) clamp(24px, 3.6vh, 34px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #e6d2a0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(184, 147, 74, .08), transparent 42%),
+        linear-gradient(180deg, rgba(15, 20, 26, .985), rgba(6, 12, 18, .99));
+      border: 1px solid rgba(193, 155, 78, .72);
+      border-radius: 4px;
+      box-shadow:
+        0 22px 55px rgba(0, 0, 0, .50),
+        inset 0 0 0 3px rgba(197, 158, 78, .045),
+        inset 0 0 30px rgba(207, 170, 91, .045);
+      transform: rotate(-.35deg);
+    }
+
+    /* 吊り紐 */
+    .closed-sign::before,
+    .closed-sign::after {
+      content: "";
+      position: absolute;
+      top: -42px;
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(
+        to bottom,
+        rgba(224, 199, 139, .08),
+        rgba(224, 199, 139, .74)
+      );
+      transform-origin: bottom;
+    }
+
+    .closed-sign::before {
+      left: 25%;
+      transform: rotate(21deg);
+    }
+
+    .closed-sign::after {
+      right: 25%;
+      transform: rotate(-21deg);
+    }
+
+    .closed-sign-symbol {
+      position: relative;
+      width: 54px;
+      height: 32px;
+      margin-bottom: 9px;
+      color: rgba(219, 187, 112, .78);
+    }
+
+    .closed-crescent {
+      position: absolute;
+      left: 13px;
+      top: -7px;
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .closed-star {
+      position: absolute;
+      right: 5px;
+      top: 3px;
+      font-size: .72rem;
+      opacity: .9;
+    }
+
+    /* 「真夜中珈琲屋台」は従来より小さく、静かな見え方に */
+    .opening-copy-closed .closed-shop-title {
+      margin: 0;
+      font-family: "Noto Serif JP", serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.48rem);
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: .22em;
+      color: rgba(231, 210, 157, .88);
+      white-space: nowrap;
+      text-shadow: 0 0 14px rgba(205, 169, 85, .10);
+    }
+
+    .closed-sign-divider {
+      width: min(92%, 310px);
+      margin: 16px 0 12px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 9px;
+      color: rgba(211, 177, 99, .72);
+    }
+
+    .closed-sign-divider span {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(205, 166, 77, .62)
+      );
+    }
+
+    .closed-sign-divider span:last-child {
+      transform: scaleX(-1);
+    }
+
+    .closed-sign-divider i {
+      font-style: normal;
+      font-size: .55rem;
+    }
+
+    .closed-sign-divider-small {
+      width: min(48%, 150px);
+      margin: 15px 0 11px;
+      opacity: .72;
+    }
+
+    .closed-sign-en {
+      margin: 2px 0 5px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.15rem, 6vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: .16em;
+      color: rgba(224, 200, 144, .90);
+      text-shadow: 0 0 22px rgba(210, 172, 85, .08);
+    }
+
+    /* 「またいつかの夜に」は細め・余白多め */
+    .closed-sign-ja {
+      margin: 14px 0 0;
+      font-family: "Noto Serif JP", serif;
+      font-size: clamp(.92rem, 2.5vw, 1.18rem);
+      font-weight: 400;
+      line-height: 1.8;
+      letter-spacing: .30em;
+      color: rgba(231, 214, 174, .82);
+      text-shadow: none;
+    }
+
+    .closed-sign-date {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(.72rem, 1.5vw, .92rem);
+      font-weight: 400;
+      letter-spacing: .22em;
+      color: rgba(231, 214, 174, .60);
+    }
+
+    .closed-note {
+      margin: 0;
+      font-family: "Noto Serif JP", serif;
+      font-size: clamp(.70rem, 1.4vw, .86rem);
+      font-weight: 400;
+      letter-spacing: .14em;
+      color: rgba(240, 231, 205, .62);
+    }
+
+    /* 旧猫要素がCSS/JS側に残っていても表示させない */
+    .cat-eyes-button,
+    .cat-takeout-modal {
+      display: none !important;
+    }
+
+    @media (max-width: 640px) {
+      .opening-copy-closed {
+        width: 94vw;
+      }
+
+      .closed-sign {
+        width: min(82vw, 350px);
+        padding: 25px 20px 23px;
+        margin-top: 10px;
+      }
+
+      .opening-copy-closed .closed-shop-title {
+        font-size: clamp(.96rem, 4.5vw, 1.22rem);
+        letter-spacing: .18em;
+      }
+
+      .closed-sign-en {
+        font-size: clamp(2rem, 10vw, 2.75rem);
+      }
+
+      .closed-sign-ja {
+        font-size: clamp(.84rem, 4.1vw, 1rem);
+        letter-spacing: .23em;
+      }
+
+      .closed-note {
+        font-size: .70rem;
+      }
+    }
+
+    @media (max-height: 760px) and (min-width: 641px) {
+      .closed-sign {
+        padding-top: 24px;
+        padding-bottom: 22px;
+      }
+
+      .closed-sign-symbol {
+        margin-bottom: 5px;
+      }
+
+      .closed-sign-divider {
+        margin-top: 12px;
+        margin-bottom: 9px;
+      }
+
+      .closed-sign-ja {
+        margin-top: 9px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -31,150 +257,38 @@
         </button>
       </div>
 
-      <div class="opening-copy">
-        <p class="opening-kicker">OPEN ONLY AFTER MIDNIGHT</p>
+      <div class="opening-copy opening-copy-closed">
+        <div class="closed-sign" role="status" aria-label="真夜中珈琲屋台は閉店しました">
+          <div class="closed-sign-symbol" aria-hidden="true">
+            <span class="closed-crescent">☾</span>
+            <span class="closed-star">✦</span>
+          </div>
 
-        <h1 id="openingTitle">真夜中珈琲屋台</h1>
+          <h1 id="openingTitle" class="closed-shop-title">真夜中珈琲屋台</h1>
 
-        <p class="opening-lead">
-          眠れない夜にだけ、<br>
-          ひっそり灯る珈琲屋台。
-        </p>
+          <div class="closed-sign-divider" aria-hidden="true">
+            <span></span><i>✦</i><span></span>
+          </div>
 
-        <button id="enterButton" class="enter-button" type="button">
-          <span class="button-en">FOLLOW THE LIGHT</span>
-          <span class="button-ja">灯りをたどる</span>
-        </button>
+          <p class="closed-sign-en">CLOSED</p>
+          <p class="closed-sign-ja">またいつかの夜に</p>
 
-        <p class="opening-note">
-          音を立てずに、そっとお入りください。
-        </p>
+          <div class="closed-sign-divider closed-sign-divider-small" aria-hidden="true">
+            <span></span><i>✦</i><span></span>
+          </div>
+
+          <p class="closed-sign-date">2026.8.29 — 9.1</p>
+        </div>
+
+        <p class="opening-note closed-note">四日間、ありがとうございました。</p>
       </div>
 
       <div class="ground-haze" aria-hidden="true"></div>
 
-      <!-- SECRET: 暗がりの猫 -->
-      <button id="catEyesButton" class="cat-eyes-button" type="button" aria-label="暗がりで光る二つの目">
-        <span class="cat-eye cat-eye-left" aria-hidden="true"></span>
-        <span class="cat-eye cat-eye-right" aria-hidden="true"></span>
-      </button>
-    </section>
-
-    <!-- SECRET TAKE OUT -->
-    <div id="catTakeoutModal" class="cat-takeout-modal" aria-hidden="true">
-      <div class="cat-takeout-backdrop" data-cat-close></div>
-
-      <section class="cat-takeout-dialog" role="dialog" aria-modal="true" aria-labelledby="catTakeoutTitle">
-        <button id="catTakeoutClose" class="cat-takeout-close" type="button" aria-label="閉じる">×</button>
-
-        <div class="cat-silhouette" aria-hidden="true">
-          <span class="cat-ear cat-ear-left"></span>
-          <span class="cat-ear cat-ear-right"></span>
-          <span class="cat-face-eye cat-face-eye-left"></span>
-          <span class="cat-face-eye cat-face-eye-right"></span>
-        </div>
-
-        <!-- STEP 1 : 名前 -->
-        <div id="catNameStep" class="cat-takeout-step">
-          <h2 id="catTakeoutTitle" class="cat-speech-bubble">にゃ…！みっかっちゃったにゃ…</h2>
-          <p class="cat-takeout-kicker">SECRET TAKE OUT</p>
-          <p class="cat-takeout-message">
-            あ、お前…どこ行ってたんだよ…<br>
-            つか見つけてくれてありがとなぁ？<br>
-            お礼に、これ、持ってけ
-          </p>
-
-          <label class="cat-name-label" for="catGuestName">カップに書く名前</label>
-          <input id="catGuestName" class="cat-name-input" type="text" maxlength="16" autocomplete="off"
-            placeholder="お名前">
-          <p id="catNameError" class="cat-name-error" aria-live="polite"></p>
-
-          <button id="catReceiveButton" class="cat-receive-button" type="button">
-            一杯、受け取る
-          </button>
-        </div>
-
-        <!-- STEP 2 : カップ -->
-        <div id="catCupStep" class="cat-takeout-step cat-cup-step" hidden>
-          <p class="cat-takeout-kicker">MIDNIGHT COFFEE STAND / TAKE OUT</p>
-          <h2>ん、これな。</h2>
-          <p class="cat-takeout-message cat-cup-message">
-            帰り道、冷める前に飲めよ。
-          </p>
-
-          <div class="takeout-cup-art" aria-label="名前入りテイクアウトカップ">
-            <img src="./assets/images/takeout-cup.png" alt="" class="takeout-cup-image">
-            <span id="catCupName" class="takeout-cup-name"></span>
-            <span id="catCupDrink" class="takeout-cup-drink"></span>
-          </div>
-
-          <p id="catDrinkName" class="cat-drink-name"></p>
-          <p id="catDrinkNote" class="cat-drink-note"></p>
-
-          <button id="catDoneButton" class="cat-done-button" type="button">
-            持って帰る
-          </button>
-        </div>
-
-        <!-- STEP 3 : 完了 -->
-        <div id="catCompleteStep" class="cat-takeout-step cat-complete-step" hidden>
-          <p class="cat-takeout-kicker">TAKE OUT COMPLETE</p>
-          <h2>見つけてくれてありがとにゃん</h2>
-          <br>
-          <div class="cat-complete-visual" aria-hidden="true">
-            <img src="./assets/images/takeout-cat.png" alt="" class="cat-complete-cat-image">
-          </div>
-
-          <p class="cat-takeout-message">
-            気が向いたら、<br>
-            また見つけに来てにゃ
-          </p>
-
-          <button id="catShowCardButton" class="cat-done-button" type="button">
-            テイクアウトカードを見る
-          </button>
-        </div>
-
-        <!-- STEP 4 : TAKE OUT CARD -->
-        <div id="catCardStep" class="cat-takeout-step cat-card-step" hidden>
-          <article id="takeoutCardPreview" class="takeout-card-preview" aria-label="テイクアウトカード">
-            <img class="takeout-card-base-image" src="./assets/images/takeout-card.png" alt="真夜中珈琲屋台 TAKE OUT CARD">
-
-            <!-- カップ部分 -->
-            <span id="takeoutCardCupName" class="takeout-card-overlay takeout-card-cup-name"></span>
-            <span id="takeoutCardCupDrink" class="takeout-card-overlay takeout-card-cup-drink"></span>
-
-            <!-- 下部の記入欄 -->
-            <span id="takeoutCardName" class="takeout-card-overlay takeout-card-for"></span>
-            <span id="takeoutCardDrink" class="takeout-card-overlay takeout-card-drink"></span>
-            <span id="takeoutCardDate" class="takeout-card-overlay takeout-card-date"></span>
-          </article>
-
-          <p id="catCardStatus" class="cat-card-status" role="status" aria-live="polite"></p>
-
-          <div class="cat-card-actions">
-            <button id="catSaveCardButton" class="cat-card-button" type="button">
-              画像を保存
-            </button>
-            <button id="catXShareButton" class="cat-card-button cat-card-button-secondary" type="button">
-              Xでシェア
-            </button>
-            <button id="catCardCloseButton" class="cat-card-button cat-card-close-button" type="button">
-              閉じる
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div id="openingTransition" class="opening-transition" aria-hidden="true">
-      <p>今夜も、ひとり分だけ席が空いている。</p>
-    </div>
   </main>
 
   <script src="./js/analytics.js" defer></script>
   <script src="./js/nightSkyEngine.js" defer></script>
-  <script src="./js/opening.js" defer></script>
 </body>
 
 </html>

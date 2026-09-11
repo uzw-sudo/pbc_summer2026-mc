@@ -328,36 +328,23 @@
 
 
   <!-- BOTTOM -->
-  <div class="bottom-actions">
+<div class="bottom-actions">
 
-    <a
-      class="bottom-button"
-      id="openButton"
-      href="../result/index.html?result=M-001"
-      target="_blank"
-      rel="noopener"
-    >
-      ↗ 別画面で開く
-    </a>
+  <a
+    class="bottom-button"
+    href="./"
+  >
+    ▦ 一覧に戻る
+  </a>
 
+  <a
+    class="bottom-button"
+    href="../index.html"
+  >
+    ☕ 屋台に戻る
+  </a>
 
-    <button
-      class="bottom-button"
-      id="saveButton"
-      type="button"
-    >
-      ↓ このカードを保存
-    </button>
-
-
-    <a
-      class="bottom-button"
-      href="../index.html"
-    >
-      ▦ 屋台へ戻る
-    </a>
-
-  </div>
+</div>
 
 </main>
 
@@ -384,9 +371,6 @@
   const cardNumber =
     document.getElementById("cardNumber");
 
-  const openButton =
-    document.getElementById("openButton");
-
 
   /* =========================================
      CARD CHANGE
@@ -410,9 +394,6 @@
     cardNumber.textContent =
       `${id} / ${cards.length}`;
 
-
-    openButton.href =
-      `../result/index.html?result=${id}`;
 
   }
 
@@ -716,39 +697,6 @@
 
     }
   );
-
-
-  /* =========================================
-     SAVE
-  ========================================= */
-
-  document
-    .getElementById(
-      "saveButton"
-    )
-    .addEventListener(
-      "click",
-      () => {
-
-        /*
-          現状は本番カードを
-          別画面で開きます。
-
-          Chromeで
-          スクリーンショット保存用。
-        */
-
-        const id =
-          cards[currentIndex];
-
-
-        window.open(
-          `../result/index.html?result=${id}`,
-          "_blank"
-        );
-
-      }
-    );
 
 
   /* =========================================

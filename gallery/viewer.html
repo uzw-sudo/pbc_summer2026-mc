@@ -1,0 +1,2822 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    真夜中珈琲屋台｜カードギャラリー
+  </title>
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* ========================================
+       RESET
+    ======================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+
+      width: 100%;
+      height: 100%;
+
+      margin: 0;
+
+      overflow: hidden;
+
+    }
+
+
+    body {
+
+      color: #ead8b3;
+
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+
+
+      background:
+
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255,255,255,.11) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 72% 14%,
+          rgba(255,255,255,.08) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 88% 65%,
+          rgba(255,255,255,.08) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 42% 84%,
+          rgba(255,255,255,.06) 0 1px,
+          transparent 1.5px
+        ),
+
+        linear-gradient(
+          180deg,
+          #07111f 0%,
+          #050912 100%
+        );
+
+
+      background-size:
+
+        170px 170px,
+        240px 240px,
+        310px 310px,
+        220px 220px,
+        auto;
+
+    }
+
+
+
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    .gallery {
+
+      width: 100%;
+      height: 100vh;
+
+      display: grid;
+
+      grid-template-rows:
+        auto
+        auto
+        minmax(0, 1fr)
+        auto;
+
+      gap: 9px;
+
+      padding:
+        18px
+        18px
+        14px;
+
+    }
+
+
+
+    /* ========================================
+       HEADER
+    ======================================== */
+
+    .gallery-header {
+
+      text-align: center;
+
+      line-height: 1.3;
+
+    }
+
+
+    .gallery-title {
+
+      margin: 0;
+
+      color: #efd8aa;
+
+      font-size:
+        clamp(
+          19px,
+          2vw,
+          27px
+        );
+
+      font-weight: 400;
+
+      letter-spacing: .08em;
+
+    }
+
+
+    .gallery-note {
+
+      margin:
+        5px
+        0
+        0;
+
+      color:
+        rgba(
+          234,
+          216,
+          179,
+          .58
+        );
+
+      font-size:
+        clamp(
+          8px,
+          .8vw,
+          11px
+        );
+
+    }
+
+
+
+    /* ========================================
+       TOP NAVIGATION
+    ======================================== */
+
+    .card-nav {
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 16px;
+
+    }
+
+
+    .nav-button {
+
+      min-width: 140px;
+
+      padding:
+        8px
+        17px;
+
+      border:
+        1px solid
+        #a77d3c;
+
+      border-radius:
+        7px;
+
+      background:
+        rgba(
+          7,
+          13,
+          23,
+          .90
+        );
+
+      color:
+        #ead8b3;
+
+      font-family: inherit;
+
+      font-size: 12px;
+
+      cursor: pointer;
+
+      transition:
+        background .18s ease,
+        border-color .18s ease,
+        transform .18s ease;
+
+    }
+
+
+    .nav-button:hover {
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .16
+        );
+
+      border-color:
+        #c99b52;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .card-number {
+
+      min-width: 105px;
+
+      padding-bottom: 4px;
+
+      border-bottom:
+        1px solid
+        rgba(
+          187,
+          143,
+          73,
+          .70
+        );
+
+      color: #f0d7a6;
+
+      text-align: center;
+
+      font-size: 15px;
+
+      letter-spacing: .06em;
+
+    }
+
+
+
+    /* ========================================
+       VIEWER
+    ======================================== */
+
+    .viewer-wrap {
+
+      min-width: 0;
+      min-height: 0;
+
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+    }
+
+
+    .viewer {
+
+      position: relative;
+
+      height: 100%;
+
+      max-width: 100%;
+
+      overflow: hidden;
+
+      background: transparent;
+
+    }
+
+
+    /*
+      テイクアウトカードは
+      本番の 2:3
+    */
+
+    body[data-type="takeout"] .viewer {
+
+      aspect-ratio: 2 / 3;
+
+    }
+
+
+    /*
+      線香花火はカードのサイズを
+      本番側から取得するので
+      少し広めに確保
+    */
+
+    body[data-type="sparkler"] .viewer {
+
+      width: min(100%, 680px);
+
+    }
+
+
+    #cardViewer {
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      margin: 0;
+
+      border: 0;
+
+      overflow: hidden;
+
+      background: transparent;
+
+    }
+
+
+
+    /* ========================================
+       LOADING
+    ======================================== */
+
+    .loading {
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 20;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      color:
+        rgba(
+          237,
+          218,
+          178,
+          .74
+        );
+
+      font-size: 11px;
+
+      letter-spacing: .12em;
+
+      pointer-events: none;
+
+      transition: opacity .3s ease;
+
+    }
+
+
+    .loading.is-hidden {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+    }
+
+
+    .loading-mark {
+
+      display: inline-block;
+
+      margin-right: 9px;
+
+      animation:
+        loadingGlow
+        1.4s
+        ease-in-out
+        infinite;
+
+    }
+
+
+    @keyframes loadingGlow {
+
+      0%,
+      100% {
+
+        opacity: .35;
+
+      }
+
+      50% {
+
+        opacity: 1;
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       BOTTOM
+    ======================================== */
+
+    .bottom-actions {
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 14px;
+
+    }
+
+
+    .bottom-button {
+
+      min-width: 190px;
+
+      padding:
+        9px
+        22px;
+
+      border:
+        1px solid
+        #a77d3c;
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(
+          7,
+          13,
+          23,
+          .90
+        );
+
+      color: #ead8b3;
+
+      font-family: inherit;
+
+      font-size: 12px;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition:
+        background .18s ease,
+        border-color .18s ease,
+        transform .18s ease;
+
+    }
+
+
+    .bottom-button:hover {
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .16
+        );
+
+      border-color:
+        #c99b52;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+
+    /* ========================================
+       SHORT SCREEN
+    ======================================== */
+
+    @media (max-height: 780px) {
+
+      .gallery {
+
+        gap: 6px;
+
+        padding:
+          10px
+          14px
+          9px;
+
+      }
+
+
+      .gallery-title {
+
+        font-size: 18px;
+
+      }
+
+
+      .gallery-note {
+
+        margin-top: 2px;
+
+        font-size: 8px;
+
+      }
+
+
+      .nav-button {
+
+        padding:
+          6px
+          14px;
+
+      }
+
+
+      .bottom-button {
+
+        padding:
+          7px
+          18px;
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 650px) {
+
+      .gallery {
+
+        padding:
+          10px
+          7px
+          8px;
+
+        gap: 6px;
+
+      }
+
+
+      .gallery-title {
+
+        font-size: 17px;
+
+      }
+
+
+      .gallery-note {
+
+        font-size: 8px;
+
+      }
+
+
+      .card-nav {
+
+        gap: 6px;
+
+      }
+
+
+      .nav-button {
+
+        min-width: 0;
+
+        padding:
+          7px
+          10px;
+
+        font-size: 10px;
+
+      }
+
+
+      .card-number {
+
+        min-width: 74px;
+
+        font-size: 11px;
+
+      }
+
+
+      .bottom-actions {
+
+        gap: 7px;
+
+      }
+
+
+      .bottom-button {
+
+        min-width: 0;
+
+        width:
+          min(
+            44vw,
+            190px
+          );
+
+        padding:
+          8px
+          9px;
+
+        font-size: 10px;
+
+      }
+
+    }
+
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+<main class="gallery">
+
+
+  <!-- ========================================
+       HEADER
+  ========================================= -->
+
+  <header class="gallery-header">
+
+
+    <h1
+      class="gallery-title"
+      id="galleryTitle"
+    >
+      真夜中珈琲屋台　カードギャラリー
+    </h1>
+
+
+    <p class="gallery-note">
+      2026 夏祭り　営業記録
+    </p>
+
+
+  </header>
+
+
+
+  <!-- ========================================
+       NAV
+  ========================================= -->
+
+  <nav
+    class="card-nav"
+    aria-label="カード切り替え"
+  >
+
+
+    <button
+      class="nav-button"
+      id="prevButton"
+      type="button"
+    >
+      ◀ 前のカード
+    </button>
+
+
+    <div
+      class="card-number"
+      id="cardNumber"
+    >
+    </div>
+
+
+    <button
+      class="nav-button"
+      id="nextButton"
+      type="button"
+    >
+      次のカード ▶
+    </button>
+
+
+  </nav>
+
+
+
+  <!-- ========================================
+       VIEWER
+  ========================================= -->
+
+  <section class="viewer-wrap">
+
+
+    <div class="viewer">
+
+
+      <iframe
+        id="cardViewer"
+        title="真夜中珈琲屋台 カード"
+        scrolling="no"
+      >
+      </iframe>
+
+
+    </div>
+
+
+    <div
+      class="loading"
+      id="loading"
+    >
+
+      <span class="loading-mark">
+        ✦
+      </span>
+
+      <span id="loadingText">
+        カードを準備しています
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ========================================
+       BOTTOM
+  ========================================= -->
+
+  <div class="bottom-actions">
+
+
+    <button
+      class="bottom-button"
+      id="listButton"
+      type="button"
+    >
+      ▦ 一覧に戻る
+    </button>
+
+
+    <a
+      class="bottom-button"
+      href="../index.html"
+    >
+      ☕ 屋台に戻る
+    </a>
+
+
+  </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* ==========================================================
+   DATA
+========================================================== */
+
+
+const COLLECTIONS = {
+
+
+
+  /* ----------------------------------------
+     TAKE OUT
+  ---------------------------------------- */
+
+  takeout: {
+
+    title:
+      "真夜中珈琲屋台　テイクアウトカード",
+
+    cards: [
+
+      {
+        id: "T-001",
+        name: "焦がし蜂蜜ラテ",
+        theme: "amber"
+      },
+
+      {
+        id: "T-002",
+        name: "黒糖ミルク珈琲",
+        theme: "amber"
+      },
+
+      {
+        id: "T-003",
+        name: "夜風のアイス珈琲",
+        theme: "navy"
+      },
+
+      {
+        id: "T-004",
+        name: "星屑ショコラ",
+        theme: "rose"
+      },
+
+      {
+        id: "T-005",
+        name: "月夜のカフェオレ",
+        theme: "navy"
+      },
+
+      {
+        id: "T-006",
+        name: "真夜中のデカフェ",
+        theme: "green"
+      },
+
+      {
+        id: "T-007",
+        name: "猫印の気まぐれ珈琲",
+        theme: "purple",
+        rarity: "rare"
+      }
+
+    ]
+
+  },
+
+
+
+  /* ----------------------------------------
+     SPARKLER
+
+     list.html と同じ並びです。
+  ---------------------------------------- */
+
+  sparkler: {
+
+    title:
+      "真夜中珈琲屋台　線香花火カード",
+
+    cards: [
+
+      {
+        id: "S-001",
+        name: "牡丹",
+        rarity: "normal",
+        random: 0.0625
+      },
+
+      {
+        id: "S-002",
+        name: "松葉",
+        rarity: "normal",
+        random: 0.1875
+      },
+
+      {
+        id: "S-003",
+        name: "散り菊",
+        rarity: "normal",
+        random: 0.3125
+      },
+
+      {
+        id: "S-004",
+        name: "月雫",
+        rarity: "rare",
+        random: 0.4375
+      },
+
+      {
+        id: "S-005",
+        name: "星結び",
+        rarity: "rare",
+        random: 0.5625
+      },
+
+      {
+        id: "S-006",
+        name: "願い星",
+        rarity: "secret",
+        random: 0.6875
+      },
+
+      {
+        id: "S-007",
+        name: "帰り灯",
+        rarity: "normal",
+        random: 0.8125
+      },
+
+      {
+        id: "S-008",
+        name: "夜凪",
+        rarity: "normal",
+        random: 0.9375
+      }
+
+    ]
+
+  }
+
+};
+
+
+
+/* ==========================================================
+   ELEMENTS
+========================================================== */
+
+
+const viewer =
+  document.getElementById(
+    "cardViewer"
+  );
+
+
+const loading =
+  document.getElementById(
+    "loading"
+  );
+
+
+const loadingText =
+  document.getElementById(
+    "loadingText"
+  );
+
+
+const galleryTitle =
+  document.getElementById(
+    "galleryTitle"
+  );
+
+
+const cardNumber =
+  document.getElementById(
+    "cardNumber"
+  );
+
+
+const prevButton =
+  document.getElementById(
+    "prevButton"
+  );
+
+
+const nextButton =
+  document.getElementById(
+    "nextButton"
+  );
+
+
+const listButton =
+  document.getElementById(
+    "listButton"
+  );
+
+
+
+/* ==========================================================
+   QUERY
+========================================================== */
+
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+let currentType =
+  params.get("type");
+
+
+if (
+  currentType !== "takeout"
+  &&
+  currentType !== "sparkler"
+) {
+
+  currentType =
+    "takeout";
+
+}
+
+
+
+let collection =
+  COLLECTIONS[currentType];
+
+
+const requestedCard =
+  params.get("card");
+
+
+let currentIndex =
+  collection.cards.findIndex(
+    card =>
+      card.id === requestedCard
+  );
+
+
+if (
+  currentIndex < 0
+) {
+
+  currentIndex = 0;
+
+}
+
+
+
+/* ==========================================================
+   LOADING
+========================================================== */
+
+
+function showLoading(
+  text = "カードを準備しています"
+) {
+
+
+  loadingText.textContent =
+    text;
+
+
+  loading.classList.remove(
+    "is-hidden"
+  );
+
+
+}
+
+
+
+function hideLoading() {
+
+
+  loading.classList.add(
+    "is-hidden"
+  );
+
+
+}
+
+
+
+/* ==========================================================
+   URL
+========================================================== */
+
+
+function updateURL() {
+
+
+  const card =
+    collection.cards[
+      currentIndex
+    ];
+
+
+  const url =
+    new URL(
+      window.location.href
+    );
+
+
+  url.searchParams.set(
+    "type",
+    currentType
+  );
+
+
+  url.searchParams.set(
+    "card",
+    card.id
+  );
+
+
+  window.history.replaceState(
+    {},
+    "",
+    url
+  );
+
+
+}
+
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+
+function updateHeader() {
+
+
+  const card =
+    collection.cards[
+      currentIndex
+    ];
+
+
+  document.body.dataset.type =
+    currentType;
+
+
+  galleryTitle.textContent =
+    collection.title;
+
+
+  cardNumber.textContent =
+    `${card.id} / ${collection.cards.length}`;
+
+
+}
+
+
+
+/* ==========================================================
+   TAKE OUT CARD
+
+   本番 opening.css と
+   takeout-card.png をそのまま使用します。
+========================================================== */
+
+
+function renderTakeoutCard(
+  card
+) {
+
+
+  showLoading(
+    "テイクアウトカードを準備しています"
+  );
+
+
+  const siteRoot =
+    new URL(
+      "../",
+      window.location.href
+    ).href;
+
+
+
+  /*
+    カードコレクション用なので
+    名前と日付は固定表示。
+
+    実際のお客様の名前は
+    保存・送信しません。
+  */
+
+
+  const guestName =
+    "GUEST";
+
+
+  const cardDate =
+    "2026.09.01";
+
+
+
+  const srcdoc = `
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <base href="${siteRoot}">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/opening.css"
+  >
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+
+      width: 100%;
+      height: 100%;
+
+      margin: 0;
+      padding: 0;
+
+      overflow: hidden !important;
+
+      background: transparent !important;
+
+    }
+
+
+    body {
+
+      min-width: 0 !important;
+      min-height: 0 !important;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+    }
+
+
+    /*
+      本番カード自体はそのまま。
+      ギャラリー画面いっぱいに収めるため
+      外寸だけ100%へ。
+    */
+
+    #takeoutCardPreview {
+
+      position: relative !important;
+
+      width: auto !important;
+
+      height: 100% !important;
+
+      max-width: 100% !important;
+      max-height: 100% !important;
+
+      aspect-ratio: 2 / 3 !important;
+
+      margin: 0 auto !important;
+
+      flex: 0 0 auto;
+
+      overflow: hidden !important;
+
+    }
+
+
+    .takeout-card-base-image {
+
+      position: absolute !important;
+
+      inset: 0 !important;
+
+      display: block !important;
+
+      width: 100% !important;
+      height: 100% !important;
+
+      object-fit: fill !important;
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <article
+    id="takeoutCardPreview"
+    class="takeout-card-preview"
+    data-theme="${card.theme}"
+    aria-label="テイクアウトカード"
+  >
+
+
+    <img
+      class="takeout-card-base-image"
+      src="assets/images/takeout-card.png"
+      alt="真夜中珈琲屋台 TAKE OUT CARD"
+    >
+
+
+    <!-- カップ部分 -->
+
+    <span
+      class="
+        takeout-card-overlay
+        takeout-card-cup-name
+      "
+    >${guestName}</span>
+
+
+    <span
+      class="
+        takeout-card-overlay
+        takeout-card-cup-drink
+      "
+    >${card.name}</span>
+
+
+    <!-- 下部記入欄 -->
+
+    <span
+      class="
+        takeout-card-overlay
+        takeout-card-for
+      "
+    >${guestName}</span>
+
+
+    <span
+      class="
+        takeout-card-overlay
+        takeout-card-drink
+      "
+    >${card.name}</span>
+
+
+    <span
+      class="
+        takeout-card-overlay
+        takeout-card-date
+      "
+    >${cardDate}</span>
+
+
+  </article>
+
+
+</body>
+
+</html>
+
+  `;
+
+
+
+  viewer.onload =
+    () => {
+
+
+      setTimeout(
+        hideLoading,
+        120
+      );
+
+
+    };
+
+
+  viewer.srcdoc =
+    srcdoc;
+
+
+}
+
+
+
+/* ==========================================================
+   SPARKLER
+========================================================== */
+
+
+let sparklerTimer =
+  null;
+
+
+let sparklerClicked =
+  new WeakSet();
+
+
+
+function clearSparklerTimer() {
+
+
+  if (
+    sparklerTimer
+  ) {
+
+
+    clearInterval(
+      sparklerTimer
+    );
+
+
+    sparklerTimer =
+      null;
+
+
+  }
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   GA4等をギャラリー操作で増やさないよう
+   ページ読み込み後のイベント送信を停止
+---------------------------------------------------------- */
+
+
+function silenceSparklerAnalytics(
+  win
+) {
+
+
+  try {
+
+
+    win.gtag =
+      function () {};
+
+
+    if (
+      Array.isArray(
+        win.dataLayer
+      )
+    ) {
+
+
+      win.dataLayer.push =
+        function () {
+
+          return 0;
+
+        };
+
+
+    }
+
+
+    if (
+      win.navigator
+      &&
+      win.navigator.sendBeacon
+    ) {
+
+
+      win.navigator.sendBeacon =
+        function () {
+
+          return true;
+
+        };
+
+
+    }
+
+
+  }
+
+  catch (_) {}
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   線香花火ページを高速化
+---------------------------------------------------------- */
+
+
+function speedUpSparklerPage(
+  doc
+) {
+
+
+  if (
+    doc.getElementById(
+      "gallery-sparkler-speed"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  const style =
+    doc.createElement(
+      "style"
+    );
+
+
+  style.id =
+    "gallery-sparkler-speed";
+
+
+  style.textContent = `
+
+    *,
+    *::before,
+    *::after {
+
+      animation-duration:
+        .04s !important;
+
+      animation-delay:
+        0s !important;
+
+      transition-duration:
+        .04s !important;
+
+      transition-delay:
+        0s !important;
+
+    }
+
+  `;
+
+
+  doc.head.appendChild(
+    style
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   表示中の操作ボタンか判定
+---------------------------------------------------------- */
+
+
+function isVisibleButton(
+  win,
+  element
+) {
+
+
+  if (
+    !element
+    ||
+    element.disabled
+  ) {
+
+    return false;
+
+  }
+
+
+  const style =
+    win.getComputedStyle(
+      element
+    );
+
+
+  if (
+    style.display === "none"
+    ||
+    style.visibility === "hidden"
+  ) {
+
+    return false;
+
+  }
+
+
+  const rect =
+    element.getBoundingClientRect();
+
+
+  return (
+    rect.width > 0
+    &&
+    rect.height > 0
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   必要な操作だけ自動クリック
+---------------------------------------------------------- */
+
+
+function autoClickSparkler(
+  win,
+  doc
+) {
+
+
+  const allowed = [
+
+    "線香花火を選ぶ",
+    "花火を選ぶ",
+    "一本選ぶ",
+    "一本もらう",
+
+    "火をつける",
+
+    "願い事をする",
+
+    "結果を見る",
+    "結果を受け取る",
+    "カードを見る"
+
+  ];
+
+
+
+  const buttons =
+    doc.querySelectorAll(
+      "button, [role='button']"
+    );
+
+
+
+  buttons.forEach(
+    button => {
+
+
+      if (
+        sparklerClicked.has(
+          button
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !isVisibleButton(
+          win,
+          button
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      const text =
+        button.textContent
+          .replace(/\s+/g, "")
+          .trim();
+
+
+
+      const matched =
+        allowed.some(
+          label =>
+            text.includes(
+              label.replace(/\s+/g, "")
+            )
+        );
+
+
+
+      if (
+        !matched
+      ) {
+
+        return;
+
+      }
+
+
+
+      /*
+        「もう一度」系は絶対に押さない
+      */
+
+      if (
+        text.includes("もう一度")
+        ||
+        text.includes("もう一本")
+      ) {
+
+        return;
+
+      }
+
+
+
+      sparklerClicked.add(
+        button
+      );
+
+
+      try {
+
+
+        button.click();
+
+
+      }
+
+      catch (_) {}
+
+
+    }
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   結果カード候補を探す
+---------------------------------------------------------- */
+
+
+function findSparklerResultCard(
+  doc,
+  card
+) {
+
+
+  const selectors = [
+
+    ".sparkler-result-card",
+
+    ".sparkler-card",
+
+    ".result-card",
+
+    "[class*='sparkler'][class*='result']",
+
+    "[class*='result'][class*='card']",
+
+    "article"
+
+  ];
+
+
+
+  const candidates =
+    new Set();
+
+
+
+  selectors.forEach(
+    selector => {
+
+
+      doc
+        .querySelectorAll(
+          selector
+        )
+        .forEach(
+          element =>
+            candidates.add(
+              element
+            )
+        );
+
+
+    }
+  );
+
+
+
+  const scored =
+    [];
+
+
+
+  candidates.forEach(
+    element => {
+
+
+      if (
+        element.hidden
+      ) {
+
+        return;
+
+      }
+
+
+      const text =
+        element.textContent || "";
+
+
+      if (
+        !text.includes(
+          card.name
+        )
+      ) {
+
+        return;
+
+      }
+
+
+
+      let score =
+        0;
+
+
+
+      const markers = [
+
+        "TONIGHT",
+        "SPARKLER",
+
+        "NORMAL",
+        "RARE",
+        "SECRET",
+
+        "今夜の色",
+        "持ち帰る言葉",
+
+        "店主"
+
+      ];
+
+
+
+      markers.forEach(
+        marker => {
+
+
+          if (
+            text.includes(
+              marker
+            )
+          ) {
+
+            score += 1;
+
+          }
+
+
+        }
+      );
+
+
+
+      const rect =
+        element.getBoundingClientRect();
+
+
+
+      if (
+        rect.width > 150
+        &&
+        rect.height > 180
+      ) {
+
+        score += 2;
+
+      }
+
+
+
+      if (
+        score >= 3
+      ) {
+
+
+        scored.push({
+
+          element,
+
+          score,
+
+          area:
+            Math.max(
+              1,
+              rect.width
+              *
+              rect.height
+            )
+
+        });
+
+
+      }
+
+
+    }
+  );
+
+
+
+  scored.sort(
+    (a, b) => {
+
+
+      if (
+        b.score !== a.score
+      ) {
+
+        return (
+          b.score
+          -
+          a.score
+        );
+
+      }
+
+
+      /*
+        同点なら
+        よりカードらしい小さい領域
+      */
+
+      return (
+        a.area
+        -
+        b.area
+      );
+
+
+    }
+  );
+
+
+
+  return (
+    scored[0]
+      ?.element
+    ||
+    null
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   結果カード以外を隠す
+---------------------------------------------------------- */
+
+
+function isolateSparklerCard(
+  doc,
+  cardElement
+) {
+
+
+  /*
+    hidden を解除
+  */
+
+
+  let node =
+    cardElement;
+
+
+  while (
+    node
+    &&
+    node !== doc.body
+  ) {
+
+
+    node.hidden =
+      false;
+
+
+    const parent =
+      node.parentElement;
+
+
+    if (
+      parent
+    ) {
+
+
+      Array
+        .from(
+          parent.children
+        )
+        .forEach(
+          sibling => {
+
+
+            if (
+              sibling !== node
+            ) {
+
+
+              sibling.style.setProperty(
+                "display",
+                "none",
+                "important"
+              );
+
+
+            }
+
+
+          }
+        );
+
+
+    }
+
+
+    node =
+      parent;
+
+
+  }
+
+
+
+  doc.documentElement.style.setProperty(
+    "width",
+    "100%",
+    "important"
+  );
+
+
+  doc.documentElement.style.setProperty(
+    "height",
+    "100%",
+    "important"
+  );
+
+
+  doc.documentElement.style.setProperty(
+    "overflow",
+    "hidden",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "width",
+    "100%",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "height",
+    "100%",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "min-height",
+    "0",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "margin",
+    "0",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "padding",
+    "0",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "overflow",
+    "hidden",
+    "important"
+  );
+
+
+  doc.body.style.setProperty(
+    "background",
+    "transparent",
+    "important"
+  );
+
+
+
+  fitSparklerCard(
+    doc,
+    cardElement
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   線香花火カードを画面内へ収める
+---------------------------------------------------------- */
+
+
+function fitSparklerCard(
+  doc,
+  cardElement
+) {
+
+
+  if (
+    !cardElement
+  ) {
+
+    return;
+
+  }
+
+
+
+  /*
+    サイズ測定前にtransform解除
+  */
+
+
+  cardElement.style.setProperty(
+    "transform",
+    "none",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "position",
+    "fixed",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "left",
+    "50%",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "top",
+    "50%",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "margin",
+    "0",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "z-index",
+    "999999",
+    "important"
+  );
+
+
+
+  const width =
+    cardElement.offsetWidth;
+
+
+  const height =
+    cardElement.offsetHeight;
+
+
+
+  if (
+    !width
+    ||
+    !height
+  ) {
+
+    return;
+
+  }
+
+
+
+  const availableWidth =
+    Math.max(
+      1,
+      viewer.clientWidth - 6
+    );
+
+
+  const availableHeight =
+    Math.max(
+      1,
+      viewer.clientHeight - 6
+    );
+
+
+
+  const scale =
+    Math.min(
+
+      availableWidth
+      /
+      width,
+
+      availableHeight
+      /
+      height
+
+    );
+
+
+
+  cardElement.style.setProperty(
+    "transform-origin",
+    "center center",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+
+    "transform",
+
+    `translate(-50%, -50%) scale(${scale})`,
+
+    "important"
+
+  );
+
+
+}
+
+
+
+/* ----------------------------------------------------------
+   線香花火
+---------------------------------------------------------- */
+
+
+function renderSparklerCard(
+  card
+) {
+
+
+  clearSparklerTimer();
+
+
+  sparklerClicked =
+    new WeakSet();
+
+
+  showLoading(
+    "線香花火カードを準備しています"
+  );
+
+
+
+  /*
+    srcdocではなく、
+    本番の線香花火ページを利用
+  */
+
+
+  viewer.removeAttribute(
+    "srcdoc"
+  );
+
+
+  viewer.onload =
+    () => {
+
+
+      try {
+
+
+        const win =
+          viewer.contentWindow;
+
+
+        const doc =
+          viewer.contentDocument
+          ||
+          win.document;
+
+
+
+        /*
+          ギャラリー閲覧による
+          イベント記録を抑制
+        */
+
+
+        silenceSparklerAnalytics(
+          win
+        );
+
+
+        /*
+          選出乱数を固定。
+
+          list.html と同じ並びの
+          結果を狙います。
+        */
+
+
+        try {
+
+
+          win.Math.random =
+            () =>
+              card.random;
+
+
+        }
+
+        catch (_) {}
+
+
+
+        speedUpSparklerPage(
+          doc
+        );
+
+
+
+        let attempts =
+          0;
+
+
+
+        sparklerTimer =
+          window.setInterval(
+            () => {
+
+
+              attempts += 1;
+
+
+
+              /*
+                まず結果が出ているか確認
+              */
+
+
+              const resultCard =
+                findSparklerResultCard(
+                  doc,
+                  card
+                );
+
+
+
+              if (
+                resultCard
+              ) {
+
+
+                clearSparklerTimer();
+
+
+                isolateSparklerCard(
+                  doc,
+                  resultCard
+                );
+
+
+                hideLoading();
+
+
+                /*
+                  フォント・画像反映後に
+                  再フィット
+                */
+
+
+                setTimeout(
+                  () =>
+                    fitSparklerCard(
+                      doc,
+                      resultCard
+                    ),
+                  200
+                );
+
+
+                setTimeout(
+                  () =>
+                    fitSparklerCard(
+                      doc,
+                      resultCard
+                    ),
+                  700
+                );
+
+
+                return;
+
+
+              }
+
+
+
+              /*
+                まだ結果がなければ
+                必要なボタンを順に操作
+              */
+
+
+              autoClickSparkler(
+                win,
+                doc
+              );
+
+
+
+              /*
+                約24秒で終了
+              */
+
+
+              if (
+                attempts > 300
+              ) {
+
+
+                clearSparklerTimer();
+
+
+                loadingText.textContent =
+                  "カードの表示を確認中です…";
+
+
+              }
+
+
+            },
+            80
+          );
+
+
+      }
+
+
+      catch (error) {
+
+
+        console.log(
+          "sparkler gallery:",
+          error
+        );
+
+
+      }
+
+
+    };
+
+
+
+  viewer.src =
+    `../sparkler/index.html?gallery=${encodeURIComponent(card.id)}&t=${Date.now()}`;
+
+
+}
+
+
+
+/* ==========================================================
+   SHOW CARD
+========================================================== */
+
+
+function showCard(
+  index
+) {
+
+
+  clearSparklerTimer();
+
+
+  currentIndex =
+
+    (
+      index
+      +
+      collection.cards.length
+    )
+
+    %
+
+    collection.cards.length;
+
+
+
+  const card =
+    collection.cards[
+      currentIndex
+    ];
+
+
+
+  updateHeader();
+
+
+  updateURL();
+
+
+
+  if (
+    currentType ===
+    "takeout"
+  ) {
+
+
+    renderTakeoutCard(
+      card
+    );
+
+
+    return;
+
+
+  }
+
+
+
+  renderSparklerCard(
+    card
+  );
+
+
+}
+
+
+
+/* ==========================================================
+   PREVIOUS
+========================================================== */
+
+
+prevButton.addEventListener(
+  "click",
+  () => {
+
+
+    showCard(
+      currentIndex - 1
+    );
+
+
+  }
+);
+
+
+
+/* ==========================================================
+   NEXT
+========================================================== */
+
+
+nextButton.addEventListener(
+  "click",
+  () => {
+
+
+    showCard(
+      currentIndex + 1
+    );
+
+
+  }
+);
+
+
+
+/* ==========================================================
+   KEYBOARD
+========================================================== */
+
+
+window.addEventListener(
+  "keydown",
+  event => {
+
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+
+      showCard(
+        currentIndex - 1
+      );
+
+
+    }
+
+
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+
+      showCard(
+        currentIndex + 1
+      );
+
+
+    }
+
+
+  }
+);
+
+
+
+/* ==========================================================
+   LIST BUTTON
+
+   list.htmlから来た場合は
+   ブラウザ履歴で戻すため、
+   選んでいたカテゴリを維持しやすいです。
+========================================================== */
+
+
+listButton.addEventListener(
+  "click",
+  () => {
+
+
+    const referrer =
+      document.referrer
+      ||
+      "";
+
+
+    if (
+      referrer.includes(
+        "/gallery/list.html"
+      )
+    ) {
+
+
+      window.history.back();
+
+
+    }
+
+    else {
+
+
+      window.location.href =
+        "./list.html";
+
+
+    }
+
+
+  }
+);
+
+
+
+/* ==========================================================
+   RESIZE
+========================================================== */
+
+
+window.addEventListener(
+  "resize",
+  () => {
+
+
+    if (
+      currentType !==
+      "sparkler"
+    ) {
+
+      return;
+
+    }
+
+
+    try {
+
+
+      const doc =
+        viewer.contentDocument;
+
+
+      const card =
+        findSparklerResultCard(
+          doc,
+          collection.cards[
+            currentIndex
+          ]
+        );
+
+
+      if (
+        card
+      ) {
+
+
+        requestAnimationFrame(
+          () =>
+            fitSparklerCard(
+              doc,
+              card
+            )
+        );
+
+
+      }
+
+
+    }
+
+    catch (_) {}
+
+
+  }
+);
+
+
+
+/* ==========================================================
+   START
+========================================================== */
+
+
+showCard(
+  currentIndex
+);
+
+
+
+</script>
+
+
+</body>
+
+</html>

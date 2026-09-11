@@ -118,12 +118,67 @@
   </main>
 
   <script>
-    const viewer = document.getElementById("cardViewer");
+  const viewer = document.getElementById("cardViewer");
 
-    document.getElementById("m001").addEventListener("click", () => {
-      viewer.src = "../result/index.html?result=M-001";
-    });
-  </script>
+  function showCard(id) {
+    viewer.src = `../result/index.html?result=${id}`;
+  }
+
+  function hideResultUI() {
+    try {
+      const doc = viewer.contentDocument || viewer.contentWindow.document;
+
+      /* カード以外の操作UIを非表示 */
+      const selectors = [
+        ".result-actions",
+        ".actions",
+        ".action-buttons",
+        ".share-buttons",
+        ".share-area",
+        ".result-buttons",
+        ".button-area",
+        ".back-link",
+        ".back-button",
+        ".retry-button",
+        ".share-button"
+      ];
+
+      selectors.forEach(selector => {
+        doc.querySelectorAll(selector).forEach(el => {
+          el.style.setProperty("display", "none", "important");
+        });
+      });
+
+      /* ボタン・リンクの文字でも判定 */
+      doc.querySelectorAll("a, button").forEach(el => {
+        const text = el.textContent.trim();
+
+        if (
+          text.includes("Xでシェア") ||
+          text.includes("屋台に戻る") ||
+          text.includes("もう一杯注文する")
+        ) {
+          el.style.setProperty("display", "none", "important");
+        }
+      });
+
+    } catch (e) {
+      console.log("Gallery UI:", e);
+    }
+  }
+
+  viewer.addEventListener("load", () => {
+    hideResultUI();
+
+    /* JSで後から生成される場合にも対応 */
+    setTimeout(hideResultUI, 300);
+    setTimeout(hideResultUI, 1000);
+  });
+
+  document.getElementById("m001").addEventListener("click", () => {
+    showCard("M-001");
+  });
+</script>
 
 </body>
 </html>

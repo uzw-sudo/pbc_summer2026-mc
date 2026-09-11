@@ -1,721 +1,710 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>真夜中珈琲屋台｜カードギャラリー</title>
+    <title>真夜中珈琲屋台｜カードギャラリー</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    html,
-    body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-    body {
-      background:
-        radial-gradient(circle at 20% 25%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 75% 18%, rgba(255,255,255,.07) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 85% 70%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
-        linear-gradient(180deg, #07111f 0%, #050912 100%);
-      background-size:
-        170px 170px,
-        230px 230px,
-        310px 310px,
-        auto;
+        body {
+            background:
+                radial-gradient(circle at 20% 25%, rgba(255, 255, 255, .08) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 75% 18%, rgba(255, 255, 255, .07) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 85% 70%, rgba(255, 255, 255, .08) 0 1px, transparent 1.5px),
+                linear-gradient(180deg, #07111f 0%, #050912 100%);
+            background-size:
+                170px 170px,
+                230px 230px,
+                310px 310px,
+                auto;
 
-      color: #ead8b3;
-      font-family: "Noto Serif JP", "Yu Mincho", serif;
-    }
+            color: #ead8b3;
+            font-family: "Noto Serif JP", "Yu Mincho", serif;
+        }
 
-    .gallery {
-      height: 100vh;
+        .gallery {
+            height: 100vh;
 
-      display: grid;
+            display: grid;
 
-      grid-template-rows:
-        auto
-        auto
-        1fr
-        auto;
+            grid-template-rows:
+                auto auto 1fr auto;
 
-      gap: 10px;
+            gap: 10px;
 
-      padding: 18px 20px 16px;
-    }
+            padding: 18px 20px 16px;
+        }
 
-    /* ==========================
+        /* ==========================
        TITLE
     ========================== */
 
-    .gallery-header {
-      text-align: center;
-    }
+        .gallery-header {
+            text-align: center;
+        }
 
-    .gallery-header h1 {
-      margin: 0;
+        .gallery-header h1 {
+            margin: 0;
 
-      font-size: clamp(18px, 2vw, 28px);
+            font-size: clamp(18px, 2vw, 28px);
 
-      font-weight: 400;
+            font-weight: 400;
 
-      letter-spacing: .08em;
-    }
+            letter-spacing: .08em;
+        }
 
-    .gallery-header p {
-      margin: 5px 0 0;
+        .gallery-header p {
+            margin: 5px 0 0;
 
-      font-size: clamp(9px, .9vw, 12px);
+            font-size: clamp(9px, .9vw, 12px);
 
-      color: rgba(234,216,179,.62);
-    }
+            color: rgba(234, 216, 179, .62);
+        }
 
-    /* ==========================
+        /* ==========================
        NAV
     ========================== */
 
-    .card-nav {
-      display: flex;
+        .card-nav {
+            display: flex;
 
-      justify-content: center;
-      align-items: center;
+            justify-content: center;
+            align-items: center;
 
-      gap: 18px;
-    }
+            gap: 18px;
+        }
 
-    .nav-button {
-      min-width: 140px;
+        .nav-button {
+            min-width: 140px;
 
-      padding: 9px 18px;
+            padding: 9px 18px;
 
-      border: 1px solid #a77d3c;
-      border-radius: 7px;
+            border: 1px solid #a77d3c;
+            border-radius: 7px;
 
-      background: rgba(8,13,23,.88);
+            background: rgba(8, 13, 23, .88);
 
-      color: #ead8b3;
+            color: #ead8b3;
 
-      font-family: inherit;
+            font-family: inherit;
 
-      font-size: 13px;
+            font-size: 13px;
 
-      cursor: pointer;
+            cursor: pointer;
 
-      transition: .2s;
-    }
+            transition: .2s;
+        }
 
-    .nav-button:hover {
-      background: rgba(167,125,60,.15);
-    }
+        .nav-button:hover {
+            background: rgba(167, 125, 60, .15);
+        }
 
-    .card-number {
-      min-width: 100px;
+        .card-number {
+            min-width: 100px;
 
-      text-align: center;
+            text-align: center;
 
-      font-size: 16px;
+            font-size: 16px;
 
-      letter-spacing: .06em;
+            letter-spacing: .06em;
 
-      border-bottom: 1px solid rgba(167,125,60,.65);
+            border-bottom: 1px solid rgba(167, 125, 60, .65);
 
-      padding-bottom: 4px;
-    }
+            padding-bottom: 4px;
+        }
 
-    /* ==========================
+        /* ==========================
        CARD VIEWER
     ========================== */
 
-    .viewer-wrap {
-      min-height: 0;
+        .viewer-wrap {
+            min-height: 0;
 
-      display: flex;
+            display: flex;
 
-      justify-content: center;
-      align-items: center;
-    }
+            justify-content: center;
+            align-items: center;
+        }
 
-    .viewer {
-      position: relative;
+        .viewer {
+            position: relative;
 
-      height: 100%;
-      max-height: 100%;
+            height: 100%;
+            max-height: 100%;
 
-      aspect-ratio: 5 / 7;
+            aspect-ratio: 5 / 7;
 
-      overflow: hidden;
+            overflow: hidden;
 
-      border-radius: 16px;
-    }
+            border-radius: 16px;
+        }
 
-    iframe {
-      width: 100%;
-      height: 100%;
+        iframe {
+            width: 100%;
+            height: 100%;
 
-      border: 0;
+            border: 0;
 
-      display: block;
+            display: block;
 
-      background: transparent;
+            background: transparent;
 
-      transform-origin: top left;
-    }
+            transform-origin: top left;
+        }
 
-    /* ==========================
+        /* ==========================
        BOTTOM BUTTONS
     ========================== */
 
-    .bottom-actions {
-      display: flex;
+        .bottom-actions {
+            display: flex;
 
-      justify-content: center;
+            justify-content: center;
 
-      gap: 14px;
+            gap: 14px;
 
-      flex-wrap: nowrap;
-    }
+            flex-wrap: nowrap;
+        }
 
-    .bottom-button {
-      min-width: 190px;
+        .bottom-button {
+            min-width: 190px;
 
-      padding: 10px 20px;
+            padding: 10px 20px;
 
-      border: 1px solid #a77d3c;
-      border-radius: 999px;
+            border: 1px solid #a77d3c;
+            border-radius: 999px;
 
-      background: rgba(8,13,23,.88);
+            background: rgba(8, 13, 23, .88);
 
-      color: #ead8b3;
+            color: #ead8b3;
 
-      text-decoration: none;
+            text-decoration: none;
 
-      text-align: center;
+            text-align: center;
 
-      font-size: 13px;
+            font-size: 13px;
 
-      cursor: pointer;
-    }
+            cursor: pointer;
+        }
 
-    .bottom-button:hover {
-      background: rgba(167,125,60,.15);
-    }
+        .bottom-button:hover {
+            background: rgba(167, 125, 60, .15);
+        }
 
-    /* ==========================
+        /* ==========================
        SMALL SCREEN
     ========================== */
 
-    @media (max-width: 700px) {
+        @media (max-width: 700px) {
 
-      .gallery {
-        padding:
-          12px
-          8px
-          10px;
+            .gallery {
+                padding:
+                    12px 8px 10px;
 
-        gap: 7px;
-      }
+                gap: 7px;
+            }
 
-      .card-nav {
-        gap: 6px;
-      }
+            .card-nav {
+                gap: 6px;
+            }
 
-      .nav-button {
-        min-width: auto;
+            .nav-button {
+                min-width: auto;
 
-        padding:
-          7px
-          10px;
+                padding:
+                    7px 10px;
 
-        font-size: 11px;
-      }
+                font-size: 11px;
+            }
 
-      .card-number {
-        min-width: 76px;
+            .card-number {
+                min-width: 76px;
 
-        font-size: 12px;
-      }
+                font-size: 12px;
+            }
 
-      .bottom-actions {
-        gap: 6px;
-      }
+            .bottom-actions {
+                gap: 6px;
+            }
 
-      .bottom-button {
-        min-width: auto;
+            .bottom-button {
+                min-width: auto;
 
-        padding:
-          8px
-          10px;
+                padding:
+                    8px 10px;
 
-        font-size: 10px;
-      }
+                font-size: 10px;
+            }
 
-    }
-
-  </style>
+        }
+    </style>
 </head>
 
 
 <body>
 
-<main class="gallery">
+    <main class="gallery">
 
-  <!-- HEADER -->
-  <header class="gallery-header">
+        <!-- HEADER -->
+        <header class="gallery-header">
 
-    <h1>
-      真夜中珈琲屋台　カードギャラリー
-    </h1>
+            <h1>
+                真夜中珈琲屋台　カードギャラリー
+            </h1>
 
-    <p>
-      管理用ページ ／ 通常のサイトからはリンクしません
-    </p>
+            <p>
+                管理用ページ ／ 通常のサイトからはリンクしません
+            </p>
 
-  </header>
-
-
-  <!-- NAVIGATION -->
-  <nav class="card-nav">
-
-    <button
-      class="nav-button"
-      id="prevButton"
-      type="button"
-    >
-      ◀ 前のカード
-    </button>
+        </header>
 
 
-    <div
-      class="card-number"
-      id="cardNumber"
-    >
-      M-001 / 30
-    </div>
+        <!-- NAVIGATION -->
+        <nav class="card-nav">
+
+            <button class="nav-button" id="prevButton" type="button">
+                ◀ 前のカード
+            </button>
 
 
-    <button
-      class="nav-button"
-      id="nextButton"
-      type="button"
-    >
-      次のカード ▶
-    </button>
-
-  </nav>
+            <div class="card-number" id="cardNumber">
+                M-001 / 30
+            </div>
 
 
-  <!-- CARD -->
-  <section class="viewer-wrap">
+            <button class="nav-button" id="nextButton" type="button">
+                次のカード ▶
+            </button>
 
-    <div class="viewer">
-
-      <iframe
-        id="cardViewer"
-        src="../result/index.html?result=M-001"
-        title="結果カード">
-      </iframe>
-
-    </div>
-
-  </section>
+        </nav>
 
 
-  <!-- BOTTOM -->
-<div class="bottom-actions">
+        <!-- CARD -->
+        <section class="viewer-wrap">
 
-  <a
-    class="bottom-button"
-    href="./"
-  >
-    ▦ 一覧に戻る
-  </a>
+            <div class="viewer">
 
-  <a
-    class="bottom-button"
-    href="../index.html"
-  >
-    ☕ 屋台に戻る
-  </a>
+                <iframe id="cardViewer" src="../result/index.html?result=M-001" title="結果カード">
+                </iframe>
 
-</div>
+            </div>
 
-</main>
+        </section>
 
 
-<script>
+        <!-- BOTTOM -->
+        <div class="bottom-actions">
 
-  /* =========================================
-     COFFEE IDs
-  ========================================= */
+            <a class="bottom-button" href="./list.html">
+                ▦ 一覧に戻る
+            </a>
 
-  const cards = Array.from(
-    { length: 30 },
-    (_, i) =>
-      `M-${String(i + 1).padStart(3, "0")}`
-  );
+            <a class="bottom-button" href="../index.html">
+                ☕ 屋台に戻る
+            </a>
 
+        </div>
 
-  let currentIndex = 0;
-
-
-  const viewer =
-    document.getElementById("cardViewer");
-
-  const cardNumber =
-    document.getElementById("cardNumber");
+    </main>
 
 
-  /* =========================================
-     CARD CHANGE
-  ========================================= */
+    <script>
 
-  function showCard(index) {
+        /* =========================================
+           COFFEE IDs
+        ========================================= */
 
-    currentIndex =
-      (index + cards.length)
-      % cards.length;
-
-
-    const id =
-      cards[currentIndex];
+        const cards = Array.from(
+            { length: 30 },
+            (_, i) =>
+                `M-${String(i + 1).padStart(3, "0")}`
+        );
 
 
-    viewer.src =
-      `../result/index.html?result=${id}`;
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const requestedCard =
+            params.get("card");
+
+        let currentIndex =
+            Math.max(
+                0,
+                cards.indexOf(
+                    requestedCard
+                )
+            );
+
+        showCard(currentIndex);
+
+        const viewer =
+            document.getElementById("cardViewer");
+
+        const cardNumber =
+            document.getElementById("cardNumber");
 
 
-    cardNumber.textContent =
-      `${id} / ${cards.length}`;
+        /* =========================================
+           CARD CHANGE
+        ========================================= */
+
+        function showCard(index) {
+
+            currentIndex =
+                (index + cards.length)
+                % cards.length;
 
 
-  }
+            const id =
+                cards[currentIndex];
 
 
-  /* =========================================
-     HIDE RESULT PAGE UI
-  ========================================= */
-
-  function cleanResultPage() {
-
-    try {
-
-      const doc =
-        viewer.contentDocument
-        || viewer.contentWindow.document;
+            viewer.src =
+                `../result/index.html?result=${id}`;
 
 
-      /* ボタン類を文字で判定して削除 */
+            cardNumber.textContent =
+                `${id} / ${cards.length}`;
 
-      doc.querySelectorAll(
-        "a, button"
-      ).forEach(el => {
-
-        const text =
-          el.textContent.trim();
-
-
-        if (
-          text.includes("Xでシェア") ||
-          text.includes("屋台に戻る") ||
-          text.includes("もう一杯注文する") ||
-          text.includes("この結果を共有")
-        ) {
-
-          el.style.setProperty(
-            "display",
-            "none",
-            "important"
-          );
 
         }
 
-      });
+
+        /* =========================================
+           HIDE RESULT PAGE UI
+        ========================================= */
+
+        function cleanResultPage() {
+
+            try {
+
+                const doc =
+                    viewer.contentDocument
+                    || viewer.contentWindow.document;
 
 
-      /* カード以外の可能性が高いUI */
+                /* ボタン類を文字で判定して削除 */
 
-      const selectors = [
+                doc.querySelectorAll(
+                    "a, button"
+                ).forEach(el => {
 
-        ".result-actions",
-        ".actions",
-        ".action-buttons",
-        ".share-buttons",
-        ".share-area",
-        ".result-buttons",
-        ".button-area",
-        ".back-link",
-        ".back-button",
-        ".retry-button",
-        ".share-button"
-
-      ];
+                    const text =
+                        el.textContent.trim();
 
 
-      selectors.forEach(selector => {
+                    if (
+                        text.includes("Xでシェア") ||
+                        text.includes("屋台に戻る") ||
+                        text.includes("もう一杯注文する") ||
+                        text.includes("この結果を共有")
+                    ) {
 
-        doc.querySelectorAll(
-          selector
-        ).forEach(el => {
+                        el.style.setProperty(
+                            "display",
+                            "none",
+                            "important"
+                        );
 
-          el.style.setProperty(
-            "display",
-            "none",
-            "important"
-          );
+                    }
 
-        });
-
-      });
-
-
-      /* ページそのもののスクロールを止める */
-
-      doc.documentElement.style.overflow =
-        "hidden";
-
-      doc.body.style.overflow =
-        "hidden";
+                });
 
 
-      fitCard();
+                /* カード以外の可能性が高いUI */
 
-    }
+                const selectors = [
 
-    catch (error) {
+                    ".result-actions",
+                    ".actions",
+                    ".action-buttons",
+                    ".share-buttons",
+                    ".share-area",
+                    ".result-buttons",
+                    ".button-area",
+                    ".back-link",
+                    ".back-button",
+                    ".retry-button",
+                    ".share-button"
 
-      console.log(
-        "gallery:",
-        error
-      );
-
-    }
-
-  }
-
-
-  /* =========================================
-     FIT RESULT PAGE TO VIEWER
-  ========================================= */
-
-  function fitCard() {
-
-    try {
-
-      const doc =
-        viewer.contentDocument
-        || viewer.contentWindow.document;
+                ];
 
 
-      /*
-        本番カード要素を探します。
-        result-card がある前提。
-      */
+                selectors.forEach(selector => {
 
-      const card =
-        doc.querySelector(
-          ".result-card"
+                    doc.querySelectorAll(
+                        selector
+                    ).forEach(el => {
+
+                        el.style.setProperty(
+                            "display",
+                            "none",
+                            "important"
+                        );
+
+                    });
+
+                });
+
+
+                /* ページそのもののスクロールを止める */
+
+                doc.documentElement.style.overflow =
+                    "hidden";
+
+                doc.body.style.overflow =
+                    "hidden";
+
+
+                fitCard();
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "gallery:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* =========================================
+           FIT RESULT PAGE TO VIEWER
+        ========================================= */
+
+        function fitCard() {
+
+            try {
+
+                const doc =
+                    viewer.contentDocument
+                    || viewer.contentWindow.document;
+
+
+                /*
+                  本番カード要素を探します。
+                  result-card がある前提。
+                */
+
+                const card =
+                    doc.querySelector(
+                        ".result-card"
+                    );
+
+
+                if (!card) return;
+
+
+                const viewerWidth =
+                    viewer.clientWidth;
+
+                const viewerHeight =
+                    viewer.clientHeight;
+
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const scaleX =
+                    viewerWidth / rect.width;
+
+                const scaleY =
+                    viewerHeight / rect.height;
+
+
+                /*
+                  カード全体が必ず
+                  画面内に収まる倍率
+                */
+
+                const scale =
+                    Math.min(
+                        scaleX,
+                        scaleY
+                    );
+
+
+                /*
+                  iframe内部をカード中心に整える
+                */
+
+                doc.body.style.margin = "0";
+
+                doc.body.style.minHeight = "0";
+
+                doc.body.style.height = "auto";
+
+
+                card.style.transformOrigin =
+                    "top center";
+
+                card.style.transform =
+                    `scale(${scale})`;
+
+
+                /*
+                  transform後の余白調整
+                */
+
+                card.style.margin =
+                    "0 auto";
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "fit:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* =========================================
+           LOAD
+        ========================================= */
+
+        viewer.addEventListener(
+            "load",
+            () => {
+
+                cleanResultPage();
+
+                /*
+                  Webフォント・canvas・画像の
+                  読み込み後にも再調整
+                */
+
+                setTimeout(
+                    cleanResultPage,
+                    200
+                );
+
+                setTimeout(
+                    cleanResultPage,
+                    600
+                );
+
+                setTimeout(
+                    cleanResultPage,
+                    1200
+                );
+
+            }
         );
 
 
-      if (!card) return;
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        document
+            .getElementById(
+                "prevButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    showCard(
+                        currentIndex - 1
+                    );
+
+                }
+            );
 
 
-      const viewerWidth =
-        viewer.clientWidth;
+        document
+            .getElementById(
+                "nextButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
-      const viewerHeight =
-        viewer.clientHeight;
+                    showCard(
+                        currentIndex + 1
+                    );
 
-
-      const rect =
-        card.getBoundingClientRect();
-
-
-      const scaleX =
-        viewerWidth / rect.width;
-
-      const scaleY =
-        viewerHeight / rect.height;
+                }
+            );
 
 
-      /*
-        カード全体が必ず
-        画面内に収まる倍率
-      */
+        /* =========================================
+           KEYBOARD
+        ========================================= */
 
-      const scale =
-        Math.min(
-          scaleX,
-          scaleY
+        window.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "ArrowLeft"
+                ) {
+
+                    showCard(
+                        currentIndex - 1
+                    );
+
+                }
+
+
+                if (
+                    event.key === "ArrowRight"
+                ) {
+
+                    showCard(
+                        currentIndex + 1
+                    );
+
+                }
+
+            }
         );
 
 
-      /*
-        iframe内部をカード中心に整える
-      */
+        /* =========================================
+           WINDOW RESIZE
+        ========================================= */
 
-      doc.body.style.margin = "0";
+        window.addEventListener(
+            "resize",
+            () => {
 
-      doc.body.style.minHeight = "0";
+                setTimeout(
+                    cleanResultPage,
+                    100
+                );
 
-      doc.body.style.height = "auto";
-
-
-      card.style.transformOrigin =
-        "top center";
-
-      card.style.transform =
-        `scale(${scale})`;
-
-
-      /*
-        transform後の余白調整
-      */
-
-      card.style.margin =
-        "0 auto";
-
-    }
-
-    catch (error) {
-
-      console.log(
-        "fit:",
-        error
-      );
-
-    }
-
-  }
-
-
-  /* =========================================
-     LOAD
-  ========================================= */
-
-  viewer.addEventListener(
-    "load",
-    () => {
-
-      cleanResultPage();
-
-      /*
-        Webフォント・canvas・画像の
-        読み込み後にも再調整
-      */
-
-      setTimeout(
-        cleanResultPage,
-        200
-      );
-
-      setTimeout(
-        cleanResultPage,
-        600
-      );
-
-      setTimeout(
-        cleanResultPage,
-        1200
-      );
-
-    }
-  );
-
-
-  /* =========================================
-     BUTTONS
-  ========================================= */
-
-  document
-    .getElementById(
-      "prevButton"
-    )
-    .addEventListener(
-      "click",
-      () => {
-
-        showCard(
-          currentIndex - 1
+            }
         );
 
-      }
-    );
-
-
-  document
-    .getElementById(
-      "nextButton"
-    )
-    .addEventListener(
-      "click",
-      () => {
-
-        showCard(
-          currentIndex + 1
-        );
-
-      }
-    );
-
-
-  /* =========================================
-     KEYBOARD
-  ========================================= */
-
-  window.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "ArrowLeft"
-      ) {
-
-        showCard(
-          currentIndex - 1
-        );
-
-      }
-
-
-      if (
-        event.key === "ArrowRight"
-      ) {
-
-        showCard(
-          currentIndex + 1
-        );
-
-      }
-
-    }
-  );
-
-
-  /* =========================================
-     WINDOW RESIZE
-  ========================================= */
-
-  window.addEventListener(
-    "resize",
-    () => {
-
-      setTimeout(
-        cleanResultPage,
-        100
-      );
-
-    }
-  );
-
-</script>
+    </script>
 
 </body>
+
 </html>

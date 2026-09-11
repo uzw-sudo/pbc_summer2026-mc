@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>真夜中珈琲屋台｜カード一覧</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.10) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 70% 15%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 88% 65%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 42% 82%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
+        linear-gradient(180deg, #07111f 0%, #050912 100%);
+
+      background-size:
+        170px 170px,
+        240px 240px,
+        310px 310px,
+        220px 220px,
+        auto;
+
+      color: #ead8b3;
+
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+    }
+
+    .page {
+      width: min(1200px, 94%);
+      margin: 0 auto;
+      padding: 34px 0 50px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 400;
+      letter-spacing: .08em;
+    }
+
+    .header p {
+      margin: 7px 0 0;
+      font-size: 12px;
+      color: rgba(234,216,179,.65);
+    }
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .category-button {
+      padding: 9px 18px;
+      border: 1px solid #9e773c;
+      border-radius: 999px;
+      background: rgba(9,15,25,.78);
+      color: #ead8b3;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .category-button.active {
+      background: rgba(158,119,60,.22);
+      box-shadow:
+        0 0 18px rgba(158,119,60,.16);
+    }
+
+    .category-button.disabled {
+      opacity: .38;
+      cursor: default;
+    }
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .section-title .en {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .22em;
+      opacity: .7;
+      margin-bottom: 4px;
+    }
+
+    .section-title .jp {
+      font-size: 21px;
+      letter-spacing: .08em;
+    }
+
+    .section-title .count {
+      margin-left: 8px;
+      font-size: 12px;
+      opacity: .6;
+    }
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .card-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+      gap: 16px;
+    }
+
+    .card-link {
+      display: block;
+
+      min-height: 116px;
+
+      padding: 18px 16px;
+
+      border: 1px solid rgba(182,142,79,.45);
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(18,29,45,.92),
+          rgba(8,14,24,.92)
+        );
+
+      color: #ead8b3;
+
+      text-decoration: none;
+
+      position: relative;
+
+      overflow: hidden;
+
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .card-link::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(201,158,87,.12),
+          transparent 35%
+        );
+
+      pointer-events: none;
+    }
+
+    .card-link:hover {
+      transform: translateY(-3px);
+
+      border-color: rgba(211,168,95,.9);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(28,40,58,.96),
+          rgba(10,17,29,.96)
+        );
+
+      box-shadow:
+        0 10px 28px rgba(0,0,0,.28),
+        0 0 18px rgba(169,128,65,.08);
+    }
+
+    .card-id {
+      display: block;
+
+      font-size: 10px;
+
+      letter-spacing: .16em;
+
+      color: #bd9556;
+
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      display: block;
+
+      font-size: 16px;
+
+      line-height: 1.5;
+
+      letter-spacing: .05em;
+    }
+
+    .card-arrow {
+      position: absolute;
+
+      right: 14px;
+      bottom: 12px;
+
+      font-size: 12px;
+
+      color: rgba(234,216,179,.48);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-actions {
+      display: flex;
+
+      justify-content: center;
+
+      margin-top: 34px;
+    }
+
+    .back-button {
+      display: inline-block;
+
+      min-width: 210px;
+
+      padding: 11px 24px;
+
+      border: 1px solid #9e773c;
+      border-radius: 999px;
+
+      background: rgba(8,14,24,.85);
+
+      color: #ead8b3;
+
+      text-align: center;
+      text-decoration: none;
+
+      font-size: 13px;
+    }
+
+    .back-button:hover {
+      background: rgba(158,119,60,.14);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .page {
+        width: 92%;
+        padding-top: 24px;
+      }
+
+      .card-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+      }
+
+      .card-link {
+        min-height: 105px;
+
+        padding:
+          14px
+          12px;
+      }
+
+      .card-name {
+        font-size: 13px;
+      }
+
+      .categories {
+        gap: 6px;
+      }
+
+      .category-button {
+        padding:
+          8px
+          12px;
+
+        font-size: 11px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+<main class="page">
+
+  <header class="header">
+
+    <h1>
+      真夜中珈琲屋台　カードギャラリー
+    </h1>
+
+    <p>
+      2026 夏祭り　営業記録
+    </p>
+
+  </header>
+
+
+  <nav class="categories">
+
+    <button
+      class="category-button active"
+      type="button"
+    >
+      ☕ 珈琲カード
+    </button>
+
+
+    <button
+      class="category-button disabled"
+      type="button"
+      title="後ほど追加予定"
+    >
+      🥤 テイクアウト
+    </button>
+
+
+    <button
+      class="category-button disabled"
+      type="button"
+      title="後ほど追加予定"
+    >
+      🎇 線香花火
+    </button>
+
+  </nav>
+
+
+  <section>
+
+    <div class="section-title">
+
+      <span class="en">
+        COFFEE COLLECTION
+      </span>
+
+      <span class="jp">
+        珈琲カード
+      </span>
+
+      <span class="count">
+        全30種
+      </span>
+
+    </div>
+
+
+    <div
+      class="card-grid"
+      id="coffeeGrid"
+    >
+    </div>
+
+  </section>
+
+
+  <div class="footer-actions">
+
+    <a
+      class="back-button"
+      href="../index.html"
+    >
+      ☕ 屋台に戻る
+    </a>
+
+  </div>
+
+</main>
+
+
+<script>
+
+  const coffees = [
+
+    ["M-001", "月灯りブレンド"],
+    ["M-002", "三日月カフェオレ"],
+    ["M-003", "雨宿り珈琲"],
+    ["M-004", "夜風アイス珈琲"],
+    ["M-005", "午前二時の深煎り"],
+
+    ["M-006", "焦がし蜂蜜ラテ"],
+    ["M-007", "霧夜ラテ"],
+    ["M-008", "黒糖きなこ珈琲"],
+    ["M-009", "星屑フラッペ"],
+    ["M-010", "塩キャラメルラテ"],
+
+    ["M-011", "柚子香る夜珈琲"],
+    ["M-012", "山椒モカ"],
+    ["M-013", "月影コールドブリュー"],
+    ["M-014", "眠れない夜のデカフェ"],
+    ["M-015", "雷鳴エスプレッソ"],
+
+    ["M-016", "宵待ちカプチーノ"],
+    ["M-017", "琥珀糖ラテ"],
+    ["M-018", "夜汽車ブレンド"],
+    ["M-019", "銀河ミルク珈琲"],
+    ["M-020", "薄明ショコラモカ"],
+
+    ["M-021", "木漏れ月ブレンド"],
+    ["M-022", "灯火シナモンラテ"],
+    ["M-023", "夜桜ラテ"],
+    ["M-024", "流星珈琲"],
+    ["M-025", "新月ブラック"],
+
+    ["M-026", "宵星アフォガート"],
+    ["M-027", "月蝕モカ"],
+    ["M-028", "午前零時の一杯"],
+    ["M-029", "FULL MOON"],
+    ["M-030", "店主の気まぐれ"]
+
+  ];
+
+
+  const grid =
+    document.getElementById(
+      "coffeeGrid"
+    );
+
+
+  coffees.forEach(
+    ([id, name]) => {
+
+      const link =
+        document.createElement("a");
+
+
+      /*
+        詳細ページへ
+        ?card=M-001 の形で渡す
+      */
+
+      link.href =
+        `./index.html?card=${id}`;
+
+
+      link.className =
+        "card-link";
+
+
+      link.innerHTML =
+        `
+          <span class="card-id">
+            ${id}
+          </span>
+
+          <span class="card-name">
+            ${name}
+          </span>
+
+          <span class="card-arrow">
+            VIEW →
+          </span>
+        `;
+
+
+      grid.appendChild(link);
+
+    }
+  );
+
+</script>
+
+</body>
+</html>

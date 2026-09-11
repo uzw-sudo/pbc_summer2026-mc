@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>真夜中珈琲屋台｜カード一覧</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    真夜中珈琲屋台｜カード一覧
+  </title>
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+
 
   <style>
+
+    /* ========================================
+       RESET
+    ======================================== */
+
     * {
       box-sizing: border-box;
     }
+
 
     html,
     body {
@@ -17,20 +38,8 @@
       min-height: 100%;
     }
 
-    body {
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.10) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 70% 15%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 88% 65%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 42% 82%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
-        linear-gradient(180deg, #07111f 0%, #050912 100%);
 
-      background-size:
-        170px 170px,
-        240px 240px,
-        310px 310px,
-        220px 220px,
-        auto;
+    body {
 
       color: #ead8b3;
 
@@ -38,356 +47,1098 @@
         "Noto Serif JP",
         "Yu Mincho",
         serif;
+
+
+      background:
+
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255,255,255,.10) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 72% 14%,
+          rgba(255,255,255,.08) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 88% 65%,
+          rgba(255,255,255,.08) 0 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle at 42% 84%,
+          rgba(255,255,255,.06) 0 1px,
+          transparent 1.5px
+        ),
+
+        linear-gradient(
+          180deg,
+          #07111f 0%,
+          #050912 100%
+        );
+
+
+      background-size:
+
+        170px 170px,
+        240px 240px,
+        310px 310px,
+        220px 220px,
+        auto;
+
     }
+
+
+
+    /* ========================================
+       PAGE
+    ======================================== */
 
     .page {
-      width: min(1200px, 94%);
-      margin: 0 auto;
-      padding: 34px 0 50px;
+
+      width:
+        min(
+          1240px,
+          96%
+        );
+
+      margin:
+        0 auto;
+
+      padding:
+        20px
+        0
+        20px;
+
     }
 
-    /* =========================
+
+
+    /* ========================================
        HEADER
-    ========================= */
+    ======================================== */
 
     .header {
-      text-align: center;
-      margin-bottom: 26px;
+
+      text-align:
+        center;
+
+      margin-bottom:
+        11px;
+
     }
+
 
     .header h1 {
+
       margin: 0;
-      font-size: clamp(22px, 3vw, 34px);
-      font-weight: 400;
-      letter-spacing: .08em;
+
+      color:
+        #efd8aa;
+
+      font-size:
+        clamp(
+          21px,
+          2.4vw,
+          31px
+        );
+
+      font-weight:
+        400;
+
+      letter-spacing:
+        .08em;
+
+      line-height:
+        1.3;
+
     }
+
 
     .header p {
-      margin: 7px 0 0;
-      font-size: 12px;
-      color: rgba(234,216,179,.65);
+
+      margin:
+        4px
+        0
+        0;
+
+      color:
+        rgba(
+          234,
+          216,
+          179,
+          .58
+        );
+
+      font-size:
+        10px;
+
+      letter-spacing:
+        .04em;
+
     }
 
-    /* =========================
-       CATEGORY
-    ========================= */
+
+
+    /* ========================================
+       CATEGORY BUTTONS
+    ======================================== */
 
     .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+
+      display:
+        flex;
+
+      justify-content:
+        center;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      margin-bottom:
+        12px;
+
+      flex-wrap:
+        wrap;
+
     }
+
 
     .category-button {
-      padding: 9px 18px;
-      border: 1px solid #9e773c;
-      border-radius: 999px;
-      background: rgba(9,15,25,.78);
-      color: #ead8b3;
-      font-family: inherit;
-      font-size: 13px;
-      cursor: pointer;
+
+      padding:
+        6px
+        15px;
+
+      border:
+        1px solid
+        rgba(
+          167,
+          125,
+          60,
+          .72
+        );
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(
+          7,
+          13,
+          23,
+          .82
+        );
+
+      color:
+        #ead8b3;
+
+      font-family:
+        inherit;
+
+      font-size:
+        10px;
+
+      line-height:
+        1.4;
+
     }
+
 
     .category-button.active {
-      background: rgba(158,119,60,.22);
+
+      border-color:
+        #b98b45;
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .16
+        );
+
       box-shadow:
-        0 0 18px rgba(158,119,60,.16);
+        0 0 15px
+        rgba(
+          167,
+          125,
+          60,
+          .08
+        );
+
     }
+
 
     .category-button.disabled {
-      opacity: .38;
-      cursor: default;
+
+      opacity:
+        .34;
+
     }
 
-    /* =========================
-       SECTION
-    ========================= */
+
+
+    /* ========================================
+       SECTION TITLE
+    ======================================== */
 
     .section-title {
-      text-align: center;
-      margin-bottom: 22px;
+
+      text-align:
+        center;
+
+      margin-bottom:
+        11px;
+
+      line-height:
+        1.25;
+
     }
+
 
     .section-title .en {
-      display: block;
-      font-size: 11px;
-      letter-spacing: .22em;
-      opacity: .7;
-      margin-bottom: 4px;
+
+      display:
+        block;
+
+      margin-bottom:
+        2px;
+
+      color:
+        rgba(
+          234,
+          216,
+          179,
+          .54
+        );
+
+      font-size:
+        9px;
+
+      letter-spacing:
+        .20em;
+
     }
+
 
     .section-title .jp {
-      font-size: 21px;
-      letter-spacing: .08em;
+
+      color:
+        #efd5a0;
+
+      font-size:
+        17px;
+
+      letter-spacing:
+        .08em;
+
     }
+
 
     .section-title .count {
-      margin-left: 8px;
-      font-size: 12px;
-      opacity: .6;
+
+      margin-left:
+        7px;
+
+      color:
+        rgba(
+          234,
+          216,
+          179,
+          .53
+        );
+
+      font-size:
+        9px;
+
     }
 
-    /* =========================
-       GRID
-    ========================= */
+
+
+    /* ========================================
+       CARD GRID
+    ======================================== */
 
     .card-grid {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
-        repeat(auto-fill, minmax(180px, 1fr));
+        repeat(
+          6,
+          minmax(0, 1fr)
+        );
 
-      gap: 16px;
+      gap:
+        8px;
+
     }
+
+
+
+    /* ========================================
+       CARD BUTTON
+    ======================================== */
 
     .card-link {
-      display: block;
 
-      min-height: 116px;
+      position:
+        relative;
 
-      padding: 18px 16px;
+      display:
+        block;
 
-      border: 1px solid rgba(182,142,79,.45);
-      border-radius: 12px;
+      min-width:
+        0;
 
-      background:
-        linear-gradient(
-          180deg,
-          rgba(18,29,45,.92),
-          rgba(8,14,24,.92)
+      min-height:
+        76px;
+
+      padding:
+        10px
+        12px;
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid
+        rgba(
+          177,
+          136,
+          69,
+          .48
         );
 
-      color: #ead8b3;
+      border-radius:
+        9px;
 
-      text-decoration: none;
 
-      position: relative;
+      background:
 
-      overflow: hidden;
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.035),
+          transparent 45%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(22,32,46,.94),
+          rgba(7,13,23,.96)
+        );
+
+
+      color:
+        #ead8b3;
+
+      text-decoration:
+        none;
+
 
       transition:
-        transform .2s ease,
-        border-color .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
+
+        transform .16s ease,
+        border-color .16s ease,
+        background .16s ease,
+        box-shadow .16s ease;
+
     }
+
+
 
     .card-link::before {
+
       content: "";
 
-      position: absolute;
-      inset: 0;
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      pointer-events:
+        none;
+
 
       background:
+
         radial-gradient(
-          circle at 85% 10%,
-          rgba(201,158,87,.12),
-          transparent 35%
+          circle at 90% 5%,
+          rgba(213,165,89,.10),
+          transparent 40%
         );
 
-      pointer-events: none;
     }
+
+
 
     .card-link:hover {
-      transform: translateY(-3px);
 
-      border-color: rgba(211,168,95,.9);
+      transform:
+        translateY(-2px);
 
-      background:
-        linear-gradient(
-          180deg,
-          rgba(28,40,58,.96),
-          rgba(10,17,29,.96)
+      border-color:
+        rgba(
+          211,
+          168,
+          95,
+          .95
         );
 
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.05),
+          transparent 45%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(30,42,58,.97),
+          rgba(9,16,27,.98)
+        );
+
+
       box-shadow:
-        0 10px 28px rgba(0,0,0,.28),
-        0 0 18px rgba(169,128,65,.08);
+
+        0 8px 20px
+        rgba(0,0,0,.24),
+
+        0 0 14px
+        rgba(
+          175,
+          131,
+          62,
+          .07
+        );
+
     }
+
+
+
+    /* ID */
 
     .card-id {
-      display: block;
 
-      font-size: 10px;
+      position:
+        relative;
 
-      letter-spacing: .16em;
+      z-index:
+        1;
 
-      color: #bd9556;
+      display:
+        block;
 
-      margin-bottom: 10px;
+      margin-bottom:
+        5px;
+
+      color:
+        #bd9150;
+
+      font-size:
+        8px;
+
+      letter-spacing:
+        .15em;
+
     }
+
+
+
+    /* NAME */
 
     .card-name {
-      display: block;
 
-      font-size: 16px;
+      position:
+        relative;
 
-      line-height: 1.5;
+      z-index:
+        1;
 
-      letter-spacing: .05em;
+      display:
+        block;
+
+      padding-right:
+        18px;
+
+      color:
+        #f0dbb2;
+
+      font-size:
+        clamp(
+          11px,
+          1.1vw,
+          14px
+        );
+
+      line-height:
+        1.35;
+
+      letter-spacing:
+        .025em;
+
+      overflow-wrap:
+        anywhere;
+
     }
+
+
+
+    /* VIEW */
 
     .card-arrow {
-      position: absolute;
 
-      right: 14px;
-      bottom: 12px;
+      position:
+        absolute;
 
-      font-size: 12px;
+      z-index:
+        1;
 
-      color: rgba(234,216,179,.48);
+      right:
+        9px;
+
+      bottom:
+        7px;
+
+      color:
+        rgba(
+          205,
+          164,
+          97,
+          .72
+        );
+
+      font-size:
+        8px;
+
+      letter-spacing:
+        .04em;
+
     }
 
-    /* =========================
+
+
+    /* ========================================
+       SPECIAL CARDS
+    ======================================== */
+
+    .card-link.fullmoon {
+
+      border-color:
+        rgba(
+          218,
+          179,
+          91,
+          .65
+        );
+
+    }
+
+
+    .card-link.fullmoon .card-id,
+    .card-link.fullmoon .card-name {
+
+      color:
+        #f0d28a;
+
+    }
+
+
+    .card-link.secret {
+
+      border-color:
+        rgba(
+          157,
+          125,
+          183,
+          .58
+        );
+
+      background:
+
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(144,102,170,.12),
+          transparent 45%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(28,28,48,.95),
+          rgba(8,12,24,.98)
+        );
+
+    }
+
+
+
+    /* ========================================
        FOOTER
-    ========================= */
+    ======================================== */
 
     .footer-actions {
-      display: flex;
 
-      justify-content: center;
+      display:
+        flex;
 
-      margin-top: 34px;
+      justify-content:
+        center;
+
+      margin-top:
+        13px;
+
     }
+
 
     .back-button {
-      display: inline-block;
 
-      min-width: 210px;
+      display:
+        inline-block;
 
-      padding: 11px 24px;
+      min-width:
+        180px;
 
-      border: 1px solid #9e773c;
-      border-radius: 999px;
+      padding:
+        7px
+        20px;
 
-      background: rgba(8,14,24,.85);
+      border:
+        1px solid
+        #a77d3c;
 
-      color: #ead8b3;
+      border-radius:
+        999px;
 
-      text-align: center;
-      text-decoration: none;
+      background:
+        rgba(
+          7,
+          13,
+          23,
+          .88
+        );
 
-      font-size: 13px;
+      color:
+        #ead8b3;
+
+      font-size:
+        10px;
+
+      text-align:
+        center;
+
+      text-decoration:
+        none;
+
+
+      transition:
+
+        background .18s ease,
+        border-color .18s ease,
+        transform .18s ease;
+
     }
+
 
     .back-button:hover {
-      background: rgba(158,119,60,.14);
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .16
+        );
+
+      border-color:
+        #c99b52;
+
+      transform:
+        translateY(-1px);
+
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
 
-    @media (max-width: 600px) {
+
+    /* ========================================
+       LOWER HEIGHT PC
+    ======================================== */
+
+    @media (max-height: 800px) and (min-width: 801px) {
 
       .page {
-        width: 92%;
-        padding-top: 24px;
-      }
-
-      .card-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-
-        gap: 10px;
-      }
-
-      .card-link {
-        min-height: 105px;
 
         padding:
-          14px
-          12px;
+          11px
+          0
+          10px;
+
       }
 
-      .card-name {
-        font-size: 13px;
+
+      .header {
+
+        margin-bottom:
+          6px;
+
       }
+
+
+      .header h1 {
+
+        font-size:
+          22px;
+
+      }
+
+
+      .header p {
+
+        margin-top:
+          2px;
+
+        font-size:
+          8px;
+
+      }
+
 
       .categories {
-        gap: 6px;
+
+        margin-bottom:
+          7px;
+
       }
+
 
       .category-button {
+
         padding:
-          8px
+          4px
           12px;
 
-        font-size: 11px;
+        font-size:
+          8px;
+
       }
+
+
+      .section-title {
+
+        margin-bottom:
+          7px;
+
+      }
+
+
+      .section-title .jp {
+
+        font-size:
+          14px;
+
+      }
+
+
+      .card-grid {
+
+        gap:
+          6px;
+
+      }
+
+
+      .card-link {
+
+        min-height:
+          66px;
+
+        padding:
+          8px
+          10px;
+
+      }
+
+
+      .card-id {
+
+        margin-bottom:
+          3px;
+
+        font-size:
+          7px;
+
+      }
+
+
+      .card-name {
+
+        font-size:
+          11px;
+
+      }
+
+
+      .card-arrow {
+
+        bottom:
+          5px;
+
+        font-size:
+          7px;
+
+      }
+
+
+      .footer-actions {
+
+        margin-top:
+          8px;
+
+      }
+
     }
 
+
+
+    /* ========================================
+       TABLET
+    ======================================== */
+
+    @media (max-width: 1000px) {
+
+      .card-grid {
+
+        grid-template-columns:
+          repeat(
+            5,
+            minmax(0, 1fr)
+          );
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 650px) {
+
+      .page {
+
+        width:
+          94%;
+
+        padding:
+          17px
+          0
+          22px;
+
+      }
+
+
+      .header h1 {
+
+        font-size:
+          18px;
+
+      }
+
+
+      .categories {
+
+        gap:
+          5px;
+
+      }
+
+
+      .category-button {
+
+        padding:
+          6px
+          10px;
+
+        font-size:
+          9px;
+
+      }
+
+
+      .card-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
+
+        gap:
+          7px;
+
+      }
+
+
+      .card-link {
+
+        min-height:
+          76px;
+
+        padding:
+          9px
+          10px;
+
+      }
+
+
+      .card-name {
+
+        padding-right:
+          8px;
+
+        font-size:
+          11px;
+
+      }
+
+
+      .card-arrow {
+
+        font-size:
+          7px;
+
+      }
+
+    }
+
+
+
   </style>
+
 </head>
+
 
 
 <body>
 
+
 <main class="page">
+
+
+  <!-- ========================================
+       HEADER
+  ========================================= -->
 
   <header class="header">
 
+
     <h1>
+
       真夜中珈琲屋台　カードギャラリー
+
     </h1>
 
+
     <p>
+
       2026 夏祭り　営業記録
+
     </p>
+
 
   </header>
 
 
-  <nav class="categories">
 
-    <button
+  <!-- ========================================
+       CATEGORY
+  ========================================= -->
+
+  <nav
+    class="categories"
+    aria-label="カードカテゴリー"
+  >
+
+
+    <span
       class="category-button active"
-      type="button"
     >
+
       ☕ 珈琲カード
-    </button>
+
+    </span>
 
 
-    <button
+    <span
       class="category-button disabled"
-      type="button"
       title="後ほど追加予定"
     >
+
       🥤 テイクアウト
-    </button>
+
+    </span>
 
 
-    <button
+    <span
       class="category-button disabled"
-      type="button"
       title="後ほど追加予定"
     >
+
       🎇 線香花火
-    </button>
+
+    </span>
+
 
   </nav>
 
 
+
+  <!-- ========================================
+       COFFEE COLLECTION
+  ========================================= -->
+
   <section>
+
 
     <div class="section-title">
 
+
       <span class="en">
+
         COFFEE COLLECTION
+
       </span>
+
 
       <span class="jp">
+
         珈琲カード
+
       </span>
+
 
       <span class="count">
+
         全30種
+
       </span>
 
+
     </div>
+
 
 
     <div
@@ -396,114 +1147,309 @@
     >
     </div>
 
+
   </section>
 
 
+
+  <!-- ========================================
+       FOOTER
+  ========================================= -->
+
   <div class="footer-actions">
+
 
     <a
       class="back-button"
       href="../index.html"
     >
+
       ☕ 屋台に戻る
+
     </a>
 
+
   </div>
+
 
 </main>
 
 
+
 <script>
 
-  const coffees = [
 
-    ["M-001", "月灯りブレンド"],
-    ["M-002", "三日月カフェオレ"],
-    ["M-003", "雨宿り珈琲"],
-    ["M-004", "夜風アイス珈琲"],
-    ["M-005", "午前二時の深煎り"],
-
-    ["M-006", "焦がし蜂蜜ラテ"],
-    ["M-007", "霧夜ラテ"],
-    ["M-008", "黒糖きなこ珈琲"],
-    ["M-009", "星屑フラッペ"],
-    ["M-010", "塩キャラメルラテ"],
-
-    ["M-011", "柚子香る夜珈琲"],
-    ["M-012", "山椒モカ"],
-    ["M-013", "月影コールドブリュー"],
-    ["M-014", "眠れない夜のデカフェ"],
-    ["M-015", "雷鳴エスプレッソ"],
-
-    ["M-016", "宵待ちカプチーノ"],
-    ["M-017", "琥珀糖ラテ"],
-    ["M-018", "夜汽車ブレンド"],
-    ["M-019", "銀河ミルク珈琲"],
-    ["M-020", "薄明ショコラモカ"],
-
-    ["M-021", "木漏れ月ブレンド"],
-    ["M-022", "灯火シナモンラテ"],
-    ["M-023", "夜桜ラテ"],
-    ["M-024", "流星珈琲"],
-    ["M-025", "新月ブラック"],
-
-    ["M-026", "宵星アフォガート"],
-    ["M-027", "月蝕モカ"],
-    ["M-028", "午前零時の一杯"],
-    ["M-029", "FULL MOON"],
-    ["M-030", "店主の気まぐれ"]
-
-  ];
+/* ==========================================================
+   COFFEE CARD DATA
+========================================================== */
 
 
-  const grid =
-    document.getElementById(
-      "coffeeGrid"
+const coffees = [
+
+  [
+    "M-001",
+    "月灯りブレンド"
+  ],
+
+  [
+    "M-002",
+    "三日月カフェオレ"
+  ],
+
+  [
+    "M-003",
+    "雨宿り珈琲"
+  ],
+
+  [
+    "M-004",
+    "夜風アイス珈琲"
+  ],
+
+  [
+    "M-005",
+    "午前二時の深煎り"
+  ],
+
+  [
+    "M-006",
+    "焦がし蜂蜜ラテ"
+  ],
+
+  [
+    "M-007",
+    "霧夜ラテ"
+  ],
+
+  [
+    "M-008",
+    "黒糖きなこ珈琲"
+  ],
+
+  [
+    "M-009",
+    "星屑フラッペ"
+  ],
+
+  [
+    "M-010",
+    "塩キャラメルラテ"
+  ],
+
+  [
+    "M-011",
+    "柚子香る夜珈琲"
+  ],
+
+  [
+    "M-012",
+    "山椒モカ"
+  ],
+
+  [
+    "M-013",
+    "月影コールドブリュー"
+  ],
+
+  [
+    "M-014",
+    "眠れない夜のデカフェ"
+  ],
+
+  [
+    "M-015",
+    "雷鳴エスプレッソ"
+  ],
+
+  [
+    "M-016",
+    "宵待ちカプチーノ"
+  ],
+
+  [
+    "M-017",
+    "琥珀糖ラテ"
+  ],
+
+  [
+    "M-018",
+    "夜汽車ブレンド"
+  ],
+
+  [
+    "M-019",
+    "銀河ミルク珈琲"
+  ],
+
+  [
+    "M-020",
+    "薄明ショコラモカ"
+  ],
+
+  [
+    "M-021",
+    "木漏れ月ブレンド"
+  ],
+
+  [
+    "M-022",
+    "灯火シナモンラテ"
+  ],
+
+  [
+    "M-023",
+    "夜桜ラテ"
+  ],
+
+  [
+    "M-024",
+    "流星珈琲"
+  ],
+
+  [
+    "M-025",
+    "新月ブラック"
+  ],
+
+  [
+    "M-026",
+    "宵星アフォガート"
+  ],
+
+  [
+    "M-027",
+    "月蝕モカ"
+  ],
+
+  [
+    "M-028",
+    "午前零時の一杯"
+  ],
+
+  [
+    "M-029",
+    "FULL MOON"
+  ],
+
+  [
+    "M-030",
+    "店主の気まぐれ"
+  ]
+
+];
+
+
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+
+const grid =
+  document.getElementById(
+    "coffeeGrid"
+  );
+
+
+
+/* ==========================================================
+   CREATE CARD LINKS
+========================================================== */
+
+
+coffees.forEach(
+  ([id, name]) => {
+
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+
+    /*
+      詳細ギャラリーへ
+    */
+
+
+    link.href =
+      `./index.html?card=${encodeURIComponent(id)}`;
+
+
+    link.className =
+      "card-link";
+
+
+
+    /*
+      FULL MOON
+    */
+
+
+    if (
+      id === "M-029"
+    ) {
+
+
+      link.classList.add(
+        "fullmoon"
+      );
+
+
+    }
+
+
+
+    /*
+      SECRET
+    */
+
+
+    if (
+      id === "M-030"
+    ) {
+
+
+      link.classList.add(
+        "secret"
+      );
+
+
+    }
+
+
+
+    link.innerHTML = `
+
+      <span class="card-id">
+        ${id}
+      </span>
+
+      <span class="card-name">
+        ${name}
+      </span>
+
+      <span class="card-arrow">
+        VIEW →
+      </span>
+
+    `;
+
+
+
+    grid.appendChild(
+      link
     );
 
 
-  coffees.forEach(
-    ([id, name]) => {
-
-      const link =
-        document.createElement("a");
+  }
+);
 
 
-      /*
-        詳細ページへ
-        ?card=M-001 の形で渡す
-      */
-
-      link.href =
-        `./index.html?card=${id}`;
-
-
-      link.className =
-        "card-link";
-
-
-      link.innerHTML =
-        `
-          <span class="card-id">
-            ${id}
-          </span>
-
-          <span class="card-name">
-            ${name}
-          </span>
-
-          <span class="card-arrow">
-            VIEW →
-          </span>
-        `;
-
-
-      grid.appendChild(link);
-
-    }
-  );
 
 </script>
 
+
 </body>
+
 </html>

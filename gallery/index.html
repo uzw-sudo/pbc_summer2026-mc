@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>真夜中珈琲屋台｜カードギャラリー</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #090b12;
+      color: #eee4cf;
+      font-family: serif;
+      min-height: 100vh;
+    }
+
+    .gallery {
+      width: min(1100px, 94%);
+      margin: 0 auto;
+      padding: 30px 0 50px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 13px;
+      opacity: .7;
+      margin-bottom: 24px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    a.button {
+      appearance: none;
+      border: 1px solid #9b7c4c;
+      background: #171822;
+      color: #eee4cf;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    button:hover,
+    a.button:hover {
+      background: #252331;
+    }
+
+    .viewer {
+      width: 100%;
+      height: 85vh;
+      border: 1px solid rgba(198, 164, 105, .35);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="gallery">
+
+    <h1>真夜中珈琲屋台　カードギャラリー</h1>
+
+    <div class="note">
+      管理用ページ ／ 通常のサイトからはリンクしません
+    </div>
+
+    <div class="controls">
+      <button id="m001">
+        M-001 月灯りブレンド
+      </button>
+
+      <a
+        class="button"
+        href="../result/index.html?result=M-001"
+        target="_blank"
+        rel="noopener"
+      >
+        M-001を別画面で開く
+      </a>
+    </div>
+
+    <div class="viewer">
+      <iframe
+        id="cardViewer"
+        src="../result/index.html?result=M-001"
+        title="結果カード">
+      </iframe>
+    </div>
+
+  </main>
+
+  <script>
+    const viewer = document.getElementById("cardViewer");
+
+    document.getElementById("m001").addEventListener("click", () => {
+      viewer.src = "../result/index.html?result=M-001";
+    });
+  </script>
+
+</body>
+</html>

@@ -188,7 +188,7 @@
 
 
     /* ========================================
-       TOP NAVIGATION
+       TOP NAV
     ======================================== */
 
     .card-nav {
@@ -226,8 +226,7 @@
           .90
         );
 
-      color:
-        #ead8b3;
+      color: #ead8b3;
 
       font-family: inherit;
 
@@ -253,8 +252,7 @@
           .16
         );
 
-      border-color:
-        #c99b52;
+      border-color: #c99b52;
 
       transform:
         translateY(-1px);
@@ -302,8 +300,8 @@
 
       display: flex;
 
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       overflow: hidden;
 
@@ -325,10 +323,7 @@
     }
 
 
-    /*
-      テイクアウトカードは
-      本番の 2:3
-    */
+    /* テイクアウトは2:3 */
 
     body[data-type="takeout"] .viewer {
 
@@ -337,15 +332,15 @@
     }
 
 
-    /*
-      線香花火はカードのサイズを
-      本番側から取得するので
-      少し広めに確保
-    */
+    /* 線香花火は横長カード */
 
     body[data-type="sparkler"] .viewer {
 
-      width: min(100%, 680px);
+      width:
+        min(
+          100%,
+          760px
+        );
 
     }
 
@@ -370,6 +365,37 @@
 
 
     /* ========================================
+       SPARKLER
+       結果完成まではiframeを見せない
+    ======================================== */
+
+    body[data-type="sparkler"] #cardViewer {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      transition:
+        opacity .28s ease;
+
+    }
+
+
+    body[data-type="sparkler"].sparkler-ready #cardViewer {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+
+    }
+
+
+
+    /* ========================================
        LOADING
     ======================================== */
 
@@ -383,15 +409,15 @@
 
       display: flex;
 
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       color:
         rgba(
           237,
           218,
           178,
-          .74
+          .75
         );
 
       font-size: 11px;
@@ -400,7 +426,9 @@
 
       pointer-events: none;
 
-      transition: opacity .3s ease;
+      transition:
+        opacity .3s ease,
+        visibility .3s ease;
 
     }
 
@@ -434,13 +462,20 @@
       0%,
       100% {
 
-        opacity: .35;
+        opacity: .3;
+
+        transform:
+          scale(.9);
 
       }
+
 
       50% {
 
         opacity: 1;
+
+        transform:
+          scale(1.12);
 
       }
 
@@ -517,8 +552,7 @@
           .16
         );
 
-      border-color:
-        #c99b52;
+      border-color: #c99b52;
 
       transform:
         translateY(-1px);
@@ -670,8 +704,6 @@
 
     }
 
-
-
   </style>
 
 </head>
@@ -684,9 +716,7 @@
 <main class="gallery">
 
 
-  <!-- ========================================
-       HEADER
-  ========================================= -->
+  <!-- HEADER -->
 
   <header class="gallery-header">
 
@@ -700,7 +730,9 @@
 
 
     <p class="gallery-note">
+
       2026 夏祭り　営業記録
+
     </p>
 
 
@@ -708,9 +740,7 @@
 
 
 
-  <!-- ========================================
-       NAV
-  ========================================= -->
+  <!-- NAV -->
 
   <nav
     class="card-nav"
@@ -747,9 +777,7 @@
 
 
 
-  <!-- ========================================
-       VIEWER
-  ========================================= -->
+  <!-- VIEWER -->
 
   <section class="viewer-wrap">
 
@@ -766,6 +794,7 @@
 
 
     </div>
+
 
 
     <div
@@ -788,9 +817,7 @@
 
 
 
-  <!-- ========================================
-       BOTTOM
-  ========================================= -->
+  <!-- BOTTOM -->
 
   <div class="bottom-actions">
 
@@ -823,17 +850,16 @@
 
 
 /* ==========================================================
-   DATA
+   CARD DATA
 ========================================================== */
 
 
 const COLLECTIONS = {
 
 
-
-  /* ----------------------------------------
-     TAKE OUT
-  ---------------------------------------- */
+  /* ======================================
+     TAKEOUT
+  ====================================== */
 
   takeout: {
 
@@ -891,11 +917,9 @@ const COLLECTIONS = {
 
 
 
-  /* ----------------------------------------
+  /* ======================================
      SPARKLER
-
-     list.html と同じ並びです。
-  ---------------------------------------- */
+  ====================================== */
 
   sparkler: {
 
@@ -1034,7 +1058,9 @@ const params =
 
 
 let currentType =
-  params.get("type");
+  params.get(
+    "type"
+  );
 
 
 if (
@@ -1049,13 +1075,16 @@ if (
 }
 
 
-
 let collection =
-  COLLECTIONS[currentType];
+  COLLECTIONS[
+    currentType
+  ];
 
 
 const requestedCard =
-  params.get("card");
+  params.get(
+    "card"
+  );
 
 
 let currentIndex =
@@ -1076,6 +1105,20 @@ if (
 
 
 /* ==========================================================
+   GLOBAL STATE
+========================================================== */
+
+
+let sparklerTimer =
+  null;
+
+
+let sparklerClicked =
+  new WeakSet();
+
+
+
+/* ==========================================================
    LOADING
 ========================================================== */
 
@@ -1083,6 +1126,11 @@ if (
 function showLoading(
   text = "カードを準備しています"
 ) {
+
+
+  document.body.classList.remove(
+    "sparkler-ready"
+  );
 
 
   loadingText.textContent =
@@ -1184,16 +1232,16 @@ function updateHeader() {
 
 
 /* ==========================================================
-   TAKE OUT CARD
-
-   本番 opening.css と
-   takeout-card.png をそのまま使用します。
+   TAKEOUT
 ========================================================== */
 
 
 function renderTakeoutCard(
   card
 ) {
+
+
+  clearSparklerTimer();
 
 
   showLoading(
@@ -1208,15 +1256,9 @@ function renderTakeoutCard(
     ).href;
 
 
-
   /*
-    カードコレクション用なので
-    名前と日付は固定表示。
-
-    実際のお客様の名前は
-    保存・送信しません。
+    図鑑用なので個人名は使わない
   */
-
 
   const guestName =
     "GUEST";
@@ -1224,7 +1266,6 @@ function renderTakeoutCard(
 
   const cardDate =
     "2026.09.01";
-
 
 
   const srcdoc = `
@@ -1235,106 +1276,125 @@ function renderTakeoutCard(
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <base href="${siteRoot}">
+<base href="${siteRoot}">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+  rel="stylesheet"
+>
 
-  <link
-    rel="stylesheet"
-    href="css/opening.css"
-  >
-
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
+<link
+  rel="stylesheet"
+  href="css/opening.css"
+>
 
 
-    html,
-    body {
+<style>
 
-      width: 100%;
-      height: 100%;
-
-      margin: 0;
-      padding: 0;
-
-      overflow: hidden !important;
-
-      background: transparent !important;
-
-    }
+* {
+  box-sizing: border-box;
+}
 
 
-    body {
+html,
+body {
 
-      min-width: 0 !important;
-      min-height: 0 !important;
+  width: 100%;
+  height: 100%;
 
-      display: flex;
+  margin: 0 !important;
+  padding: 0 !important;
 
-      align-items: center;
-      justify-content: center;
+  overflow: hidden !important;
 
-    }
+  background:
+    transparent !important;
 
-
-    /*
-      本番カード自体はそのまま。
-      ギャラリー画面いっぱいに収めるため
-      外寸だけ100%へ。
-    */
-
-    #takeoutCardPreview {
-
-      position: relative !important;
-
-      width: auto !important;
-
-      height: 100% !important;
-
-      max-width: 100% !important;
-      max-height: 100% !important;
-
-      aspect-ratio: 2 / 3 !important;
-
-      margin: 0 auto !important;
-
-      flex: 0 0 auto;
-
-      overflow: hidden !important;
-
-    }
+}
 
 
-    .takeout-card-base-image {
+body {
 
-      position: absolute !important;
+  min-width:
+    0 !important;
 
-      inset: 0 !important;
+  min-height:
+    0 !important;
 
-      display: block !important;
+  display:
+    flex;
 
-      width: 100% !important;
-      height: 100% !important;
+  align-items:
+    center;
 
-      object-fit: fill !important;
+  justify-content:
+    center;
 
-    }
+}
 
-  </style>
+
+#takeoutCardPreview {
+
+  position:
+    relative !important;
+
+  width:
+    auto !important;
+
+  height:
+    100% !important;
+
+  max-width:
+    100% !important;
+
+  max-height:
+    100% !important;
+
+  aspect-ratio:
+    2 / 3 !important;
+
+  margin:
+    0 auto !important;
+
+  overflow:
+    hidden !important;
+
+  flex:
+    0 0 auto;
+
+}
+
+
+.takeout-card-base-image {
+
+  position:
+    absolute !important;
+
+  inset:
+    0 !important;
+
+  display:
+    block !important;
+
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  object-fit:
+    fill !important;
+
+}
+
+</style>
 
 </head>
 
@@ -1342,66 +1402,72 @@ function renderTakeoutCard(
 <body>
 
 
-  <article
-    id="takeoutCardPreview"
-    class="takeout-card-preview"
-    data-theme="${card.theme}"
-    aria-label="テイクアウトカード"
+<article
+  id="takeoutCardPreview"
+  class="takeout-card-preview"
+  data-theme="${card.theme}"
+  aria-label="テイクアウトカード"
+>
+
+
+  <img
+    class="takeout-card-base-image"
+    src="assets/images/takeout-card.png"
+    alt="真夜中珈琲屋台 TAKE OUT CARD"
   >
 
 
-    <img
-      class="takeout-card-base-image"
-      src="assets/images/takeout-card.png"
-      alt="真夜中珈琲屋台 TAKE OUT CARD"
-    >
+  <span
+    class="
+      takeout-card-overlay
+      takeout-card-cup-name
+    "
+  >
+    ${guestName}
+  </span>
 
 
-    <!-- カップ部分 -->
-
-    <span
-      class="
-        takeout-card-overlay
-        takeout-card-cup-name
-      "
-    >${guestName}</span>
-
-
-    <span
-      class="
-        takeout-card-overlay
-        takeout-card-cup-drink
-      "
-    >${card.name}</span>
+  <span
+    class="
+      takeout-card-overlay
+      takeout-card-cup-drink
+    "
+  >
+    ${card.name}
+  </span>
 
 
-    <!-- 下部記入欄 -->
-
-    <span
-      class="
-        takeout-card-overlay
-        takeout-card-for
-      "
-    >${guestName}</span>
-
-
-    <span
-      class="
-        takeout-card-overlay
-        takeout-card-drink
-      "
-    >${card.name}</span>
+  <span
+    class="
+      takeout-card-overlay
+      takeout-card-for
+    "
+  >
+    ${guestName}
+  </span>
 
 
-    <span
-      class="
-        takeout-card-overlay
-        takeout-card-date
-      "
-    >${cardDate}</span>
+  <span
+    class="
+      takeout-card-overlay
+      takeout-card-drink
+    "
+  >
+    ${card.name}
+  </span>
 
 
-  </article>
+  <span
+    class="
+      takeout-card-overlay
+      takeout-card-date
+    "
+  >
+    ${cardDate}
+  </span>
+
+
+</article>
 
 
 </body>
@@ -1409,7 +1475,6 @@ function renderTakeoutCard(
 </html>
 
   `;
-
 
 
   viewer.onload =
@@ -1434,17 +1499,8 @@ function renderTakeoutCard(
 
 
 /* ==========================================================
-   SPARKLER
+   SPARKLER TIMER
 ========================================================== */
-
-
-let sparklerTimer =
-  null;
-
-
-let sparklerClicked =
-  new WeakSet();
-
 
 
 function clearSparklerTimer() {
@@ -1471,10 +1527,10 @@ function clearSparklerTimer() {
 
 
 
-/* ----------------------------------------------------------
-   GA4等をギャラリー操作で増やさないよう
-   ページ読み込み後のイベント送信を停止
----------------------------------------------------------- */
+/* ==========================================================
+   ANALYTICS OFF
+   ギャラリー閲覧でイベントを増やさない
+========================================================== */
 
 
 function silenceSparklerAnalytics(
@@ -1534,9 +1590,9 @@ function silenceSparklerAnalytics(
 
 
 
-/* ----------------------------------------------------------
-   線香花火ページを高速化
----------------------------------------------------------- */
+/* ==========================================================
+   SPARKLER SPEED
+========================================================== */
 
 
 function speedUpSparklerPage(
@@ -1597,9 +1653,9 @@ function speedUpSparklerPage(
 
 
 
-/* ----------------------------------------------------------
-   表示中の操作ボタンか判定
----------------------------------------------------------- */
+/* ==========================================================
+   VISIBLE BUTTON CHECK
+========================================================== */
 
 
 function isVisibleButton(
@@ -1629,6 +1685,8 @@ function isVisibleButton(
     style.display === "none"
     ||
     style.visibility === "hidden"
+    ||
+    Number(style.opacity) === 0
   ) {
 
     return false;
@@ -1651,9 +1709,9 @@ function isVisibleButton(
 
 
 
-/* ----------------------------------------------------------
-   必要な操作だけ自動クリック
----------------------------------------------------------- */
+/* ==========================================================
+   AUTO CLICK
+========================================================== */
 
 
 function autoClickSparkler(
@@ -1662,7 +1720,7 @@ function autoClickSparkler(
 ) {
 
 
-  const allowed = [
+  const allowedTexts = [
 
     "線香花火を選ぶ",
     "花火を選ぶ",
@@ -1680,111 +1738,107 @@ function autoClickSparkler(
   ];
 
 
-
-  const buttons =
-    doc.querySelectorAll(
+  doc
+    .querySelectorAll(
       "button, [role='button']"
-    );
+    )
+    .forEach(
+      button => {
 
 
+        if (
+          sparklerClicked.has(
+            button
+          )
+        ) {
 
-  buttons.forEach(
-    button => {
+          return;
+
+        }
 
 
-      if (
-        sparklerClicked.has(
+        if (
+          !isVisibleButton(
+            win,
+            button
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        const text =
+          button.textContent
+            .replace(/\s+/g, "")
+            .trim();
+
+
+        /*
+          ギャラリーでは再プレイを押さない
+        */
+
+        if (
+          text.includes(
+            "もう一度"
+          )
+          ||
+          text.includes(
+            "もう一本"
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        const matched =
+          allowedTexts.some(
+            label =>
+              text.includes(
+                label.replace(/\s+/g, "")
+              )
+          );
+
+
+        if (
+          !matched
+        ) {
+
+          return;
+
+        }
+
+
+        sparklerClicked.add(
           button
-        )
-      ) {
-
-        return;
-
-      }
-
-
-      if (
-        !isVisibleButton(
-          win,
-          button
-        )
-      ) {
-
-        return;
-
-      }
-
-
-      const text =
-        button.textContent
-          .replace(/\s+/g, "")
-          .trim();
-
-
-
-      const matched =
-        allowed.some(
-          label =>
-            text.includes(
-              label.replace(/\s+/g, "")
-            )
         );
 
 
-
-      if (
-        !matched
-      ) {
-
-        return;
-
-      }
+        try {
 
 
-
-      /*
-        「もう一度」系は絶対に押さない
-      */
-
-      if (
-        text.includes("もう一度")
-        ||
-        text.includes("もう一本")
-      ) {
-
-        return;
-
-      }
+          button.click();
 
 
+        }
 
-      sparklerClicked.add(
-        button
-      );
-
-
-      try {
-
-
-        button.click();
+        catch (_) {}
 
 
       }
-
-      catch (_) {}
-
-
-    }
-  );
+    );
 
 
 }
 
 
 
-/* ----------------------------------------------------------
-   結果カード候補を探す
----------------------------------------------------------- */
+/* ==========================================================
+   FIND SPARKLER RESULT CARD
+========================================================== */
 
 
 function findSparklerResultCard(
@@ -1801,19 +1855,21 @@ function findSparklerResultCard(
 
     ".result-card",
 
-    "[class*='sparkler'][class*='result']",
+    "[class*='sparkler'][class*='card']",
 
     "[class*='result'][class*='card']",
 
-    "article"
+    "article",
+
+    "section",
+
+    "div"
 
   ];
 
 
-
   const candidates =
     new Set();
-
 
 
   selectors.forEach(
@@ -1836,10 +1892,8 @@ function findSparklerResultCard(
   );
 
 
-
   const scored =
     [];
-
 
 
   candidates.forEach(
@@ -1847,6 +1901,8 @@ function findSparklerResultCard(
 
 
       if (
+        !element
+        ||
         element.hidden
       ) {
 
@@ -1856,8 +1912,18 @@ function findSparklerResultCard(
 
 
       const text =
-        element.textContent || "";
+        (
+          element.textContent
+          ||
+          ""
+        )
+        .replace(/\s+/g, " ")
+        .trim();
 
+
+      /*
+        指定した結果名が必須
+      */
 
       if (
         !text.includes(
@@ -1870,41 +1936,128 @@ function findSparklerResultCard(
       }
 
 
+      const rect =
+        element.getBoundingClientRect();
+
+
+      /*
+        小さすぎる文字要素を除外
+      */
+
+      if (
+        rect.width < 280
+        ||
+        rect.height < 260
+      ) {
+
+        return;
+
+      }
+
 
       let score =
         0;
 
 
+      if (
+        text.includes(
+          "TONIGHT'S SPARKLER"
+        )
+        ||
+        text.includes(
+          "TONIGHT’S SPARKLER"
+        )
+      ) {
 
-      const markers = [
+        score += 30;
 
-        "TONIGHT",
-        "SPARKLER",
+      }
 
-        "NORMAL",
-        "RARE",
-        "SECRET",
 
-        "今夜の色",
-        "持ち帰る言葉",
+      if (
+        text.includes(
+          card.name
+        )
+      ) {
 
-        "店主"
+        score += 15;
+
+      }
+
+
+      if (
+        text.includes(
+          "NORMAL"
+        )
+        ||
+        text.includes(
+          "RARE"
+        )
+        ||
+        text.includes(
+          "SECRET"
+        )
+      ) {
+
+        score += 7;
+
+      }
+
+
+      if (
+        text.includes(
+          "今夜の色"
+        )
+      ) {
+
+        score += 5;
+
+      }
+
+
+      if (
+        text.includes(
+          "持ち帰る言葉"
+        )
+      ) {
+
+        score += 5;
+
+      }
+
+
+
+      /*
+        3つの操作ボタンを含む親箱は
+        カード本体ではないので大幅減点
+      */
+
+      const unwantedTexts = [
+
+        "Xでシェア",
+
+        "屋台に戻る",
+
+        "もう一本だけ選ぶ",
+
+        "もう一本選ぶ",
+
+        "もう一度"
 
       ];
 
 
-
-      markers.forEach(
-        marker => {
+      unwantedTexts.forEach(
+        word => {
 
 
           if (
             text.includes(
-              marker
+              word
             )
           ) {
 
-            score += 1;
+            score -= 30;
 
           }
 
@@ -1913,52 +2066,22 @@ function findSparklerResultCard(
       );
 
 
+      scored.push({
 
-      const rect =
-        element.getBoundingClientRect();
+        element,
 
+        score,
 
+        area:
+          rect.width
+          *
+          rect.height
 
-      if (
-        rect.width > 150
-        &&
-        rect.height > 180
-      ) {
-
-        score += 2;
-
-      }
-
-
-
-      if (
-        score >= 3
-      ) {
-
-
-        scored.push({
-
-          element,
-
-          score,
-
-          area:
-            Math.max(
-              1,
-              rect.width
-              *
-              rect.height
-            )
-
-        });
-
-
-      }
+      });
 
 
     }
   );
-
 
 
   scored.sort(
@@ -1979,8 +2102,9 @@ function findSparklerResultCard(
 
 
       /*
-        同点なら
-        よりカードらしい小さい領域
+        同点なら小さい領域を優先。
+        親コンテナではなく
+        カード本体を拾うため。
       */
 
       return (
@@ -1994,12 +2118,30 @@ function findSparklerResultCard(
   );
 
 
+  if (
+    scored.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  /*
+    カードらしい点数のものだけ採用
+  */
+
+  if (
+    scored[0].score < 20
+  ) {
+
+    return null;
+
+  }
+
 
   return (
-    scored[0]
-      ?.element
-    ||
-    null
+    scored[0].element
   );
 
 
@@ -2007,9 +2149,272 @@ function findSparklerResultCard(
 
 
 
-/* ----------------------------------------------------------
-   結果カード以外を隠す
----------------------------------------------------------- */
+/* ==========================================================
+   HIDE ORIGINAL BUTTONS
+========================================================== */
+
+
+function hideSparklerOriginalControls(
+  doc,
+  cardElement
+) {
+
+
+  const targetTexts = [
+
+    "Xでシェア",
+
+    "屋台に戻る",
+
+    "もう一本だけ選ぶ",
+
+    "もう一本選ぶ",
+
+    "もう一度",
+
+    "シェア"
+
+  ];
+
+
+  /*
+    a/button は結果カード外なら全部消す
+  */
+
+  doc
+    .querySelectorAll(
+      "a, button"
+    )
+    .forEach(
+      element => {
+
+
+        if (
+          cardElement
+          &&
+          element.closest(
+            ".sparkler-result-card, .sparkler-card, .result-card"
+          )
+          ===
+          cardElement
+        ) {
+
+          return;
+
+        }
+
+
+        const text =
+          element.textContent
+            .replace(/\s+/g, "")
+            .trim();
+
+
+        const matched =
+          targetTexts.some(
+            word =>
+              text.includes(
+                word.replace(/\s+/g, "")
+              )
+          );
+
+
+        if (
+          matched
+          ||
+          !element.closest(
+            ".sparkler-result-card, .sparkler-card, .result-card"
+          )
+        ) {
+
+
+          element.style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
+
+
+        }
+
+
+      }
+    );
+
+
+}
+
+
+
+/* ==========================================================
+   FIT SPARKLER CARD
+========================================================== */
+
+
+function fitSparklerCard(
+  doc,
+  cardElement
+) {
+
+
+  if (
+    !cardElement
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+    transform解除して
+    元サイズを測る
+  */
+
+  cardElement.style.setProperty(
+    "animation",
+    "none",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "opacity",
+    "1",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "visibility",
+    "visible",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "display",
+    "block",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "transform",
+    "none",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "position",
+    "fixed",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "left",
+    "50%",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "top",
+    "50%",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "margin",
+    "0",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "z-index",
+    "999999",
+    "important"
+  );
+
+
+  const width =
+    cardElement.offsetWidth;
+
+
+  const height =
+    cardElement.offsetHeight;
+
+
+  if (
+    !width
+    ||
+    !height
+  ) {
+
+    return;
+
+  }
+
+
+  const availableWidth =
+    Math.max(
+      1,
+      viewer.clientWidth - 8
+    );
+
+
+  const availableHeight =
+    Math.max(
+      1,
+      viewer.clientHeight - 8
+    );
+
+
+  const scale =
+    Math.min(
+
+      availableWidth
+      /
+      width,
+
+      availableHeight
+      /
+      height,
+
+      1
+
+    );
+
+
+  cardElement.style.setProperty(
+    "transform-origin",
+    "center center",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+
+    "transform",
+
+    `translate(-50%, -50%) scale(${scale})`,
+
+    "important"
+
+  );
+
+
+}
+
+
+
+/* ==========================================================
+   ISOLATE SPARKLER RESULT CARD
+========================================================== */
 
 
 function isolateSparklerCard(
@@ -2018,9 +2423,126 @@ function isolateSparklerCard(
 ) {
 
 
-  /*
-    hidden を解除
-  */
+  if (
+    !cardElement
+  ) {
+
+    return;
+
+  }
+
+
+
+  /* ======================================
+     ギャラリー専用CSS
+  ====================================== */
+
+  let style =
+    doc.getElementById(
+      "gallery-sparkler-result-style"
+    );
+
+
+  if (
+    !style
+  ) {
+
+
+    style =
+      doc.createElement(
+        "style"
+      );
+
+
+    style.id =
+      "gallery-sparkler-result-style";
+
+
+    style.textContent = `
+
+
+      html,
+      body {
+
+        width:
+          100% !important;
+
+        height:
+          100% !important;
+
+        min-width:
+          0 !important;
+
+        min-height:
+          0 !important;
+
+        margin:
+          0 !important;
+
+        padding:
+          0 !important;
+
+        overflow:
+          hidden !important;
+
+        background:
+          transparent !important;
+
+      }
+
+
+      /*
+        本番側の操作UIを
+        ギャラリーでは非表示
+      */
+
+      .actions,
+      .action-buttons,
+      .result-actions,
+      .share-buttons,
+      .share-button,
+      .sparkler-actions,
+      .sparkler-result-actions,
+      .result-buttons,
+      .button-area,
+      .retry-button,
+      .back-button,
+      .again-button {
+
+        display:
+          none !important;
+
+      }
+
+
+    `;
+
+
+    doc.head.appendChild(
+      style
+    );
+
+
+  }
+
+
+
+  /* ======================================
+     ボタンを文字でも確実に消す
+  ====================================== */
+
+
+  hideSparklerOriginalControls(
+    doc,
+    cardElement
+  );
+
+
+
+  /* ======================================
+     カードからBODYへ遡り
+     兄弟要素を全部非表示
+  ====================================== */
 
 
   let node =
@@ -2036,6 +2558,11 @@ function isolateSparklerCard(
 
     node.hidden =
       false;
+
+
+    node.style.removeProperty(
+      "display"
+    );
 
 
     const parent =
@@ -2083,6 +2610,11 @@ function isolateSparklerCard(
 
   }
 
+
+
+  /* ======================================
+     BODY
+  ====================================== */
 
 
   doc.documentElement.style.setProperty(
@@ -2156,6 +2688,39 @@ function isolateSparklerCard(
 
 
 
+  /* ======================================
+     CARD
+  ====================================== */
+
+
+  cardElement.style.setProperty(
+    "animation",
+    "none",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "opacity",
+    "1",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "visibility",
+    "visible",
+    "important"
+  );
+
+
+  cardElement.style.setProperty(
+    "display",
+    "block",
+    "important"
+  );
+
+
   fitSparklerCard(
     doc,
     cardElement
@@ -2166,151 +2731,9 @@ function isolateSparklerCard(
 
 
 
-/* ----------------------------------------------------------
-   線香花火カードを画面内へ収める
----------------------------------------------------------- */
-
-
-function fitSparklerCard(
-  doc,
-  cardElement
-) {
-
-
-  if (
-    !cardElement
-  ) {
-
-    return;
-
-  }
-
-
-
-  /*
-    サイズ測定前にtransform解除
-  */
-
-
-  cardElement.style.setProperty(
-    "transform",
-    "none",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-    "position",
-    "fixed",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-    "left",
-    "50%",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-    "top",
-    "50%",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-    "margin",
-    "0",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-    "z-index",
-    "999999",
-    "important"
-  );
-
-
-
-  const width =
-    cardElement.offsetWidth;
-
-
-  const height =
-    cardElement.offsetHeight;
-
-
-
-  if (
-    !width
-    ||
-    !height
-  ) {
-
-    return;
-
-  }
-
-
-
-  const availableWidth =
-    Math.max(
-      1,
-      viewer.clientWidth - 6
-    );
-
-
-  const availableHeight =
-    Math.max(
-      1,
-      viewer.clientHeight - 6
-    );
-
-
-
-  const scale =
-    Math.min(
-
-      availableWidth
-      /
-      width,
-
-      availableHeight
-      /
-      height
-
-    );
-
-
-
-  cardElement.style.setProperty(
-    "transform-origin",
-    "center center",
-    "important"
-  );
-
-
-  cardElement.style.setProperty(
-
-    "transform",
-
-    `translate(-50%, -50%) scale(${scale})`,
-
-    "important"
-
-  );
-
-
-}
-
-
-
-/* ----------------------------------------------------------
-   線香花火
----------------------------------------------------------- */
+/* ==========================================================
+   RENDER SPARKLER
+========================================================== */
 
 
 function renderSparklerCard(
@@ -2325,17 +2748,19 @@ function renderSparklerCard(
     new WeakSet();
 
 
+  document.body.classList.remove(
+    "sparkler-ready"
+  );
+
+
   showLoading(
     "線香花火カードを準備しています"
   );
 
 
-
   /*
-    srcdocではなく、
-    本番の線香花火ページを利用
+    TAKEOUTで使ったsrcdocを解除
   */
-
 
   viewer.removeAttribute(
     "srcdoc"
@@ -2361,23 +2786,20 @@ function renderSparklerCard(
 
 
         /*
-          ギャラリー閲覧による
-          イベント記録を抑制
+          ギャラリー閲覧は
+          アクセス解析に追加しない
         */
-
 
         silenceSparklerAnalytics(
           win
         );
 
 
+
         /*
-          選出乱数を固定。
-
-          list.html と同じ並びの
-          結果を狙います。
+          目的カードを出すため
+          乱数を固定
         */
-
 
         try {
 
@@ -2392,6 +2814,11 @@ function renderSparklerCard(
         catch (_) {}
 
 
+
+        /*
+          演出を高速化。
+          iframe自体はまだ非表示。
+        */
 
         speedUpSparklerPage(
           doc
@@ -2413,9 +2840,9 @@ function renderSparklerCard(
 
 
 
-              /*
-                まず結果が出ているか確認
-              */
+              /* ----------------------------
+                 結果カードを探す
+              ---------------------------- */
 
 
               const resultCard =
@@ -2434,38 +2861,131 @@ function renderSparklerCard(
                 clearSparklerTimer();
 
 
+
+                /*
+                  まず裏で
+                  カードだけに整える
+                */
+
                 isolateSparklerCard(
                   doc,
                   resultCard
                 );
 
 
-                hideLoading();
-
 
                 /*
-                  フォント・画像反映後に
-                  再フィット
+                  少し遅れて出るボタンも
+                  もう一度消す
                 */
+
+                setTimeout(
+                  () => {
+
+
+                    isolateSparklerCard(
+                      doc,
+                      resultCard
+                    );
+
+
+                  },
+                  80
+                );
+
 
 
                 setTimeout(
-                  () =>
+                  () => {
+
+
+                    isolateSparklerCard(
+                      doc,
+                      resultCard
+                    );
+
+
+                  },
+                  180
+                );
+
+
+
+                /*
+                  整形後に初めて
+                  iframeを表示
+                */
+
+                requestAnimationFrame(
+                  () => {
+
+
+                    document.body.classList.add(
+                      "sparkler-ready"
+                    );
+
+
+                    hideLoading();
+
+
+                  }
+                );
+
+
+
+                /*
+                  フォント・画像反映後にも
+                  サイズ調整
+                */
+
+                setTimeout(
+                  () => {
+
+
                     fitSparklerCard(
                       doc,
                       resultCard
-                    ),
-                  200
+                    );
+
+
+                  },
+                  300
                 );
 
 
                 setTimeout(
-                  () =>
+                  () => {
+
+
                     fitSparklerCard(
                       doc,
                       resultCard
-                    ),
-                  700
+                    );
+
+
+                  },
+                  800
+                );
+
+
+                setTimeout(
+                  () => {
+
+
+                    hideSparklerOriginalControls(
+                      doc,
+                      resultCard
+                    );
+
+
+                    fitSparklerCard(
+                      doc,
+                      resultCard
+                    );
+
+
+                  },
+                  1500
                 );
 
 
@@ -2476,10 +2996,10 @@ function renderSparklerCard(
 
 
 
-              /*
-                まだ結果がなければ
-                必要なボタンを順に操作
-              */
+              /* ----------------------------
+                 結果がまだなら
+                 裏で操作を進める
+              ---------------------------- */
 
 
               autoClickSparkler(
@@ -2490,9 +3010,8 @@ function renderSparklerCard(
 
 
               /*
-                約24秒で終了
+                最大約24秒
               */
-
 
               if (
                 attempts > 300
@@ -2526,12 +3045,21 @@ function renderSparklerCard(
         );
 
 
+        loadingText.textContent =
+          "カードを準備しています…";
+
+
       }
 
 
     };
 
 
+
+  /*
+    キャッシュで前カードが残らないよう
+    毎回URLを変える
+  */
 
   viewer.src =
     `../sparkler/index.html?gallery=${encodeURIComponent(card.id)}&t=${Date.now()}`;
@@ -2583,8 +3111,7 @@ function showCard(
 
 
   if (
-    currentType ===
-    "takeout"
+    currentType === "takeout"
   ) {
 
 
@@ -2597,7 +3124,6 @@ function showCard(
 
 
   }
-
 
 
   renderSparklerCard(
@@ -2673,7 +3199,6 @@ window.addEventListener(
     }
 
 
-
     if (
       event.key ===
       "ArrowRight"
@@ -2694,11 +3219,7 @@ window.addEventListener(
 
 
 /* ==========================================================
-   LIST BUTTON
-
-   list.htmlから来た場合は
-   ブラウザ履歴で戻すため、
-   選んでいたカテゴリを維持しやすいです。
+   LIST
 ========================================================== */
 
 
@@ -2713,6 +3234,12 @@ listButton.addEventListener(
       "";
 
 
+    /*
+      list.htmlから来た場合は
+      「戻る」で選択中カテゴリも
+      そのまま残りやすい
+    */
+
     if (
       referrer.includes(
         "/gallery/list.html"
@@ -2723,16 +3250,14 @@ listButton.addEventListener(
       window.history.back();
 
 
-    }
-
-    else {
-
-
-      window.location.href =
-        "./list.html";
+      return;
 
 
     }
+
+
+    window.location.href =
+      "./list.html";
 
 
   }
@@ -2767,7 +3292,16 @@ window.addEventListener(
         viewer.contentDocument;
 
 
-      const card =
+      if (
+        !doc
+      ) {
+
+        return;
+
+      }
+
+
+      const resultCard =
         findSparklerResultCard(
           doc,
           collection.cards[
@@ -2777,20 +3311,26 @@ window.addEventListener(
 
 
       if (
-        card
+        !resultCard
       ) {
 
-
-        requestAnimationFrame(
-          () =>
-            fitSparklerCard(
-              doc,
-              card
-            )
-        );
-
+        return;
 
       }
+
+
+      requestAnimationFrame(
+        () => {
+
+
+          fitSparklerCard(
+            doc,
+            resultCard
+          );
+
+
+        }
+      );
 
 
     }
@@ -2811,7 +3351,6 @@ window.addEventListener(
 showCard(
   currentIndex
 );
-
 
 
 </script>

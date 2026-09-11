@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>真夜中珈琲屋台｜カードギャラリー</title>
 
   <style>
@@ -10,126 +11,457 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
-      background: #090b12;
-      color: #eee4cf;
-      font-family: serif;
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 75% 18%, rgba(255,255,255,.07) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 85% 70%, rgba(255,255,255,.08) 0 1px, transparent 1.5px),
+        linear-gradient(180deg, #07111f 0%, #050912 100%);
+      background-size:
+        170px 170px,
+        230px 230px,
+        310px 310px,
+        auto;
+
+      color: #ead8b3;
+      font-family: "Noto Serif JP", "Yu Mincho", serif;
     }
 
     .gallery {
-      width: min(1100px, 94%);
-      margin: 0 auto;
-      padding: 30px 0 50px;
-    }
+      height: 100vh;
 
-    h1 {
-      margin: 0 0 8px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 400;
-    }
+      display: grid;
 
-    .note {
-      text-align: center;
-      font-size: 13px;
-      opacity: .7;
-      margin-bottom: 24px;
-    }
+      grid-template-rows:
+        auto
+        auto
+        1fr
+        auto;
 
-    .controls {
-      display: flex;
-      justify-content: center;
       gap: 10px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+
+      padding: 18px 20px 16px;
     }
 
-    button,
-    a.button {
-      appearance: none;
-      border: 1px solid #9b7c4c;
-      background: #171822;
-      color: #eee4cf;
-      padding: 10px 18px;
-      border-radius: 6px;
+    /* ==========================
+       TITLE
+    ========================== */
+
+    .gallery-header {
+      text-align: center;
+    }
+
+    .gallery-header h1 {
+      margin: 0;
+
+      font-size: clamp(18px, 2vw, 28px);
+
+      font-weight: 400;
+
+      letter-spacing: .08em;
+    }
+
+    .gallery-header p {
+      margin: 5px 0 0;
+
+      font-size: clamp(9px, .9vw, 12px);
+
+      color: rgba(234,216,179,.62);
+    }
+
+    /* ==========================
+       NAV
+    ========================== */
+
+    .card-nav {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 18px;
+    }
+
+    .nav-button {
+      min-width: 140px;
+
+      padding: 9px 18px;
+
+      border: 1px solid #a77d3c;
+      border-radius: 7px;
+
+      background: rgba(8,13,23,.88);
+
+      color: #ead8b3;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
       cursor: pointer;
-      text-decoration: none;
-      font-size: 14px;
+
+      transition: .2s;
     }
 
-    button:hover,
-    a.button:hover {
-      background: #252331;
+    .nav-button:hover {
+      background: rgba(167,125,60,.15);
+    }
+
+    .card-number {
+      min-width: 100px;
+
+      text-align: center;
+
+      font-size: 16px;
+
+      letter-spacing: .06em;
+
+      border-bottom: 1px solid rgba(167,125,60,.65);
+
+      padding-bottom: 4px;
+    }
+
+    /* ==========================
+       CARD VIEWER
+    ========================== */
+
+    .viewer-wrap {
+      min-height: 0;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
     }
 
     .viewer {
-      width: 100%;
-      height: 85vh;
-      border: 1px solid rgba(198, 164, 105, .35);
-      border-radius: 8px;
+      position: relative;
+
+      height: 100%;
+      max-height: 100%;
+
+      aspect-ratio: 5 / 7;
+
       overflow: hidden;
-      background: #000;
+
+      border-radius: 16px;
     }
 
     iframe {
       width: 100%;
       height: 100%;
+
       border: 0;
-      background: #000;
+
+      display: block;
+
+      background: transparent;
+
+      transform-origin: top left;
     }
+
+    /* ==========================
+       BOTTOM BUTTONS
+    ========================== */
+
+    .bottom-actions {
+      display: flex;
+
+      justify-content: center;
+
+      gap: 14px;
+
+      flex-wrap: nowrap;
+    }
+
+    .bottom-button {
+      min-width: 190px;
+
+      padding: 10px 20px;
+
+      border: 1px solid #a77d3c;
+      border-radius: 999px;
+
+      background: rgba(8,13,23,.88);
+
+      color: #ead8b3;
+
+      text-decoration: none;
+
+      text-align: center;
+
+      font-size: 13px;
+
+      cursor: pointer;
+    }
+
+    .bottom-button:hover {
+      background: rgba(167,125,60,.15);
+    }
+
+    /* ==========================
+       SMALL SCREEN
+    ========================== */
+
+    @media (max-width: 700px) {
+
+      .gallery {
+        padding:
+          12px
+          8px
+          10px;
+
+        gap: 7px;
+      }
+
+      .card-nav {
+        gap: 6px;
+      }
+
+      .nav-button {
+        min-width: auto;
+
+        padding:
+          7px
+          10px;
+
+        font-size: 11px;
+      }
+
+      .card-number {
+        min-width: 76px;
+
+        font-size: 12px;
+      }
+
+      .bottom-actions {
+        gap: 6px;
+      }
+
+      .bottom-button {
+        min-width: auto;
+
+        padding:
+          8px
+          10px;
+
+        font-size: 10px;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <main class="gallery">
+<main class="gallery">
 
-    <h1>真夜中珈琲屋台　カードギャラリー</h1>
+  <!-- HEADER -->
+  <header class="gallery-header">
 
-    <div class="note">
+    <h1>
+      真夜中珈琲屋台　カードギャラリー
+    </h1>
+
+    <p>
       管理用ページ ／ 通常のサイトからはリンクしません
+    </p>
+
+  </header>
+
+
+  <!-- NAVIGATION -->
+  <nav class="card-nav">
+
+    <button
+      class="nav-button"
+      id="prevButton"
+      type="button"
+    >
+      ◀ 前のカード
+    </button>
+
+
+    <div
+      class="card-number"
+      id="cardNumber"
+    >
+      M-001 / 30
     </div>
 
-    <div class="controls">
-      <button id="m001">
-        M-001 月灯りブレンド
-      </button>
 
-      <a
-        class="button"
-        href="../result/index.html?result=M-001"
-        target="_blank"
-        rel="noopener"
-      >
-        M-001を別画面で開く
-      </a>
-    </div>
+    <button
+      class="nav-button"
+      id="nextButton"
+      type="button"
+    >
+      次のカード ▶
+    </button>
+
+  </nav>
+
+
+  <!-- CARD -->
+  <section class="viewer-wrap">
 
     <div class="viewer">
+
       <iframe
         id="cardViewer"
         src="../result/index.html?result=M-001"
         title="結果カード">
       </iframe>
+
     </div>
 
-  </main>
+  </section>
 
-  <script>
-  const viewer = document.getElementById("cardViewer");
 
-  function showCard(id) {
-    viewer.src = `../result/index.html?result=${id}`;
+  <!-- BOTTOM -->
+  <div class="bottom-actions">
+
+    <a
+      class="bottom-button"
+      id="openButton"
+      href="../result/index.html?result=M-001"
+      target="_blank"
+      rel="noopener"
+    >
+      ↗ 別画面で開く
+    </a>
+
+
+    <button
+      class="bottom-button"
+      id="saveButton"
+      type="button"
+    >
+      ↓ このカードを保存
+    </button>
+
+
+    <a
+      class="bottom-button"
+      href="../index.html"
+    >
+      ▦ 屋台へ戻る
+    </a>
+
+  </div>
+
+</main>
+
+
+<script>
+
+  /* =========================================
+     COFFEE IDs
+  ========================================= */
+
+  const cards = Array.from(
+    { length: 30 },
+    (_, i) =>
+      `M-${String(i + 1).padStart(3, "0")}`
+  );
+
+
+  let currentIndex = 0;
+
+
+  const viewer =
+    document.getElementById("cardViewer");
+
+  const cardNumber =
+    document.getElementById("cardNumber");
+
+  const openButton =
+    document.getElementById("openButton");
+
+
+  /* =========================================
+     CARD CHANGE
+  ========================================= */
+
+  function showCard(index) {
+
+    currentIndex =
+      (index + cards.length)
+      % cards.length;
+
+
+    const id =
+      cards[currentIndex];
+
+
+    viewer.src =
+      `../result/index.html?result=${id}`;
+
+
+    cardNumber.textContent =
+      `${id} / ${cards.length}`;
+
+
+    openButton.href =
+      `../result/index.html?result=${id}`;
+
   }
 
-  function hideResultUI() {
-    try {
-      const doc = viewer.contentDocument || viewer.contentWindow.document;
 
-      /* カード以外の操作UIを非表示 */
+  /* =========================================
+     HIDE RESULT PAGE UI
+  ========================================= */
+
+  function cleanResultPage() {
+
+    try {
+
+      const doc =
+        viewer.contentDocument
+        || viewer.contentWindow.document;
+
+
+      /* ボタン類を文字で判定して削除 */
+
+      doc.querySelectorAll(
+        "a, button"
+      ).forEach(el => {
+
+        const text =
+          el.textContent.trim();
+
+
+        if (
+          text.includes("Xでシェア") ||
+          text.includes("屋台に戻る") ||
+          text.includes("もう一杯注文する") ||
+          text.includes("この結果を共有")
+        ) {
+
+          el.style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
+
+        }
+
+      });
+
+
+      /* カード以外の可能性が高いUI */
+
       const selectors = [
+
         ".result-actions",
         ".actions",
         ".action-buttons",
@@ -141,43 +473,300 @@
         ".back-button",
         ".retry-button",
         ".share-button"
+
       ];
 
+
       selectors.forEach(selector => {
-        doc.querySelectorAll(selector).forEach(el => {
-          el.style.setProperty("display", "none", "important");
+
+        doc.querySelectorAll(
+          selector
+        ).forEach(el => {
+
+          el.style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
+
         });
+
       });
 
-      /* ボタン・リンクの文字でも判定 */
-      doc.querySelectorAll("a, button").forEach(el => {
-        const text = el.textContent.trim();
 
-        if (
-          text.includes("Xでシェア") ||
-          text.includes("屋台に戻る") ||
-          text.includes("もう一杯注文する")
-        ) {
-          el.style.setProperty("display", "none", "important");
-        }
-      });
+      /* ページそのもののスクロールを止める */
 
-    } catch (e) {
-      console.log("Gallery UI:", e);
+      doc.documentElement.style.overflow =
+        "hidden";
+
+      doc.body.style.overflow =
+        "hidden";
+
+
+      fitCard();
+
     }
+
+    catch (error) {
+
+      console.log(
+        "gallery:",
+        error
+      );
+
+    }
+
   }
 
-  viewer.addEventListener("load", () => {
-    hideResultUI();
 
-    /* JSで後から生成される場合にも対応 */
-    setTimeout(hideResultUI, 300);
-    setTimeout(hideResultUI, 1000);
-  });
+  /* =========================================
+     FIT RESULT PAGE TO VIEWER
+  ========================================= */
 
-  document.getElementById("m001").addEventListener("click", () => {
-    showCard("M-001");
-  });
+  function fitCard() {
+
+    try {
+
+      const doc =
+        viewer.contentDocument
+        || viewer.contentWindow.document;
+
+
+      /*
+        本番カード要素を探します。
+        result-card がある前提。
+      */
+
+      const card =
+        doc.querySelector(
+          ".result-card"
+        );
+
+
+      if (!card) return;
+
+
+      const viewerWidth =
+        viewer.clientWidth;
+
+      const viewerHeight =
+        viewer.clientHeight;
+
+
+      const rect =
+        card.getBoundingClientRect();
+
+
+      const scaleX =
+        viewerWidth / rect.width;
+
+      const scaleY =
+        viewerHeight / rect.height;
+
+
+      /*
+        カード全体が必ず
+        画面内に収まる倍率
+      */
+
+      const scale =
+        Math.min(
+          scaleX,
+          scaleY
+        );
+
+
+      /*
+        iframe内部をカード中心に整える
+      */
+
+      doc.body.style.margin = "0";
+
+      doc.body.style.minHeight = "0";
+
+      doc.body.style.height = "auto";
+
+
+      card.style.transformOrigin =
+        "top center";
+
+      card.style.transform =
+        `scale(${scale})`;
+
+
+      /*
+        transform後の余白調整
+      */
+
+      card.style.margin =
+        "0 auto";
+
+    }
+
+    catch (error) {
+
+      console.log(
+        "fit:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* =========================================
+     LOAD
+  ========================================= */
+
+  viewer.addEventListener(
+    "load",
+    () => {
+
+      cleanResultPage();
+
+      /*
+        Webフォント・canvas・画像の
+        読み込み後にも再調整
+      */
+
+      setTimeout(
+        cleanResultPage,
+        200
+      );
+
+      setTimeout(
+        cleanResultPage,
+        600
+      );
+
+      setTimeout(
+        cleanResultPage,
+        1200
+      );
+
+    }
+  );
+
+
+  /* =========================================
+     BUTTONS
+  ========================================= */
+
+  document
+    .getElementById(
+      "prevButton"
+    )
+    .addEventListener(
+      "click",
+      () => {
+
+        showCard(
+          currentIndex - 1
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById(
+      "nextButton"
+    )
+    .addEventListener(
+      "click",
+      () => {
+
+        showCard(
+          currentIndex + 1
+        );
+
+      }
+    );
+
+
+  /* =========================================
+     KEYBOARD
+  ========================================= */
+
+  window.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "ArrowLeft"
+      ) {
+
+        showCard(
+          currentIndex - 1
+        );
+
+      }
+
+
+      if (
+        event.key === "ArrowRight"
+      ) {
+
+        showCard(
+          currentIndex + 1
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =========================================
+     SAVE
+  ========================================= */
+
+  document
+    .getElementById(
+      "saveButton"
+    )
+    .addEventListener(
+      "click",
+      () => {
+
+        /*
+          現状は本番カードを
+          別画面で開きます。
+
+          Chromeで
+          スクリーンショット保存用。
+        */
+
+        const id =
+          cards[currentIndex];
+
+
+        window.open(
+          `../result/index.html?result=${id}`,
+          "_blank"
+        );
+
+      }
+    );
+
+
+  /* =========================================
+     WINDOW RESIZE
+  ========================================= */
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      setTimeout(
+        cleanResultPage,
+        100
+      );
+
+    }
+  );
+
 </script>
 
 </body>

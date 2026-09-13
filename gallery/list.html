@@ -23,10 +23,6 @@
 
   <style>
 
-    /* ========================================
-       RESET
-    ======================================== */
-
     * {
       box-sizing: border-box;
     }
@@ -47,7 +43,6 @@
         "Noto Serif JP",
         "Yu Mincho",
         serif;
-
 
       background:
 
@@ -81,9 +76,7 @@
           #050912 100%
         );
 
-
       background-size:
-
         170px 170px,
         240px 240px,
         310px 310px,
@@ -106,13 +99,11 @@
           96%
         );
 
-      margin:
-        0 auto;
+      margin: 0 auto;
 
       padding:
         20px
-        0
-        20px;
+        0;
 
     }
 
@@ -124,11 +115,9 @@
 
     .header {
 
-      text-align:
-        center;
+      text-align: center;
 
-      margin-bottom:
-        11px;
+      margin-bottom: 11px;
 
     }
 
@@ -137,8 +126,7 @@
 
       margin: 0;
 
-      color:
-        #efd8aa;
+      color: #efd8aa;
 
       font-size:
         clamp(
@@ -147,14 +135,11 @@
           31px
         );
 
-      font-weight:
-        400;
+      font-weight: 400;
 
-      letter-spacing:
-        .08em;
+      letter-spacing: .08em;
 
-      line-height:
-        1.3;
+      line-height: 1.3;
 
     }
 
@@ -174,11 +159,7 @@
           .58
         );
 
-      font-size:
-        10px;
-
-      letter-spacing:
-        .04em;
+      font-size: 10px;
 
     }
 
@@ -190,23 +171,16 @@
 
     .categories {
 
-      display:
-        flex;
+      display: flex;
 
-      justify-content:
-        center;
+      justify-content: center;
+      align-items: center;
 
-      align-items:
-        center;
+      gap: 8px;
 
-      gap:
-        8px;
+      margin-bottom: 12px;
 
-      margin-bottom:
-        12px;
-
-      flex-wrap:
-        wrap;
+      flex-wrap: wrap;
 
     }
 
@@ -226,8 +200,7 @@
           .72
         );
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
       background:
         rgba(
@@ -237,32 +210,42 @@
           .82
         );
 
-      color:
-        #ead8b3;
+      color: #ead8b3;
 
-      font-family:
-        inherit;
+      font-family: inherit;
 
-      font-size:
-        10px;
+      font-size: 10px;
 
-      line-height:
-        1.4;
+      cursor: pointer;
+
+      transition: .18s ease;
 
     }
 
 
-    .category-button.active {
-
-      border-color:
-        #b98b45;
+    .category-button:hover {
 
       background:
         rgba(
           167,
           125,
           60,
-          .16
+          .13
+        );
+
+    }
+
+
+    .category-button.active {
+
+      border-color: #bd8c43;
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .20
         );
 
       box-shadow:
@@ -277,14 +260,6 @@
     }
 
 
-    .category-button.disabled {
-
-      opacity:
-        .34;
-
-    }
-
-
 
     /* ========================================
        SECTION TITLE
@@ -292,25 +267,20 @@
 
     .section-title {
 
-      text-align:
-        center;
+      text-align: center;
 
-      margin-bottom:
-        11px;
+      margin-bottom: 11px;
 
-      line-height:
-        1.25;
+      line-height: 1.25;
 
     }
 
 
     .section-title .en {
 
-      display:
-        block;
+      display: block;
 
-      margin-bottom:
-        2px;
+      margin-bottom: 2px;
 
       color:
         rgba(
@@ -320,33 +290,27 @@
           .54
         );
 
-      font-size:
-        9px;
+      font-size: 9px;
 
-      letter-spacing:
-        .20em;
+      letter-spacing: .20em;
 
     }
 
 
     .section-title .jp {
 
-      color:
-        #efd5a0;
+      color: #efd5a0;
 
-      font-size:
-        17px;
+      font-size: 17px;
 
-      letter-spacing:
-        .08em;
+      letter-spacing: .08em;
 
     }
 
 
     .section-title .count {
 
-      margin-left:
-        7px;
+      margin-left: 7px;
 
       color:
         rgba(
@@ -356,21 +320,19 @@
           .53
         );
 
-      font-size:
-        9px;
+      font-size: 9px;
 
     }
 
 
 
     /* ========================================
-       CARD GRID
+       GRID
     ======================================== */
 
     .card-grid {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         repeat(
@@ -378,37 +340,30 @@
           minmax(0, 1fr)
         );
 
-      gap:
-        8px;
+      gap: 8px;
 
     }
 
 
 
     /* ========================================
-       CARD BUTTON
+       CARD
     ======================================== */
 
     .card-link {
 
-      position:
-        relative;
+      position: relative;
 
-      display:
-        block;
+      display: block;
 
-      min-width:
-        0;
-
-      min-height:
-        76px;
+      min-width: 0;
+      min-height: 76px;
 
       padding:
         10px
         12px;
 
-      overflow:
-        hidden;
+      overflow: hidden;
 
       border:
         1px solid
@@ -419,9 +374,7 @@
           .48
         );
 
-      border-radius:
-        9px;
-
+      border-radius: 9px;
 
       background:
 
@@ -437,49 +390,17 @@
           rgba(7,13,23,.96)
         );
 
+      color: #ead8b3;
 
-      color:
-        #ead8b3;
-
-      text-decoration:
-        none;
-
+      text-decoration: none;
 
       transition:
-
         transform .16s ease,
         border-color .16s ease,
         background .16s ease,
         box-shadow .16s ease;
 
     }
-
-
-
-    .card-link::before {
-
-      content: "";
-
-      position:
-        absolute;
-
-      inset:
-        0;
-
-      pointer-events:
-        none;
-
-
-      background:
-
-        radial-gradient(
-          circle at 90% 5%,
-          rgba(213,165,89,.10),
-          transparent 40%
-        );
-
-    }
-
 
 
     .card-link:hover {
@@ -495,86 +416,35 @@
           .95
         );
 
-
-      background:
-
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,.05),
-          transparent 45%
-        ),
-
-        linear-gradient(
-          180deg,
-          rgba(30,42,58,.97),
-          rgba(9,16,27,.98)
-        );
-
-
       box-shadow:
-
         0 8px 20px
-        rgba(0,0,0,.24),
-
-        0 0 14px
-        rgba(
-          175,
-          131,
-          62,
-          .07
-        );
+        rgba(0,0,0,.24);
 
     }
 
-
-
-    /* ID */
 
     .card-id {
 
-      position:
-        relative;
+      display: block;
 
-      z-index:
-        1;
+      margin-bottom: 5px;
 
-      display:
-        block;
+      color: #bd9150;
 
-      margin-bottom:
-        5px;
+      font-size: 8px;
 
-      color:
-        #bd9150;
-
-      font-size:
-        8px;
-
-      letter-spacing:
-        .15em;
+      letter-spacing: .15em;
 
     }
 
 
-
-    /* NAME */
-
     .card-name {
 
-      position:
-        relative;
+      display: block;
 
-      z-index:
-        1;
+      padding-right: 18px;
 
-      display:
-        block;
-
-      padding-right:
-        18px;
-
-      color:
-        #f0dbb2;
+      color: #f0dbb2;
 
       font-size:
         clamp(
@@ -583,34 +453,19 @@
           14px
         );
 
-      line-height:
-        1.35;
+      line-height: 1.35;
 
-      letter-spacing:
-        .025em;
-
-      overflow-wrap:
-        anywhere;
+      overflow-wrap: anywhere;
 
     }
 
 
-
-    /* VIEW */
-
     .card-arrow {
 
-      position:
-        absolute;
+      position: absolute;
 
-      z-index:
-        1;
-
-      right:
-        9px;
-
-      bottom:
-        7px;
+      right: 9px;
+      bottom: 7px;
 
       color:
         rgba(
@@ -620,18 +475,14 @@
           .72
         );
 
-      font-size:
-        8px;
-
-      letter-spacing:
-        .04em;
+      font-size: 8px;
 
     }
 
 
 
     /* ========================================
-       SPECIAL CARDS
+       SPECIAL COLORS
     ======================================== */
 
     .card-link.fullmoon {
@@ -641,17 +492,29 @@
           218,
           179,
           91,
-          .65
+          .75
+        );
+
+      background:
+
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(230,190,90,.15),
+          transparent 45%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(34,31,25,.96),
+          rgba(11,13,20,.98)
         );
 
     }
 
 
-    .card-link.fullmoon .card-id,
     .card-link.fullmoon .card-name {
 
-      color:
-        #f0d28a;
+      color: #f3d789;
 
     }
 
@@ -663,14 +526,14 @@
           157,
           125,
           183,
-          .58
+          .70
         );
 
       background:
 
         radial-gradient(
           circle at 90% 10%,
-          rgba(144,102,170,.12),
+          rgba(144,102,170,.16),
           transparent 45%
         ),
 
@@ -683,6 +546,40 @@
     }
 
 
+    .card-link.secret .card-name {
+
+      color: #dcc8ec;
+
+    }
+
+
+    .card-link.rare {
+
+      border-color:
+        rgba(
+          196,
+          155,
+          86,
+          .66
+        );
+
+      background:
+
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(196,155,86,.10),
+          transparent 45%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(25,32,43,.95),
+          rgba(7,13,23,.98)
+        );
+
+    }
+
+
 
     /* ========================================
        FOOTER
@@ -690,25 +587,20 @@
 
     .footer-actions {
 
-      display:
-        flex;
+      display: flex;
 
-      justify-content:
-        center;
+      justify-content: center;
 
-      margin-top:
-        13px;
+      margin-top: 13px;
 
     }
 
 
     .back-button {
 
-      display:
-        inline-block;
+      display: inline-block;
 
-      min-width:
-        180px;
+      min-width: 180px;
 
       padding:
         7px
@@ -718,8 +610,7 @@
         1px solid
         #a77d3c;
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
       background:
         rgba(
@@ -729,182 +620,70 @@
           .88
         );
 
-      color:
-        #ead8b3;
+      color: #ead8b3;
 
-      font-size:
-        10px;
+      font-size: 10px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      text-decoration:
-        none;
-
-
-      transition:
-
-        background .18s ease,
-        border-color .18s ease,
-        transform .18s ease;
-
-    }
-
-
-    .back-button:hover {
-
-      background:
-        rgba(
-          167,
-          125,
-          60,
-          .16
-        );
-
-      border-color:
-        #c99b52;
-
-      transform:
-        translateY(-1px);
+      text-decoration: none;
 
     }
 
 
 
     /* ========================================
-       LOWER HEIGHT PC
+       COMPACT PC
     ======================================== */
 
     @media (max-height: 800px) and (min-width: 801px) {
 
       .page {
-
         padding:
           11px
           0
           10px;
-
       }
-
 
       .header {
-
-        margin-bottom:
-          6px;
-
+        margin-bottom: 6px;
       }
-
 
       .header h1 {
-
-        font-size:
-          22px;
-
+        font-size: 22px;
       }
-
-
-      .header p {
-
-        margin-top:
-          2px;
-
-        font-size:
-          8px;
-
-      }
-
 
       .categories {
-
-        margin-bottom:
-          7px;
-
+        margin-bottom: 7px;
       }
 
-
       .category-button {
-
         padding:
           4px
           12px;
-
-        font-size:
-          8px;
-
       }
-
 
       .section-title {
-
-        margin-bottom:
-          7px;
-
+        margin-bottom: 7px;
       }
-
-
-      .section-title .jp {
-
-        font-size:
-          14px;
-
-      }
-
 
       .card-grid {
-
-        gap:
-          6px;
-
+        gap: 6px;
       }
 
-
       .card-link {
-
-        min-height:
-          66px;
-
+        min-height: 66px;
         padding:
           8px
           10px;
-
       }
-
-
-      .card-id {
-
-        margin-bottom:
-          3px;
-
-        font-size:
-          7px;
-
-      }
-
 
       .card-name {
-
-        font-size:
-          11px;
-
+        font-size: 11px;
       }
-
-
-      .card-arrow {
-
-        bottom:
-          5px;
-
-        font-size:
-          7px;
-
-      }
-
 
       .footer-actions {
-
-        margin-top:
-          8px;
-
+        margin-top: 8px;
       }
 
     }
@@ -938,45 +717,12 @@
     @media (max-width: 650px) {
 
       .page {
-
-        width:
-          94%;
-
-        padding:
-          17px
-          0
-          22px;
-
+        width: 94%;
       }
-
 
       .header h1 {
-
-        font-size:
-          18px;
-
+        font-size: 18px;
       }
-
-
-      .categories {
-
-        gap:
-          5px;
-
-      }
-
-
-      .category-button {
-
-        padding:
-          6px
-          10px;
-
-        font-size:
-          9px;
-
-      }
-
 
       .card-grid {
 
@@ -986,45 +732,15 @@
             minmax(0, 1fr)
           );
 
-        gap:
-          7px;
+        gap: 7px;
 
       }
-
 
       .card-link {
-
-        min-height:
-          76px;
-
-        padding:
-          9px
-          10px;
-
-      }
-
-
-      .card-name {
-
-        padding-right:
-          8px;
-
-        font-size:
-          11px;
-
-      }
-
-
-      .card-arrow {
-
-        font-size:
-          7px;
-
+        min-height: 76px;
       }
 
     }
-
-
 
   </style>
 
@@ -1038,136 +754,101 @@
 <main class="page">
 
 
-  <!-- ========================================
-       HEADER
-  ========================================= -->
-
   <header class="header">
 
-
     <h1>
-
       真夜中珈琲屋台　カードギャラリー
-
     </h1>
 
-
     <p>
-
       2026 夏祭り　営業記録
-
     </p>
-
 
   </header>
 
 
 
-  <!-- ========================================
-       CATEGORY
-  ========================================= -->
+  <!-- CATEGORY -->
 
-  <nav
-    class="categories"
-    aria-label="カードカテゴリー"
-  >
+  <nav class="categories">
 
-
-    <span
+    <button
       class="category-button active"
+      data-category="coffee"
+      type="button"
     >
-
       ☕ 珈琲カード
+    </button>
 
-    </span>
-
-
-    <span
-      class="category-button disabled"
-      title="後ほど追加予定"
+    <button
+      class="category-button"
+      data-category="takeout"
+      type="button"
     >
-
       🥤 テイクアウト
+    </button>
 
-    </span>
-
-
-    <span
-      class="category-button disabled"
-      title="後ほど追加予定"
+    <button
+      class="category-button"
+      data-category="sparkler"
+      type="button"
     >
-
       🎇 線香花火
-
-    </span>
-
+    </button>
 
   </nav>
 
 
 
-  <!-- ========================================
-       COFFEE COLLECTION
-  ========================================= -->
+  <!-- TITLE -->
 
-  <section>
+  <div class="section-title">
 
-
-    <div class="section-title">
-
-
-      <span class="en">
-
-        COFFEE COLLECTION
-
-      </span>
-
-
-      <span class="jp">
-
-        珈琲カード
-
-      </span>
-
-
-      <span class="count">
-
-        全30種
-
-      </span>
-
-
-    </div>
-
-
-
-    <div
-      class="card-grid"
-      id="coffeeGrid"
+    <span
+      class="en"
+      id="sectionEn"
     >
-    </div>
+      COFFEE COLLECTION
+    </span>
+
+    <span
+      class="jp"
+      id="sectionJp"
+    >
+      珈琲カード
+    </span>
+
+    <span
+      class="count"
+      id="sectionCount"
+    >
+      全30種
+    </span>
+
+  </div>
 
 
-  </section>
+
+  <!-- GRID -->
+
+  <div
+    class="card-grid"
+    id="cardGrid"
+  >
+  </div>
 
 
 
-  <!-- ========================================
-       FOOTER
-  ========================================= -->
+  <!-- FOOTER -->
 
   <div class="footer-actions">
-
 
     <a
       class="back-button"
       href="../index.html"
     >
-
       ☕ 屋台に戻る
-
     </a>
-
 
   </div>
 
@@ -1178,274 +859,336 @@
 
 <script>
 
+  /* ==========================================================
+     DATA
+  ========================================================== */
 
-/* ==========================================================
-   COFFEE CARD DATA
-========================================================== */
+  const collections = {
+
+    coffee: {
+
+      en:
+        "COFFEE COLLECTION",
+
+      jp:
+        "珈琲カード",
+
+      cards: [
+
+        ["M-001", "月灯りブレンド"],
+        ["M-002", "三日月カフェオレ"],
+        ["M-003", "雨宿り珈琲"],
+        ["M-004", "夜風アイス珈琲"],
+        ["M-005", "午前二時の深煎り"],
+
+        ["M-006", "焦がし蜂蜜ラテ"],
+        ["M-007", "霧夜ラテ"],
+        ["M-008", "黒糖きなこ珈琲"],
+        ["M-009", "星屑フラッペ"],
+        ["M-010", "塩キャラメルラテ"],
+
+        ["M-011", "柚子香る夜珈琲"],
+        ["M-012", "山椒モカ"],
+        ["M-013", "月影コールドブリュー"],
+        ["M-014", "眠れない夜のデカフェ"],
+        ["M-015", "雷鳴エスプレッソ"],
+
+        ["M-016", "宵待ちカプチーノ"],
+        ["M-017", "琥珀糖ラテ"],
+        ["M-018", "夜汽車ブレンド"],
+        ["M-019", "銀河ミルク珈琲"],
+        ["M-020", "薄明ショコラモカ"],
+
+        ["M-021", "木漏れ月ブレンド"],
+        ["M-022", "灯火シナモンラテ"],
+        ["M-023", "夜桜ラテ"],
+        ["M-024", "流星珈琲"],
+        ["M-025", "新月ブラック"],
+
+        ["M-026", "宵星アフォガート"],
+        ["M-027", "月蝕モカ"],
+        ["M-028", "午前零時の一杯"],
+        ["M-029", "FULL MOON"],
+        ["M-030", "店主の気まぐれ"]
+
+      ]
+
+    },
 
 
-const coffees = [
+    takeout: {
 
-  [
-    "M-001",
-    "月灯りブレンド"
-  ],
+      en:
+        "TAKEOUT COLLECTION",
 
-  [
-    "M-002",
-    "三日月カフェオレ"
-  ],
+      jp:
+        "テイクアウトカード",
 
-  [
-    "M-003",
-    "雨宿り珈琲"
-  ],
+      cards: [
 
-  [
-    "M-004",
-    "夜風アイス珈琲"
-  ],
+        ["T-001", "焦がし蜂蜜ラテ"],
+        ["T-002", "黒糖ミルク珈琲"],
+        ["T-003", "夜風のアイス珈琲"],
+        ["T-004", "星屑ショコラ"],
+        ["T-005", "月夜のカフェオレ"],
+        ["T-006", "真夜中のデカフェ"],
+        ["T-007", "猫印の気まぐれ珈琲"]
 
-  [
-    "M-005",
-    "午前二時の深煎り"
-  ],
+      ]
 
-  [
-    "M-006",
-    "焦がし蜂蜜ラテ"
-  ],
+    },
 
-  [
-    "M-007",
-    "霧夜ラテ"
-  ],
 
-  [
-    "M-008",
-    "黒糖きなこ珈琲"
-  ],
+    sparkler: {
 
-  [
-    "M-009",
-    "星屑フラッペ"
-  ],
+      en:
+        "SPARKLER COLLECTION",
 
-  [
-    "M-010",
-    "塩キャラメルラテ"
-  ],
+      jp:
+        "線香花火カード",
 
-  [
-    "M-011",
-    "柚子香る夜珈琲"
-  ],
+      cards: [
 
-  [
-    "M-012",
-    "山椒モカ"
-  ],
+        ["S-001", "牡丹"],
+        ["S-002", "松葉"],
+        ["S-003", "散り菊"],
+        ["S-004", "月雫"],
+        ["S-005", "星結び"],
+        ["S-006", "願い星"],
+        ["S-007", "帰り灯"],
+        ["S-008", "夜凪"]
 
-  [
-    "M-013",
-    "月影コールドブリュー"
-  ],
+      ]
 
-  [
-    "M-014",
-    "眠れない夜のデカフェ"
-  ],
+    }
 
-  [
-    "M-015",
-    "雷鳴エスプレッソ"
-  ],
-
-  [
-    "M-016",
-    "宵待ちカプチーノ"
-  ],
-
-  [
-    "M-017",
-    "琥珀糖ラテ"
-  ],
-
-  [
-    "M-018",
-    "夜汽車ブレンド"
-  ],
-
-  [
-    "M-019",
-    "銀河ミルク珈琲"
-  ],
-
-  [
-    "M-020",
-    "薄明ショコラモカ"
-  ],
-
-  [
-    "M-021",
-    "木漏れ月ブレンド"
-  ],
-
-  [
-    "M-022",
-    "灯火シナモンラテ"
-  ],
-
-  [
-    "M-023",
-    "夜桜ラテ"
-  ],
-
-  [
-    "M-024",
-    "流星珈琲"
-  ],
-
-  [
-    "M-025",
-    "新月ブラック"
-  ],
-
-  [
-    "M-026",
-    "宵星アフォガート"
-  ],
-
-  [
-    "M-027",
-    "月蝕モカ"
-  ],
-
-  [
-    "M-028",
-    "午前零時の一杯"
-  ],
-
-  [
-    "M-029",
-    "FULL MOON"
-  ],
-
-  [
-    "M-030",
-    "店主の気まぐれ"
-  ]
-
-];
+  };
 
 
 
-/* ==========================================================
-   GRID
-========================================================== */
+  /* ==========================================================
+     ELEMENTS
+  ========================================================== */
+
+  const grid =
+    document.getElementById(
+      "cardGrid"
+    );
+
+  const sectionEn =
+    document.getElementById(
+      "sectionEn"
+    );
+
+  const sectionJp =
+    document.getElementById(
+      "sectionJp"
+    );
+
+  const sectionCount =
+    document.getElementById(
+      "sectionCount"
+    );
+
+  const categoryButtons =
+    document.querySelectorAll(
+      ".category-button"
+    );
 
 
-const grid =
-  document.getElementById(
-    "coffeeGrid"
+
+  /* ==========================================================
+     SPECIAL STYLE
+  ========================================================== */
+
+  function applySpecialStyle(
+    link,
+    category,
+    id
+  ) {
+
+    if (
+      category === "coffee"
+      &&
+      id === "M-029"
+    ) {
+      link.classList.add(
+        "fullmoon"
+      );
+    }
+
+    if (
+      category === "coffee"
+      &&
+      id === "M-030"
+    ) {
+      link.classList.add(
+        "secret"
+      );
+    }
+
+    if (
+      category === "takeout"
+      &&
+      id === "T-007"
+    ) {
+      link.classList.add(
+        "rare"
+      );
+    }
+
+    if (
+      category === "sparkler"
+      &&
+      (
+        id === "S-004"
+        ||
+        id === "S-005"
+      )
+    ) {
+      link.classList.add(
+        "rare"
+      );
+    }
+
+    if (
+      category === "sparkler"
+      &&
+      id === "S-006"
+    ) {
+      link.classList.add(
+        "secret"
+      );
+    }
+
+  }
+
+
+
+  /* ==========================================================
+     URL
+  ========================================================== */
+
+  function makeCardURL(
+    category,
+    id
+  ) {
+
+    if (
+      category === "coffee"
+    ) {
+      return `./index.html?card=${encodeURIComponent(id)}`;
+    }
+
+    if (
+      category === "takeout"
+    ) {
+      return `./viewer.html?type=takeout&card=${encodeURIComponent(id)}`;
+    }
+
+    return `./viewer.html?type=sparkler&card=${encodeURIComponent(id)}`;
+
+  }
+
+
+
+  /* ==========================================================
+     RENDER
+  ========================================================== */
+
+  function renderCollection(
+    category
+  ) {
+
+    const collection =
+      collections[category];
+
+    if (!collection) {
+      return;
+    }
+
+    sectionEn.textContent =
+      collection.en;
+
+    sectionJp.textContent =
+      collection.jp;
+
+    sectionCount.textContent =
+      `全${collection.cards.length}種`;
+
+    categoryButtons.forEach(
+      button => {
+        button.classList.toggle(
+          "active",
+          button.dataset.category === category
+        );
+      }
+    );
+
+    grid.innerHTML = "";
+
+    collection.cards.forEach(
+      ([id, name]) => {
+
+        const link =
+          document.createElement("a");
+
+        link.className =
+          "card-link";
+
+        link.href =
+          makeCardURL(
+            category,
+            id
+          );
+
+        applySpecialStyle(
+          link,
+          category,
+          id
+        );
+
+        link.innerHTML = `
+          <span class="card-id">${id}</span>
+          <span class="card-name">${name}</span>
+          <span class="card-arrow">VIEW →</span>
+        `;
+
+        grid.appendChild(link);
+
+      }
+    );
+
+  }
+
+
+
+  /* ==========================================================
+     CATEGORY SWITCH
+  ========================================================== */
+
+  categoryButtons.forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+          renderCollection(
+            button.dataset.category
+          );
+        }
+      );
+
+    }
   );
 
 
 
-/* ==========================================================
-   CREATE CARD LINKS
-========================================================== */
+  /* ==========================================================
+     START
+  ========================================================== */
 
-
-coffees.forEach(
-  ([id, name]) => {
-
-
-    const link =
-      document.createElement(
-        "a"
-      );
-
-
-    /*
-      詳細ギャラリーへ
-    */
-
-
-    link.href =
-      `./index.html?card=${encodeURIComponent(id)}`;
-
-
-    link.className =
-      "card-link";
-
-
-
-    /*
-      FULL MOON
-    */
-
-
-    if (
-      id === "M-029"
-    ) {
-
-
-      link.classList.add(
-        "fullmoon"
-      );
-
-
-    }
-
-
-
-    /*
-      SECRET
-    */
-
-
-    if (
-      id === "M-030"
-    ) {
-
-
-      link.classList.add(
-        "secret"
-      );
-
-
-    }
-
-
-
-    link.innerHTML = `
-
-      <span class="card-id">
-        ${id}
-      </span>
-
-      <span class="card-name">
-        ${name}
-      </span>
-
-      <span class="card-arrow">
-        VIEW →
-      </span>
-
-    `;
-
-
-
-    grid.appendChild(
-      link
-    );
-
-
-  }
-);
-
-
+  renderCollection("coffee");
 
 </script>
 

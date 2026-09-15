@@ -3,292 +3,1257 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
   <meta name="theme-color" content="#06101d">
 
   <title>真夜中珈琲屋台</title>
-  <meta name="description" content="眠れない夜にだけ現れる、真夜中の珈琲屋台。">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta
+    name="description"
+    content="眠れない夜にだけ現れる、真夜中の珈琲屋台。"
+  >
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&family=Yuji Syuku&display=swap"
-    rel="stylesheet">
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
-  <link rel="stylesheet" href="./css/opening.css">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
-  <!-- CLOSED PAGE 2026-09-04 -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@400;500;600&family=Yuji+Syuku&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./css/opening.css"
+  >
+
+
+  <!-- ========================================
+       CLOSED PAGE 2026-09-04
+  ========================================= -->
+
   <style>
+
     .opening-copy-closed {
+
       z-index: 8;
-      width: min(92vw, 620px);
+
+      width:
+        min(
+          92vw,
+          620px
+        );
+
     }
 
-    /* 閉店看板 */
+
+
+    /* ========================================
+       閉店看板
+    ======================================== */
+
     .closed-sign {
+
       position: relative;
-      width: min(78vw, 430px);
-      margin: 0 auto clamp(18px, 2.8vh, 28px);
-      padding: clamp(26px, 4vh, 38px) clamp(24px, 4vw, 42px) clamp(24px, 3.6vh, 34px);
+
+      width:
+        min(
+          78vw,
+          430px
+        );
+
+      margin:
+        0
+        auto
+        clamp(
+          18px,
+          2.8vh,
+          28px
+        );
+
+      padding:
+        clamp(
+          26px,
+          4vh,
+          38px
+        )
+        clamp(
+          24px,
+          4vw,
+          42px
+        )
+        clamp(
+          24px,
+          3.6vh,
+          34px
+        );
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
-      color: #e6d2a0;
+
+      color:
+        #e6d2a0;
+
       background:
-        radial-gradient(circle at 50% 0%, rgba(184, 147, 74, .08), transparent 42%),
-        linear-gradient(180deg, rgba(15, 20, 26, .985), rgba(6, 12, 18, .99));
-      border: 1px solid rgba(193, 155, 78, .72);
-      border-radius: 4px;
+
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(184,147,74,.08),
+          transparent 42%
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(15,20,26,.985),
+          rgba(6,12,18,.99)
+        );
+
+      border:
+        1px solid
+        rgba(193,155,78,.72);
+
+      border-radius:
+        4px;
+
       box-shadow:
-        0 22px 55px rgba(0, 0, 0, .50),
-        inset 0 0 0 3px rgba(197, 158, 78, .045),
-        inset 0 0 30px rgba(207, 170, 91, .045);
-      transform: rotate(-.35deg);
+
+        0 22px 55px
+        rgba(0,0,0,.50),
+
+        inset 0 0 0 3px
+        rgba(197,158,78,.045),
+
+        inset 0 0 30px
+        rgba(207,170,91,.045);
+
+      transform:
+        rotate(-.35deg);
+
     }
 
-    /* 吊り紐 */
+
+
+    /* ========================================
+       吊り紐
+    ======================================== */
+
     .closed-sign::before,
     .closed-sign::after {
+
       content: "";
+
       position: absolute;
+
       top: -42px;
+
       width: 1px;
+
       height: 44px;
-      background: linear-gradient(
-        to bottom,
-        rgba(224, 199, 139, .08),
-        rgba(224, 199, 139, .74)
-      );
-      transform-origin: bottom;
+
+      background:
+
+        linear-gradient(
+          to bottom,
+          rgba(224,199,139,.08),
+          rgba(224,199,139,.74)
+        );
+
+      transform-origin:
+        bottom;
+
     }
+
 
     .closed-sign::before {
+
       left: 25%;
-      transform: rotate(21deg);
+
+      transform:
+        rotate(21deg);
+
     }
+
 
     .closed-sign::after {
+
       right: 25%;
-      transform: rotate(-21deg);
+
+      transform:
+        rotate(-21deg);
+
     }
+
+
+
+    /* ========================================
+       月と星
+    ======================================== */
 
     .closed-sign-symbol {
+
       position: relative;
+
       width: 54px;
+
       height: 32px;
+
       margin-bottom: 9px;
-      color: rgba(219, 187, 112, .78);
+
+      color:
+        rgba(
+          219,
+          187,
+          112,
+          .78
+        );
+
     }
+
 
     .closed-crescent {
+
       position: absolute;
+
       left: 13px;
+
       top: -7px;
-      font-family: Georgia, serif;
+
+      font-family:
+        Georgia,
+        serif;
+
       font-size: 2rem;
+
       font-weight: 400;
+
       line-height: 1;
+
     }
+
 
     .closed-star {
+
       position: absolute;
+
       right: 5px;
+
       top: 3px;
+
       font-size: .72rem;
+
       opacity: .9;
+
     }
 
-    /* 「真夜中珈琲屋台」は従来より小さく、静かな見え方に */
-    .opening-copy-closed .closed-shop-title {
+
+
+    /* ========================================
+       TITLE
+    ======================================== */
+
+    .opening-copy-closed
+    .closed-shop-title {
+
       margin: 0;
-      font-family: "Noto Serif JP", serif;
-      font-size: clamp(1.05rem, 2.4vw, 1.48rem);
+
+      font-family:
+        "Noto Serif JP",
+        serif;
+
+      font-size:
+        clamp(
+          1.05rem,
+          2.4vw,
+          1.48rem
+        );
+
       font-weight: 400;
+
       line-height: 1.55;
+
       letter-spacing: .22em;
-      color: rgba(231, 210, 157, .88);
+
+      color:
+        rgba(
+          231,
+          210,
+          157,
+          .88
+        );
+
       white-space: nowrap;
-      text-shadow: 0 0 14px rgba(205, 169, 85, .10);
+
+      text-shadow:
+        0 0 14px
+        rgba(
+          205,
+          169,
+          85,
+          .10
+        );
+
     }
+
+
+
+    /* ========================================
+       DIVIDER
+    ======================================== */
 
     .closed-sign-divider {
-      width: min(92%, 310px);
-      margin: 16px 0 12px;
+
+      width:
+        min(
+          92%,
+          310px
+        );
+
+      margin:
+        16px
+        0
+        12px;
+
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+
+      grid-template-columns:
+        1fr auto 1fr;
+
       align-items: center;
+
       gap: 9px;
-      color: rgba(211, 177, 99, .72);
+
+      color:
+        rgba(
+          211,
+          177,
+          99,
+          .72
+        );
+
     }
+
 
     .closed-sign-divider span {
+
       height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(205, 166, 77, .62)
-      );
+
+      background:
+
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(
+            205,
+            166,
+            77,
+            .62
+          )
+        );
+
     }
 
-    .closed-sign-divider span:last-child {
-      transform: scaleX(-1);
+
+    .closed-sign-divider
+    span:last-child {
+
+      transform:
+        scaleX(-1);
+
     }
+
 
     .closed-sign-divider i {
+
       font-style: normal;
+
       font-size: .55rem;
+
     }
+
 
     .closed-sign-divider-small {
-      width: min(48%, 150px);
-      margin: 15px 0 11px;
+
+      width:
+        min(
+          48%,
+          150px
+        );
+
+      margin:
+        15px
+        0
+        11px;
+
       opacity: .72;
+
     }
+
+
+
+    /* ========================================
+       CLOSED
+    ======================================== */
 
     .closed-sign-en {
-      margin: 2px 0 5px;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(2.15rem, 6vw, 3.4rem);
+
+      margin:
+        2px
+        0
+        5px;
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          2.15rem,
+          6vw,
+          3.4rem
+        );
+
       font-weight: 400;
+
       line-height: 1;
+
       letter-spacing: .16em;
-      color: rgba(224, 200, 144, .90);
-      text-shadow: 0 0 22px rgba(210, 172, 85, .08);
+
+      color:
+        rgba(
+          224,
+          200,
+          144,
+          .90
+        );
+
+      text-shadow:
+        0 0 22px
+        rgba(
+          210,
+          172,
+          85,
+          .08
+        );
+
     }
 
-    /* 「またいつかの夜に」は細め・余白多め */
+
+
+    /* ========================================
+       またいつかの夜に
+    ======================================== */
+
     .closed-sign-ja {
-      margin: 14px 0 0;
-      font-family: "Noto Serif JP", serif;
-      font-size: clamp(.92rem, 2.5vw, 1.18rem);
+
+      margin:
+        14px
+        0
+        0;
+
+      font-family:
+        "Noto Serif JP",
+        serif;
+
+      font-size:
+        clamp(
+          .92rem,
+          2.5vw,
+          1.18rem
+        );
+
       font-weight: 400;
+
       line-height: 1.8;
+
       letter-spacing: .30em;
-      color: rgba(231, 214, 174, .82);
-      text-shadow: none;
+
+      color:
+        rgba(
+          231,
+          214,
+          174,
+          .82
+        );
+
+      text-shadow:
+        none;
+
     }
+
+
+
+    /* ========================================
+       DATE
+    ======================================== */
 
     .closed-sign-date {
+
       margin: 0;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(.72rem, 1.5vw, .92rem);
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          .72rem,
+          1.5vw,
+          .92rem
+        );
+
       font-weight: 400;
+
       letter-spacing: .22em;
-      color: rgba(231, 214, 174, .60);
+
+      color:
+        rgba(
+          231,
+          214,
+          174,
+          .60
+        );
+
     }
+
+
+
+    /* ========================================
+       NOTE
+    ======================================== */
 
     .closed-note {
+
       margin: 0;
-      font-family: "Noto Serif JP", serif;
-      font-size: clamp(.70rem, 1.4vw, .86rem);
+
+      font-family:
+        "Noto Serif JP",
+        serif;
+
+      font-size:
+        clamp(
+          .70rem,
+          1.4vw,
+          .86rem
+        );
+
       font-weight: 400;
+
       letter-spacing: .14em;
-      color: rgba(240, 231, 205, .62);
+
+      color:
+        rgba(
+          240,
+          231,
+          205,
+          .62
+        );
+
     }
 
-    /* 旧猫要素がCSS/JS側に残っていても表示させない */
+
+
+    /* ========================================
+       旧猫ギミックは閉じる
+    ======================================== */
+
     .cat-eyes-button,
     .cat-takeout-modal {
-      display: none !important;
+
+      display:
+        none !important;
+
     }
 
-    @media (max-width: 640px) {
-      .opening-copy-closed {
-        width: 94vw;
+
+
+    /* ========================================
+       GALLERY CAT
+       右下の「営業記録」入口
+    ======================================== */
+
+    .gallery-cat {
+
+      position: fixed;
+
+      right:
+        max(
+          16px,
+          env(safe-area-inset-right)
+        );
+
+      bottom:
+        max(
+          13px,
+          env(safe-area-inset-bottom)
+        );
+
+      z-index: 30;
+
+      width:
+        clamp(
+          145px,
+          16vw,
+          220px
+        );
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 3px;
+
+      color:
+        #ead7aa;
+
+      text-decoration:
+        none;
+
+      opacity:
+        .90;
+
+      transform:
+        translateY(4px);
+
+      transition:
+        opacity .25s ease,
+        transform .25s ease;
+
+    }
+
+
+    .gallery-cat:hover {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+
+    /*
+      猫＋鳥＋足跡の画像
+    */
+
+    .gallery-cat-image {
+
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      filter:
+
+        drop-shadow(
+          0 5px 11px
+          rgba(0,0,0,.42)
+        );
+
+      user-select: none;
+
+      pointer-events:
+        none;
+
+      animation:
+        galleryCatFloat
+        4.2s
+        ease-in-out
+        infinite;
+
+    }
+
+
+
+    /*
+      ギャラリーへの誘導
+    */
+
+    .gallery-cat-label {
+
+      position: relative;
+
+      margin-top: -3px;
+
+      padding:
+        4px
+        10px
+        5px;
+
+      border:
+        1px solid
+        rgba(
+          190,
+          151,
+          76,
+          .52
+        );
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(
+          4,
+          10,
+          17,
+          .70
+        );
+
+      backdrop-filter:
+        blur(3px);
+
+      -webkit-backdrop-filter:
+        blur(3px);
+
+      color:
+        rgba(
+          237,
+          217,
+          173,
+          .82
+        );
+
+      font-family:
+        "Noto Serif JP",
+        serif;
+
+      font-size:
+        clamp(
+          .56rem,
+          .8vw,
+          .70rem
+        );
+
+      line-height: 1.5;
+
+      letter-spacing: .10em;
+
+      white-space: nowrap;
+
+      box-shadow:
+        0 5px 14px
+        rgba(
+          0,
+          0,
+          0,
+          .24
+        );
+
+      transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+
+    }
+
+
+    .gallery-cat:hover
+    .gallery-cat-label {
+
+      color:
+        #f3deb1;
+
+      border-color:
+        rgba(
+          205,
+          166,
+          87,
+          .84
+        );
+
+      background:
+        rgba(
+          10,
+          17,
+          25,
+          .86
+        );
+
+    }
+
+
+
+    /*
+      ときどき少し浮く程度。
+      派手な猫アニメにはしない。
+    */
+
+    @keyframes galleryCatFloat {
+
+      0%,
+      100% {
+
+        transform:
+          translateY(0);
+
       }
+
+      50% {
+
+        transform:
+          translateY(-3px);
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media
+    (max-width: 640px) {
+
+      .opening-copy-closed {
+
+        width:
+          94vw;
+
+      }
+
 
       .closed-sign {
-        width: min(82vw, 350px);
-        padding: 25px 20px 23px;
-        margin-top: 10px;
+
+        width:
+          min(
+            82vw,
+            350px
+          );
+
+        padding:
+          25px
+          20px
+          23px;
+
+        margin-top:
+          10px;
+
       }
 
-      .opening-copy-closed .closed-shop-title {
-        font-size: clamp(.96rem, 4.5vw, 1.22rem);
-        letter-spacing: .18em;
+
+      .opening-copy-closed
+      .closed-shop-title {
+
+        font-size:
+          clamp(
+            .96rem,
+            4.5vw,
+            1.22rem
+          );
+
+        letter-spacing:
+          .18em;
+
       }
+
 
       .closed-sign-en {
-        font-size: clamp(2rem, 10vw, 2.75rem);
+
+        font-size:
+          clamp(
+            2rem,
+            10vw,
+            2.75rem
+          );
+
       }
 
+
       .closed-sign-ja {
-        font-size: clamp(.84rem, 4.1vw, 1rem);
-        letter-spacing: .23em;
+
+        font-size:
+          clamp(
+            .84rem,
+            4.1vw,
+            1rem
+          );
+
+        letter-spacing:
+          .23em;
+
       }
+
 
       .closed-note {
-        font-size: .70rem;
+
+        font-size:
+          .70rem;
+
       }
+
+
+
+      /* 猫はスマホでは少し小さく */
+
+      .gallery-cat {
+
+        right:
+          max(
+            7px,
+            env(safe-area-inset-right)
+          );
+
+        bottom:
+          max(
+            8px,
+            env(safe-area-inset-bottom)
+          );
+
+        width:
+          clamp(
+            118px,
+            34vw,
+            155px
+          );
+
+      }
+
+
+      .gallery-cat-label {
+
+        padding:
+          3px
+          8px
+          4px;
+
+        font-size:
+          .54rem;
+
+        letter-spacing:
+          .06em;
+
+      }
+
     }
 
-    @media (max-height: 760px) and (min-width: 641px) {
+
+
+    /* ========================================
+       LOW HEIGHT
+    ======================================== */
+
+    @media
+    (max-height: 760px)
+    and
+    (min-width: 641px) {
+
       .closed-sign {
-        padding-top: 24px;
-        padding-bottom: 22px;
+
+        padding-top:
+          24px;
+
+        padding-bottom:
+          22px;
+
       }
+
 
       .closed-sign-symbol {
-        margin-bottom: 5px;
+
+        margin-bottom:
+          5px;
+
       }
+
 
       .closed-sign-divider {
-        margin-top: 12px;
-        margin-bottom: 9px;
+
+        margin-top:
+          12px;
+
+        margin-bottom:
+          9px;
+
       }
+
 
       .closed-sign-ja {
-        margin-top: 9px;
+
+        margin-top:
+          9px;
+
       }
+
+
+      .gallery-cat {
+
+        width:
+          150px;
+
+      }
+
     }
+
+
+
+    /* ========================================
+       REDUCED MOTION
+    ======================================== */
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      .gallery-cat-image {
+
+        animation:
+          none !important;
+
+      }
+
+    }
+
   </style>
+
 </head>
 
+
+
 <body>
-  <canvas id="nightSky" class="night-sky" aria-hidden="true"></canvas>
+
+
+  <!-- ======================================
+       NIGHT SKY
+  ======================================= -->
+
+  <canvas
+    id="nightSky"
+    class="night-sky"
+    aria-hidden="true"
+  ></canvas>
+
+
+
+  <!-- ======================================
+       OPENING
+  ======================================= -->
 
   <main class="opening-page">
-    <section class="opening-scene" aria-labelledby="openingTitle">
+
+
+    <section
+      class="opening-scene"
+      aria-labelledby="openingTitle"
+    >
+
+
+      <!-- ==================================
+           MOON
+      =================================== -->
 
       <div class="moon-wrap">
-        <button id="moonButton" class="moon-button" type="button" aria-label="月明かりをたどって屋台へ入る">
-          <span class="moon" aria-hidden="true"></span>
-          <span class="moon-glow" aria-hidden="true"></span>
+
+        <button
+          id="moonButton"
+          class="moon-button"
+          type="button"
+          aria-label="月明かりをたどって屋台へ入る"
+        >
+
+          <span
+            class="moon"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="moon-glow"
+            aria-hidden="true"
+          ></span>
+
         </button>
+
       </div>
 
-      <div class="opening-copy opening-copy-closed">
-        <div class="closed-sign" role="status" aria-label="真夜中珈琲屋台は閉店しました">
-          <div class="closed-sign-symbol" aria-hidden="true">
-            <span class="closed-crescent">☾</span>
-            <span class="closed-star">✦</span>
+
+
+      <!-- ==================================
+           CLOSED SIGN
+      =================================== -->
+
+      <div
+        class="
+          opening-copy
+          opening-copy-closed
+        "
+      >
+
+        <div
+          class="closed-sign"
+          role="status"
+          aria-label="真夜中珈琲屋台は閉店しました"
+        >
+
+
+          <div
+            class="closed-sign-symbol"
+            aria-hidden="true"
+          >
+
+            <span class="closed-crescent">
+              ☾
+            </span>
+
+            <span class="closed-star">
+              ✦
+            </span>
+
           </div>
 
-          <h1 id="openingTitle" class="closed-shop-title">真夜中珈琲屋台</h1>
 
-          <div class="closed-sign-divider" aria-hidden="true">
-            <span></span><i>✦</i><span></span>
+
+          <h1
+            id="openingTitle"
+            class="closed-shop-title"
+          >
+            真夜中珈琲屋台
+          </h1>
+
+
+
+          <div
+            class="closed-sign-divider"
+            aria-hidden="true"
+          >
+
+            <span></span>
+
+            <i>
+              ✦
+            </i>
+
+            <span></span>
+
           </div>
 
-          <p class="closed-sign-en">CLOSED</p>
-          <p class="closed-sign-ja">またいつかの夜に</p>
 
-          <div class="closed-sign-divider closed-sign-divider-small" aria-hidden="true">
-            <span></span><i>✦</i><span></span>
+
+          <p class="closed-sign-en">
+            CLOSED
+          </p>
+
+
+          <p class="closed-sign-ja">
+            またいつかの夜に
+          </p>
+
+
+
+          <div
+            class="
+              closed-sign-divider
+              closed-sign-divider-small
+            "
+            aria-hidden="true"
+          >
+
+            <span></span>
+
+            <i>
+              ✦
+            </i>
+
+            <span></span>
+
           </div>
 
-          <p class="closed-sign-date">2026.8.29 — 9.1</p>
+
+
+          <p class="closed-sign-date">
+            2026.8.29 — 9.1
+          </p>
+
+
         </div>
 
-        <p class="opening-note closed-note">四日間、ありがとうございました。</p>
+
+
+        <p class="opening-note closed-note">
+          四日間、ありがとうございました。
+        </p>
+
+
       </div>
 
-      <div class="ground-haze" aria-hidden="true"></div>
+
+
+      <!-- ==================================
+           HAZE
+      =================================== -->
+
+      <div
+        class="ground-haze"
+        aria-hidden="true"
+      ></div>
+
+
+    </section>
+
 
   </main>
 
-  <script src="./js/analytics.js" defer></script>
-  <script src="./js/nightSkyEngine.js" defer></script>
+
+
+  <!-- ======================================
+       GALLERY CAT
+       猫をクリックすると営業記録へ
+  ======================================= -->
+
+  <a
+    class="gallery-cat"
+    href="./gallery/list.html"
+    aria-label="カードギャラリーを見る"
+  >
+
+    <img
+      class="gallery-cat-image"
+      src="./assets/images/cat-ending.png"
+      alt=""
+    >
+
+    <span class="gallery-cat-label">
+      ✦ カードギャラリーを見る
+    </span>
+
+  </a>
+
+
+
+  <!-- ======================================
+       SCRIPT
+  ======================================= -->
+
+  <script
+    src="./js/analytics.js"
+    defer
+  ></script>
+
+
+  <script
+    src="./js/nightSkyEngine.js"
+    defer
+  ></script>
+
+
 </body>
 
 </html>

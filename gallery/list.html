@@ -10,16 +10,12 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    真夜中珈琲屋台｜カード一覧
-  </title>
-
+  <title>真夜中珈琲屋台｜カード一覧</title>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&display=swap"
     rel="stylesheet"
   >
-
 
   <style>
 
@@ -103,7 +99,8 @@
 
       padding:
         20px
-        0;
+        0
+        30px;
 
     }
 
@@ -218,7 +215,8 @@
 
       cursor: pointer;
 
-      transition: .18s ease;
+      transition:
+        .18s ease;
 
     }
 
@@ -582,6 +580,225 @@
 
 
     /* ========================================
+       CAT ENDING
+    ======================================== */
+
+    .cat-ending {
+
+      margin-top: 28px;
+
+      padding:
+        18px
+        14px
+        7px;
+
+      text-align: center;
+
+    }
+
+
+    .cat-stage {
+
+      position: relative;
+
+      width:
+        min(
+          540px,
+          94%
+        );
+
+      margin:
+        0 auto
+        8px;
+
+      overflow: hidden;
+
+    }
+
+
+    /*
+      猫＋鳥＋足跡は
+      1枚の画像になっています。
+    */
+
+    .cat-walker {
+
+      width: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: flex-end;
+
+      opacity: 0;
+
+      transform:
+        translateX(120px);
+
+      animation:
+        catWalkIn
+        2.7s
+        cubic-bezier(.20,.70,.25,1)
+        forwards;
+
+    }
+
+
+    .cat-image {
+
+      display: block;
+
+      width:
+        min(
+          100%,
+          500px
+        );
+
+      height: auto;
+
+      user-select: none;
+      pointer-events: none;
+
+      filter:
+        drop-shadow(
+          0
+          8px
+          18px
+          rgba(0,0,0,.28)
+        );
+
+    }
+
+
+
+    /* ========================================
+       CAT MESSAGE
+    ======================================== */
+
+    .cat-message {
+
+      margin-top: 2px;
+
+      line-height: 1.6;
+
+      opacity: 0;
+
+      transform:
+        translateY(6px);
+
+      animation:
+        catMessageIn
+        1.3s
+        ease
+        1.9s
+        forwards;
+
+    }
+
+
+    .cat-main {
+
+      display: block;
+
+      color: #f0d9ab;
+
+      font-size:
+        clamp(
+          17px,
+          1.8vw,
+          21px
+        );
+
+      letter-spacing: .12em;
+
+    }
+
+
+    .cat-sub {
+
+      display: block;
+
+      margin-top: 3px;
+
+      color:
+        rgba(
+          234,
+          216,
+          179,
+          .60
+        );
+
+      font-size:
+        clamp(
+          10px,
+          1vw,
+          12px
+        );
+
+      letter-spacing: .10em;
+
+    }
+
+
+
+    /* ========================================
+       ANIMATION
+    ======================================== */
+
+    @keyframes catWalkIn {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          translateX(130px);
+
+      }
+
+      20% {
+
+        opacity: 1;
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        transform:
+          translateX(0);
+
+      }
+
+    }
+
+
+    @keyframes catMessageIn {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          translateY(6px);
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
+
+
+    /* ========================================
        FOOTER
     ======================================== */
 
@@ -591,7 +808,7 @@
 
       justify-content: center;
 
-      margin-top: 13px;
+      margin-top: 11px;
 
     }
 
@@ -628,6 +845,30 @@
 
       text-decoration: none;
 
+      transition:
+        background .18s ease,
+        border-color .18s ease,
+        transform .18s ease;
+
+    }
+
+
+    .back-button:hover {
+
+      background:
+        rgba(
+          167,
+          125,
+          60,
+          .16
+        );
+
+      border-color:
+        #c99b52;
+
+      transform:
+        translateY(-1px);
+
     }
 
 
@@ -636,54 +877,107 @@
        COMPACT PC
     ======================================== */
 
-    @media (max-height: 800px) and (min-width: 801px) {
+    @media
+    (max-height: 800px)
+    and
+    (min-width: 801px) {
 
       .page {
+
         padding:
           11px
           0
-          10px;
+          18px;
+
       }
+
 
       .header {
+
         margin-bottom: 6px;
+
       }
+
 
       .header h1 {
+
         font-size: 22px;
+
       }
+
 
       .categories {
+
         margin-bottom: 7px;
+
       }
 
+
       .category-button {
+
         padding:
           4px
           12px;
+
       }
+
 
       .section-title {
+
         margin-bottom: 7px;
+
       }
+
 
       .card-grid {
+
         gap: 6px;
+
       }
 
+
       .card-link {
+
         min-height: 66px;
+
         padding:
           8px
           10px;
+
       }
+
 
       .card-name {
+
         font-size: 11px;
+
       }
 
+
+      .cat-ending {
+
+        margin-top: 20px;
+
+        padding-top: 12px;
+
+      }
+
+
+      .cat-image {
+
+        width:
+          min(
+            100%,
+            420px
+          );
+
+      }
+
+
       .footer-actions {
+
         margin-top: 8px;
+
       }
 
     }
@@ -694,7 +988,8 @@
        TABLET
     ======================================== */
 
-    @media (max-width: 1000px) {
+    @media
+    (max-width: 1000px) {
 
       .card-grid {
 
@@ -714,15 +1009,22 @@
        MOBILE
     ======================================== */
 
-    @media (max-width: 650px) {
+    @media
+    (max-width: 650px) {
 
       .page {
+
         width: 94%;
+
       }
 
+
       .header h1 {
+
         font-size: 18px;
+
       }
+
 
       .card-grid {
 
@@ -736,8 +1038,80 @@
 
       }
 
+
       .card-link {
+
         min-height: 76px;
+
+      }
+
+
+      .cat-ending {
+
+        margin-top: 22px;
+
+        padding:
+          14px
+          4px
+          6px;
+
+      }
+
+
+      .cat-stage {
+
+        width: 100%;
+
+      }
+
+
+      .cat-image {
+
+        width:
+          min(
+            100%,
+            390px
+          );
+
+      }
+
+
+      .cat-main {
+
+        font-size: 17px;
+
+      }
+
+
+      .cat-sub {
+
+        font-size: 10px;
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       REDUCED MOTION
+    ======================================== */
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      .cat-walker,
+      .cat-message {
+
+        animation:
+          none !important;
+
+        opacity:
+          1 !important;
+
+        transform:
+          none !important;
+
       }
 
     }
@@ -754,6 +1128,10 @@
 <main class="page">
 
 
+  <!-- ======================================
+       HEADER
+  ======================================= -->
+
   <header class="header">
 
     <h1>
@@ -768,9 +1146,14 @@
 
 
 
-  <!-- CATEGORY -->
+  <!-- ======================================
+       CATEGORY
+  ======================================= -->
 
-  <nav class="categories">
+  <nav
+    class="categories"
+    aria-label="カードの種類"
+  >
 
     <button
       class="category-button active"
@@ -780,6 +1163,7 @@
       ☕ 珈琲カード
     </button>
 
+
     <button
       class="category-button"
       data-category="takeout"
@@ -787,6 +1171,7 @@
     >
       🥤 テイクアウト
     </button>
+
 
     <button
       class="category-button"
@@ -800,7 +1185,9 @@
 
 
 
-  <!-- TITLE -->
+  <!-- ======================================
+       SECTION TITLE
+  ======================================= -->
 
   <div class="section-title">
 
@@ -829,7 +1216,9 @@
 
 
 
-  <!-- GRID -->
+  <!-- ======================================
+       CARD GRID
+  ======================================= -->
 
   <div
     class="card-grid"
@@ -839,7 +1228,49 @@
 
 
 
-  <!-- FOOTER -->
+  <!-- ======================================
+       CAT ENDING
+  ======================================= -->
+
+  <section
+    class="cat-ending"
+    aria-label="猫からのひとこと"
+  >
+
+    <div class="cat-stage">
+
+      <div class="cat-walker">
+
+        <img
+          class="cat-image"
+          src="../assets/images/cat-ending.png"
+          alt="歩く黒猫と、そのそばを飛ぶ小さな鳥"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="cat-message">
+
+      <span class="cat-main">
+        またにゃ。
+      </span>
+
+      <span class="cat-sub">
+        またどこかの夜で。
+      </span>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       FOOTER
+  ======================================= -->
 
   <div class="footer-actions">
 
@@ -859,11 +1290,19 @@
 
 <script>
 
+  "use strict";
+
+
   /* ==========================================================
      DATA
   ========================================================== */
 
   const collections = {
+
+
+    /* --------------------------------------------------------
+       COFFEE
+    -------------------------------------------------------- */
 
     coffee: {
 
@@ -916,6 +1355,11 @@
     },
 
 
+
+    /* --------------------------------------------------------
+       TAKEOUT
+    -------------------------------------------------------- */
+
     takeout: {
 
       en:
@@ -938,6 +1382,11 @@
 
     },
 
+
+
+    /* --------------------------------------------------------
+       SPARKLER
+    -------------------------------------------------------- */
 
     sparkler: {
 
@@ -975,20 +1424,24 @@
       "cardGrid"
     );
 
+
   const sectionEn =
     document.getElementById(
       "sectionEn"
     );
+
 
   const sectionJp =
     document.getElementById(
       "sectionJp"
     );
 
+
   const sectionCount =
     document.getElementById(
       "sectionCount"
     );
+
 
   const categoryButtons =
     document.querySelectorAll(
@@ -1007,35 +1460,53 @@
     id
   ) {
 
+
+    /* FULL MOON */
+
     if (
       category === "coffee"
       &&
       id === "M-029"
     ) {
+
       link.classList.add(
         "fullmoon"
       );
+
     }
+
+
+    /* COFFEE SECRET */
 
     if (
       category === "coffee"
       &&
       id === "M-030"
     ) {
+
       link.classList.add(
         "secret"
       );
+
     }
+
+
+    /* TAKEOUT RARE */
 
     if (
       category === "takeout"
       &&
       id === "T-007"
     ) {
+
       link.classList.add(
         "rare"
       );
+
     }
+
+
+    /* SPARKLER RARE */
 
     if (
       category === "sparkler"
@@ -1046,19 +1517,26 @@
         id === "S-005"
       )
     ) {
+
       link.classList.add(
         "rare"
       );
+
     }
+
+
+    /* SPARKLER SECRET */
 
     if (
       category === "sparkler"
       &&
       id === "S-006"
     ) {
+
       link.classList.add(
         "secret"
       );
+
     }
 
   }
@@ -1066,7 +1544,7 @@
 
 
   /* ==========================================================
-     URL
+     CARD URL
   ========================================================== */
 
   function makeCardURL(
@@ -1077,23 +1555,35 @@
     if (
       category === "coffee"
     ) {
-      return `./index.html?card=${encodeURIComponent(id)}`;
+
+      return (
+        `./index.html?card=${encodeURIComponent(id)}`
+      );
+
     }
+
 
     if (
       category === "takeout"
     ) {
-      return `./viewer.html?type=takeout&card=${encodeURIComponent(id)}`;
+
+      return (
+        `./viewer.html?type=takeout&card=${encodeURIComponent(id)}`
+      );
+
     }
 
-    return `./viewer.html?type=sparkler&card=${encodeURIComponent(id)}`;
+
+    return (
+      `./viewer.html?type=sparkler&card=${encodeURIComponent(id)}`
+    );
 
   }
 
 
 
   /* ==========================================================
-     RENDER
+     RENDER COLLECTION
   ========================================================== */
 
   function renderCollection(
@@ -1103,38 +1593,58 @@
     const collection =
       collections[category];
 
+
     if (!collection) {
       return;
     }
 
+
+    /* 見出し */
+
     sectionEn.textContent =
       collection.en;
+
 
     sectionJp.textContent =
       collection.jp;
 
+
     sectionCount.textContent =
       `全${collection.cards.length}種`;
 
+
+    /* タブ */
+
     categoryButtons.forEach(
       button => {
+
         button.classList.toggle(
           "active",
           button.dataset.category === category
         );
+
       }
     );
 
-    grid.innerHTML = "";
+
+    /* 一覧 */
+
+    grid.innerHTML =
+      "";
+
 
     collection.cards.forEach(
       ([id, name]) => {
 
         const link =
-          document.createElement("a");
+          document.createElement(
+            "a"
+          );
+
 
         link.className =
           "card-link";
+
 
         link.href =
           makeCardURL(
@@ -1142,19 +1652,34 @@
             id
           );
 
+
         applySpecialStyle(
           link,
           category,
           id
         );
 
+
         link.innerHTML = `
-          <span class="card-id">${id}</span>
-          <span class="card-name">${name}</span>
-          <span class="card-arrow">VIEW →</span>
+
+          <span class="card-id">
+            ${id}
+          </span>
+
+          <span class="card-name">
+            ${name}
+          </span>
+
+          <span class="card-arrow">
+            VIEW →
+          </span>
+
         `;
 
-        grid.appendChild(link);
+
+        grid.appendChild(
+          link
+        );
 
       }
     );
@@ -1173,9 +1698,11 @@
       button.addEventListener(
         "click",
         () => {
+
           renderCollection(
             button.dataset.category
           );
+
         }
       );
 
@@ -1188,7 +1715,9 @@
      START
   ========================================================== */
 
-  renderCollection("coffee");
+  renderCollection(
+    "coffee"
+  );
 
 </script>
 
